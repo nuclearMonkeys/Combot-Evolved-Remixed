@@ -15,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - Bullet
-  - Tank Head
-  - Tank Wall
+  - Damage
+  - Tank Body
+  - Tank Wall Collider
   - Block
   - 
   - 

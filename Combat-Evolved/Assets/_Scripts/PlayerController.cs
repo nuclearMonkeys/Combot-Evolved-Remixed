@@ -30,9 +30,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D m_rigidbody;
     private Vector2 rotation;
-    private TrailRenderer trailRenderer;
-
-    private LineRenderer line;
 
     void Awake()
     {
@@ -46,8 +43,6 @@ public class PlayerController : MonoBehaviour
         head =        this.GetComponentsInChildren<Transform>()[2].gameObject;
         firePoint =   this.GetComponentsInChildren<Transform>()[4].gameObject;
         m_rigidbody = this.GetComponent<Rigidbody2D>();
-        trailRenderer = this.GetComponent<TrailRenderer>();
-        line = this.GetComponent<LineRenderer>();
         // dottedLine = new DottedLine();
         // trailRenderer.enabled = !trailRenderer.enabled;
         dashTime = startDashTime;
@@ -55,8 +50,6 @@ public class PlayerController : MonoBehaviour
 
     void Update() 
     {
-        DrawLine();
-
         if(cooldown > 0)
             cooldown--;
 
@@ -113,7 +106,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator boostEnumerator(InputAction.CallbackContext context) 
     {
-    
+        if (body == null)
+            yield return null;
         // This allows the player to control the direction of the 'dash'
         Vector2 previousDirection = direction;
         direction = context.ReadValue<Vector2>();
@@ -176,25 +170,6 @@ public class PlayerController : MonoBehaviour
         }
 
         yield return null;
-    }
-
-    // I've spent way too long to make dotted lines
-    // Come back to this later
-    private void DrawLine() 
-    {
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.right);
-
-        // Debug.DrawLine(firePoint.transform.position, hit.point);
-        // dottedLine.DrawDottedLine(firePoint.transform.position, hit.point);
-        
-        line.SetPosition(0, firePoint.transform.position);
-
-        if(hit)
-            line.SetPosition(1, hit.point);
-        else {
-            line.SetPosition(1, firePoint.transform.position * 2/0.4f);
-        }
-        
     }
 
     /*

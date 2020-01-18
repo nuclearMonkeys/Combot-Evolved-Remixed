@@ -18,10 +18,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
+        if (!other.CompareTag("Bullet"))
+            return;
+        
         DamageDealer damage = other.gameObject.GetComponent<DamageDealer>();
         if(damage != null) 
         {
             currentHP.ApplyChange(-damage.damageAmount);
+            Destroy(other.gameObject);
             damageEvent.Invoke();
         }
         if(currentHP.Value <= 0.0f)
@@ -29,5 +33,4 @@ public class PlayerHealth : MonoBehaviour
             deathEvent.Invoke();
         }
     }
-
 }

@@ -18,12 +18,20 @@ public class InputManager : IInputActionCollection
             ""id"": ""e87a7e71-eff4-4173-89f8-286d74d83a90"",
             ""actions"": [
                 {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbbf3f71-faeb-4332-9c86-b0c515d29f8b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""92503f44-0f97-4449-b380-405f6d76f63c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Tap""
                 },
                 {
                     ""name"": ""Move"",
@@ -51,17 +59,6 @@ public class InputManager : IInputActionCollection
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""39594da0-db40-4982-8b08-91cace769ca0"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": ""ControllerScheme"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""1cf2681e-5c55-4b97-935b-4687ab36ef95"",
@@ -138,6 +135,17 @@ public class InputManager : IInputActionCollection
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bee62ff1-5edb-4b03-8169-4de40653e84f"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControllerScheme"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -158,6 +166,7 @@ public class InputManager : IInputActionCollection
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
@@ -211,6 +220,7 @@ public class InputManager : IInputActionCollection
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Rotate;
@@ -219,6 +229,7 @@ public class InputManager : IInputActionCollection
     {
         private InputManager m_Wrapper;
         public PlayerActions(InputManager wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
@@ -232,6 +243,9 @@ public class InputManager : IInputActionCollection
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
+                Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
@@ -248,6 +262,9 @@ public class InputManager : IInputActionCollection
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
+                Aim.started += instance.OnAim;
+                Aim.performed += instance.OnAim;
+                Aim.canceled += instance.OnAim;
                 Fire.started += instance.OnFire;
                 Fire.performed += instance.OnFire;
                 Fire.canceled += instance.OnFire;
@@ -275,6 +292,7 @@ public class InputManager : IInputActionCollection
     }
     public interface IPlayerActions
     {
+        void OnAim(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);

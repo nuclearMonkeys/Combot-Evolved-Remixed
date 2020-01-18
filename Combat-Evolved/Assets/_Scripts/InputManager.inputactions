@@ -6,12 +6,20 @@
             "id": "e87a7e71-eff4-4173-89f8-286d74d83a90",
             "actions": [
                 {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "bbbf3f71-faeb-4332-9c86-b0c515d29f8b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "92503f44-0f97-4449-b380-405f6d76f63c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Tap"
                 },
                 {
                     "name": "Move",
@@ -39,17 +47,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "39594da0-db40-4982-8b08-91cace769ca0",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "ControllerScheme",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "1cf2681e-5c55-4b97-935b-4687ab36ef95",
@@ -124,6 +121,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bee62ff1-5edb-4b03-8169-4de40653e84f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerScheme",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
