@@ -224,6 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7427368996277973819}
   - component: {fileID: 7427368996277973818}
+  - component: {fileID: 5307039383973742108}
   - component: {fileID: 7427368996277973812}
   - component: {fileID: 7427368996277973813}
   - component: {fileID: 5039081451287592686}
@@ -266,7 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbb82ec65350dd48a3655d7ed4c64be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
   body: {fileID: 0}
   head: {fileID: 0}
   firePoint: {fileID: 0}
@@ -277,6 +277,27 @@ MonoBehaviour:
   dashSpeed: 15
   startDashTime: 0.1
   maxCooldown: 15
+--- !u!114 &5307039383973742108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427368996277973817}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c97ce44e07e39e40aa4e8576b6f1ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 0}
+  head: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  m_movementSpeed: 5
+  direction: {x: 0, y: 0}
+  dashSpeed: 0
+  startDashTime: 0
+  maxCooldown: 60
 --- !u!50 &7427368996277973812
 Rigidbody2D:
   serializedVersion: 4

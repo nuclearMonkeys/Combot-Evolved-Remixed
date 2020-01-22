@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+/*
+ * This script is used for development purposes only. Players
+ * should only use controllers when playing the final game.
+ * This is also using the OLD Unity input system.
+ */
+
+public class KeyboardPlayerController : MonoBehaviour
 {
     [Header("Tank GameObjects")]
 
@@ -50,6 +55,16 @@ public class PlayerController : MonoBehaviour
 
         if(dashTime > 0)
             dashTime -= Time.deltaTime;
+
+        Move();
+
+        if (Input.GetAxis("Fire1") == 1) 
+            Fire();
+
+        if(Input.GetAxis("Fire3") == 1)
+            Dash();
+
+        Rotate();
     }
 
     public void Fire()
@@ -64,57 +79,51 @@ public class PlayerController : MonoBehaviour
         cooldown = maxCooldown;
     }
 
-    public void Move(InputAction.CallbackContext context) 
-    {
-        print(context.ReadValue<Vector2>());
-        StartCoroutine(boostEnumerator(context));
-    }
-
-    public void Rotate(InputAction.CallbackContext context) 
+    public void Rotate() 
     {
         // When you release stick on resting place
         Vector2 previousRotation = rotation;
-        rotation = context.ReadValue<Vector2>();
+        rotation = Input.mousePosition;
+        rotation = Camera.main.ScreenToWorldPoint(rotation);
 
         float h = 0.0f;
         float v = 0.0f;
 
-        //print(rotation);
-
-        if(rotation != Vector2.zero && withinThreshold(rotation)) {
+        if(rotation != Vector2.zero) {
             h = rotation.x;
             v = rotation.y;
-        } else {
-            h = previousRotation.x;
-            v = previousRotation.y;
         }
 
-        
         float aim_angle = Mathf.Atan2(v, h) * Mathf.Rad2Deg;
         head.transform.rotation = Quaternion.AngleAxis(aim_angle, Vector3.forward);
-        print(rotation);
     }
 
-    public void Dash(InputAction.CallbackContext context) 
+    public void Dash() 
     {
         if(dashTime <= 0 && direction != Vector2.zero)
             isDashing = true;
     }
 
-    IEnumerator boostEnumerator(InputAction.CallbackContext context) 
+    public void Move() 
+    {
+        StartCoroutine(boostEnumerator());
+    }
+
+    IEnumerator boostEnumerator() 
     {
         if (body == null)
             yield return null;
         // This allows the player to control the direction of the 'dash'
         Vector2 previousDirection = direction;
-        direction = context.ReadValue<Vector2>();
+        direction = direction = new Vector2(Input.GetAxis("Horizontal"), 
+            Input.GetAxis("Vertical"));
 
         // print(direction);
 
         float h = 0.0f;
         float v = 0.0f;
 
-        if(direction != Vector2.zero && withinThreshold(direction)) {
+        if(direction != Vector2.zero) {
             h = direction.x * m_movementSpeed;
             v = direction.y * m_movementSpeed;
         } else {
@@ -141,13 +150,15 @@ public class PlayerController : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator dashEnumerator(InputAction.CallbackContext context) 
+    IEnumerator dashEnumerator() 
     {
         // This is for a regular dash. Planned for testing.
         // Not for final use.
-        direction = context.ReadValue<Vector2>();
+        direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         float h = direction.x * m_movementSpeed;
         float v = direction.y * m_movementSpeed;
+
+        print(direction);
 
         if(dashTime <= 0 && isDashing) {
             m_rigidbody.velocity = direction * dashSpeed;

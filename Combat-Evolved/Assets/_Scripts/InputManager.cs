@@ -19,7 +19,7 @@ public class InputManager : IInputActionCollection
             ""actions"": [
                 {
                     ""name"": ""Aim"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""bbbf3f71-faeb-4332-9c86-b0c515d29f8b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -71,6 +71,61 @@ public class InputManager : IInputActionCollection
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b7942f9f-4c73-4812-b11e-3b0665088a46"",
+                    ""path"": ""2DVector(normalize=false)"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d9c822ea-6821-49f1-bb1a-3c8c58d73b1b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0e78b226-9194-4359-9538-a7def4f1cbac"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""091cc62c-be1e-453f-b19c-d8d22bcde54f"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""08d8a737-78e3-4d9e-8e08-577056d6cc16"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""59d880d6-fd4a-4c6d-b281-e1802392e8f0"",
                     ""path"": ""<Gamepad>/rightTrigger"",
@@ -88,6 +143,17 @@ public class InputManager : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": ""ScaleVector2"",
                     ""groups"": ""ControllerScheme"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af003ff3-24e6-45e5-ae44-1daea39543fe"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2"",
+                    ""groups"": ""KeyboardScheme"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -161,6 +227,11 @@ public class InputManager : IInputActionCollection
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""KeyboardScheme"",
+            ""bindingGroup"": ""KeyboardScheme"",
+            ""devices"": []
         }
     ]
 }");
@@ -288,6 +359,15 @@ public class InputManager : IInputActionCollection
         {
             if (m_ControllerSchemeSchemeIndex == -1) m_ControllerSchemeSchemeIndex = asset.FindControlSchemeIndex("ControllerScheme");
             return asset.controlSchemes[m_ControllerSchemeSchemeIndex];
+        }
+    }
+    private int m_KeyboardSchemeSchemeIndex = -1;
+    public InputControlScheme KeyboardSchemeScheme
+    {
+        get
+        {
+            if (m_KeyboardSchemeSchemeIndex == -1) m_KeyboardSchemeSchemeIndex = asset.FindControlSchemeIndex("KeyboardScheme");
+            return asset.controlSchemes[m_KeyboardSchemeSchemeIndex];
         }
     }
     public interface IPlayerActions
