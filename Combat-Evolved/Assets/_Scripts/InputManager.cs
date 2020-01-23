@@ -56,6 +56,14 @@ public class InputManager : IInputActionCollection
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Pause/Resume"",
+                    ""type"": ""Button"",
+                    ""id"": ""791d3a9f-6877-4850-aa22-64e7d580055c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -212,6 +220,17 @@ public class InputManager : IInputActionCollection
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9748796-e195-4827-9fff-32d1917c4124"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause/Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -242,6 +261,7 @@ public class InputManager : IInputActionCollection
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_PauseResume = m_Player.FindAction("Pause/Resume", throwIfNotFound: true);
     }
 
     ~InputManager()
@@ -296,6 +316,7 @@ public class InputManager : IInputActionCollection
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_PauseResume;
     public struct PlayerActions
     {
         private InputManager m_Wrapper;
@@ -305,6 +326,7 @@ public class InputManager : IInputActionCollection
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @PauseResume => m_Wrapper.m_Player_PauseResume;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -329,6 +351,9 @@ public class InputManager : IInputActionCollection
                 Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                PauseResume.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseResume;
+                PauseResume.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseResume;
+                PauseResume.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseResume;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -348,6 +373,9 @@ public class InputManager : IInputActionCollection
                 Dash.started += instance.OnDash;
                 Dash.performed += instance.OnDash;
                 Dash.canceled += instance.OnDash;
+                PauseResume.started += instance.OnPauseResume;
+                PauseResume.performed += instance.OnPauseResume;
+                PauseResume.canceled += instance.OnPauseResume;
             }
         }
     }
@@ -377,5 +405,6 @@ public class InputManager : IInputActionCollection
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnPauseResume(InputAction.CallbackContext context);
     }
 }
