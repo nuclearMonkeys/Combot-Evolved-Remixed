@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public int tankID;
+    public bool enableKeyboard = true;
     [Header("Tank GameObjects")]
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject head;
@@ -34,21 +36,49 @@ public class PlayerController : MonoBehaviour
         head =        transform.Find("Head").gameObject;
         firePoint =   head.transform.Find("Barrel").Find("FirePoint").gameObject;
         m_rigidbody = this.GetComponent<Rigidbody2D>();
+
+        foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (tankID == 0)
+                sr.color = Color.blue;
+            else if(tankID == 1)
+                sr.color = Color.red;
+        }
     }
 
     void Update() 
     {
+        // Keyboard Controls:
+        // WASD to move
+        // Mouse to aim
+        // Left Click to shoot
+        // Left Shift to dash
+        if(enableKeyboard)
+        {
+            // keyboard controls
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                Fire();
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+                Dash();
+            Move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized);
+            Rotate((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - ((Vector2)transform.position).normalized);
+        }
+
         m_rigidbody.velocity = direction * m_movementSpeed;
     }
 
-    public void Move(InputAction.CallbackContext context) 
+    public void ControllerMove(InputAction.CallbackContext context)
+    {
+        Move(context.ReadValue<Vector2>());
+    }
+
+    public void Move(Vector2 inputDirection) 
     {
         // if not dashing, move according to joystick
         if(!isDashing || dashRotate)
         {
-            direction = context.ReadValue<Vector2>();
+            direction = inputDirection;
         }
-
         // prevent snapping
         if(direction.magnitude > .1f)
         {
@@ -56,10 +86,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Rotate(InputAction.CallbackContext context) 
+    public void ControllerRotate(InputAction.CallbackContext context)
+    {
+        Rotate(context.ReadValue<Vector2>());
+    }
+
+    public void Rotate(Vector2 inputDirection) 
     {
         // When you release stick on resting place
-        Vector2 rotation = context.ReadValue<Vector2>();
+        Vector2 rotation = inputDirection;
         // prevent snapping
         if(rotation.magnitude > .1f)
         {
@@ -84,15 +119,15 @@ public class PlayerController : MonoBehaviour
         canFire = true;
     }
 
-    public void Dash(InputAction.CallbackContext context) 
+    public void Dash() 
     {
         if(!isDashing)
         {
-            StartCoroutine(dashEnumerator(context));
+            StartCoroutine(dashEnumerator());
         }
     }
 
-    IEnumerator dashEnumerator(InputAction.CallbackContext context) 
+    IEnumerator dashEnumerator() 
     {
         isDashing = true;
         float oldSpeed = m_movementSpeed;

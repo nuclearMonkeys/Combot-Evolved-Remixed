@@ -21,7 +21,6 @@ public class DefaultBullet : MonoBehaviour
         if (other.CompareTag("Bullet")) 
         {
             Destroy(other.gameObject);
-            // print("collide");
         }
 
         if(other.CompareTag("Player")) 
