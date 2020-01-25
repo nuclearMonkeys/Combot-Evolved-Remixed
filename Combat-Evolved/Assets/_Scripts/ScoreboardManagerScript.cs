@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreboardManagerScript : MonoBehaviour
 {
@@ -64,9 +65,11 @@ public class ScoreboardManagerScript : MonoBehaviour
             spot3 = scoreboardManager.transform.Find("Spot3Background").gameObject;
             spot3.SetActive((numPlayers == 4));
             spot3.transform.Find("killCount").gameObject.GetComponent<Text>().text = "Player 4\n" + player4kills;
+        }
 
-
-
+        if (Input.GetKey("p") || displaySeconds <= 0)
+        {
+            SceneManager.LoadScene("resultsScreen", LoadSceneMode.Single);
         }
     }
 }

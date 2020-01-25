@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerTest.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DaneScene.unity
+    guid: fd3d135b403481044b4114dca9dbf8ca
+  - enabled: 1
+    path: Assets/Scenes/resultsScreen.unity
+    guid: 0b0ea26a5a52bcd43b5c24d9ac8b43c9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6ebf997df8fd1d54cba22cb6352c3e84,
       type: 2}
