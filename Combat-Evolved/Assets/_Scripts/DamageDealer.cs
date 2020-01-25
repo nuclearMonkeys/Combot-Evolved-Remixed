@@ -2,5 +2,5 @@
 
 public class DamageDealer : MonoBehaviour
 {
-    public FloatReference damageAmount;
+    public int damageAmount;
 }

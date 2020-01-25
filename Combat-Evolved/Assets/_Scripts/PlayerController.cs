@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Tank GameObjects")]
-
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject head;
     [SerializeField] private GameObject firePoint;
@@ -15,168 +14,91 @@ public class PlayerController : MonoBehaviour
     [Header("Player Variables")]
     [SerializeField] private float m_movementSpeed = 5.0f;
     [SerializeField] private Vector2 direction;
+    [SerializeField] private float fireRate = .5f;
 
     [Header("Dash Variables")]
     [SerializeField] private float dashSpeed;
-    [SerializeField] private float startDashTime;
-    
+    [SerializeField] private float dashDuration;
+    [SerializeField] private bool dashRotate = false;
+
     // private variables. no touchy touchy.
     private bool isDashing = false;
-    private float dashTime;
-    
-    public int maxCooldown = 60;
-    private int cooldown = 0;
+    private bool canFire = true;
 
+    // Components
     private Rigidbody2D m_rigidbody;
-    private Vector2 rotation;
-
 
     void Start() 
     {
-        // Ugly ass code
-        body =        this.GetComponentsInChildren<Transform>()[1].gameObject;
-        head =        this.GetComponentsInChildren<Transform>()[2].gameObject;
-        firePoint =   this.GetComponentsInChildren<Transform>()[4].gameObject;
+        body =        transform.Find("Body").gameObject;
+        head =        transform.Find("Head").gameObject;
+        firePoint =   head.transform.Find("Barrel").Find("FirePoint").gameObject;
         m_rigidbody = this.GetComponent<Rigidbody2D>();
-        // dottedLine = new DottedLine();
-        // trailRenderer.enabled = !trailRenderer.enabled;
-        dashTime = startDashTime;
     }
 
     void Update() 
     {
-        if(cooldown > 0)
-            cooldown--;
-
-        if(dashTime > 0)
-            dashTime -= Time.deltaTime;
-    }
-
-    public void Fire()
-    {
-        if(cooldown > 0)
-            return;
-
-        DefaultBullet clone = (DefaultBullet)Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
-        clone.speed = 5f;
-        Vector2 rotation = new Vector2(head.transform.rotation.x, head.transform.rotation.z);
-        Destroy(clone.gameObject, 2f);
-        cooldown = maxCooldown;
+        m_rigidbody.velocity = direction * m_movementSpeed;
     }
 
     public void Move(InputAction.CallbackContext context) 
     {
-        print(context.ReadValue<Vector2>());
-        StartCoroutine(boostEnumerator(context));
+        // if not dashing, move according to joystick
+        if(!isDashing || dashRotate)
+        {
+            direction = context.ReadValue<Vector2>();
+        }
+
+        // prevent snapping
+        if(direction.magnitude > .1f)
+        {
+            body.transform.right = direction.normalized;
+        }
     }
 
     public void Rotate(InputAction.CallbackContext context) 
     {
         // When you release stick on resting place
-        Vector2 previousRotation = rotation;
-        rotation = context.ReadValue<Vector2>();
-
-        float h = 0.0f;
-        float v = 0.0f;
-
-        //print(rotation);
-
-        if(rotation != Vector2.zero && withinThreshold(rotation)) {
-            h = rotation.x;
-            v = rotation.y;
-        } else {
-            h = previousRotation.x;
-            v = previousRotation.y;
+        Vector2 rotation = context.ReadValue<Vector2>();
+        // prevent snapping
+        if(rotation.magnitude > .1f)
+        {
+            head.transform.right = rotation;
         }
+    }
 
-        
-        float aim_angle = Mathf.Atan2(v, h) * Mathf.Rad2Deg;
-        head.transform.rotation = Quaternion.AngleAxis(aim_angle, Vector3.forward);
-        print(rotation);
+    public void Fire()
+    {
+        if(canFire)
+        {
+            StartCoroutine(fireEnumerator());
+        }
+    }
+
+    IEnumerator fireEnumerator()
+    {
+        canFire = false;
+        DefaultBullet clone = (DefaultBullet)Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
+        Destroy(clone.gameObject, 2f);
+        yield return new WaitForSeconds(fireRate);
+        canFire = true;
     }
 
     public void Dash(InputAction.CallbackContext context) 
     {
-        if(dashTime <= 0 && direction != Vector2.zero)
-            isDashing = true;
-    }
-
-    IEnumerator boostEnumerator(InputAction.CallbackContext context) 
-    {
-        if (body == null)
-            yield return null;
-        // This allows the player to control the direction of the 'dash'
-        Vector2 previousDirection = direction;
-        direction = context.ReadValue<Vector2>();
-
-        // print(direction);
-
-        float h = 0.0f;
-        float v = 0.0f;
-
-        if(direction != Vector2.zero && withinThreshold(direction)) {
-            h = direction.x * m_movementSpeed;
-            v = direction.y * m_movementSpeed;
-        } else {
-            h = previousDirection.x * m_movementSpeed;
-            v = previousDirection.y * m_movementSpeed;
+        if(!isDashing)
+        {
+            StartCoroutine(dashEnumerator(context));
         }
-        
-        // direction = previousDirection;
-            
-        float aim_angle = Mathf.Atan2(v, h) * Mathf.Rad2Deg;
-        body.transform.rotation = Quaternion.AngleAxis(aim_angle, Vector3.forward);
-
-        if(dashTime <= 0 && isDashing) {
-            // trailRenderer.enabled = !trailRenderer.enabled;
-            m_rigidbody.velocity = direction * dashSpeed;
-            yield return new WaitForSecondsRealtime(0.5f);
-            dashTime = startDashTime;
-            isDashing = false;
-        }
-        else {
-            m_rigidbody.velocity = direction * m_movementSpeed;
-        }
-            
-        yield return null;
     }
 
     IEnumerator dashEnumerator(InputAction.CallbackContext context) 
     {
-        // This is for a regular dash. Planned for testing.
-        // Not for final use.
-        direction = context.ReadValue<Vector2>();
-        float h = direction.x * m_movementSpeed;
-        float v = direction.y * m_movementSpeed;
-
-        if(dashTime <= 0 && isDashing) {
-            m_rigidbody.velocity = direction * dashSpeed;
-            dashTime = startDashTime;
-            //yield return new WaitForSecondsRealtime(0.03f);
-            isDashing = false;
-        }
-        else if(dashTime > 0) {
-            yield return null;
-        }
-        else {
-            m_rigidbody.velocity = direction * m_movementSpeed;
-            float aim_angle = Mathf.Atan2(v, h) * Mathf.Rad2Deg;
-            body.transform.rotation = Quaternion.AngleAxis(aim_angle, Vector3.forward);
-        }
-
-        yield return null;
-    }
-
-    /*
-     * Determines if the absolute value of x and y coordinates
-     * of the left stick position (direction) is
-     * greater than the value of 
-     * some threshold in the function
-    */
-    private bool withinThreshold(Vector2 vec) 
-    {
-        float threshold = 0.5f;
-        return Mathf.Abs(vec.x) > threshold &&
-             Mathf.Abs(vec.y) > threshold;
+        isDashing = true;
+        float oldSpeed = m_movementSpeed;
+        m_movementSpeed = dashSpeed;
+        yield return new WaitForSeconds(dashDuration);
+        m_movementSpeed = oldSpeed;
+        isDashing = false;
     }
 }

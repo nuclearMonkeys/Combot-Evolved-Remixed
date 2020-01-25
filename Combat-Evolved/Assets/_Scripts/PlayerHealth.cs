@@ -3,34 +3,33 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public FloatVariable currentHP;
+    public float currentHP;
 
     public bool resetHP;
-    public FloatReference maxHP;
+    public float maxHP;
     public UnityEvent damageEvent;
     public UnityEvent deathEvent;
 
     void Start() 
     {
         if (resetHP)
-            currentHP.SetValue(maxHP);
+            currentHP = maxHP;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    public void TakeDamage(DefaultBullet bullet) 
     {
-        if (!other.CompareTag("Bullet"))
-            return;
+        currentHP -= bullet.damage;
         
-        DamageDealer damage = other.gameObject.GetComponent<DamageDealer>();
-        if(damage != null) 
+        if (currentHP < 0.0f) 
         {
-            currentHP.ApplyChange(-damage.damageAmount);
-            Destroy(other.gameObject);
-            damageEvent.Invoke();
+            Die(bullet);
         }
-        if(currentHP.Value <= 0.0f)
-        {
-            deathEvent.Invoke();
-        }
+    }
+
+    public void Die(DefaultBullet bullet) 
+    {
+        // Later on, tell GameManager this Player X killed
+        // Player Y or something...
+        Destroy(this.gameObject);
     }
 }
