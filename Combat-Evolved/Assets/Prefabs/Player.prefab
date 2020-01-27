@@ -1676,6 +1676,7 @@ GameObject:
   - component: {fileID: 2004657896331461545}
   - component: {fileID: 1042425012}
   - component: {fileID: 2521234183508917242}
+  - component: {fileID: 5374265522163675506}
   - component: {fileID: 188397089}
   - component: {fileID: 1062187574}
   - component: {fileID: 1042425011}
@@ -1748,6 +1749,7 @@ MonoBehaviour:
   m_movementSpeed: 2
   direction: {x: 0, y: 0}
   fireRate: 0.5
+  playerStamina: {fileID: 5374265522163675506}
   dashSpeed: 15
   dashDuration: 0.5
   dashRotate: 0
@@ -1911,6 +1913,24 @@ MonoBehaviour:
   m_DefaultActionMap: e87a7e71-eff4-4173-89f8-286d74d83a90
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5374265522163675506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2521234183508917238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0734a791d7b2cd42a2d63344b51fec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaSlider: {fileID: 592602457}
+  currentStamina: 0
+  resetStamina: 0
+  maxStamina: 5
+  cooldown: 0
+  updateSpeedSecs: 0.5
 --- !u!61 &188397089
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_movementSpeed = 5.0f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private float fireRate = .5f;
+    [SerializeField] private PlayerStamina playerStamina;
 
     [Header("Dash Variables")]
     [SerializeField] private float dashSpeed;
@@ -117,6 +118,7 @@ public class PlayerController : MonoBehaviour
         Destroy(clone.gameObject, 2f);
         yield return new WaitForSeconds(fireRate);
         canFire = true;
+        playerStamina.DecrementStamina();
     }
 
     public void Dash() 
