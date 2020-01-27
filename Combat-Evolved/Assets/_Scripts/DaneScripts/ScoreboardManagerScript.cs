@@ -7,7 +7,7 @@ using System;
 
 public class ScoreboardManagerScript : MonoBehaviour
 {
-    public static ScoreboardManagerScript Instance { get; private set; }
+    public static ScoreboardManagerScript instance;
 
     
     float maxSeconds = 300;
@@ -23,6 +23,11 @@ public class ScoreboardManagerScript : MonoBehaviour
     private GameObject spot1;
     private GameObject spot2;
     private GameObject spot3;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -40,10 +45,7 @@ public class ScoreboardManagerScript : MonoBehaviour
         displaySeconds = (int)maxSeconds;
         timer.text = ((int) displaySeconds / 60 )+ ":" + displaySeconds % 60 ;
         
-        if (Input.anyKeyDown)
-        {
-            updateScores(1);
-        }
+        
 
         if (Input.GetKey("p") || displaySeconds <= 0 || killThresholdReached())
         {

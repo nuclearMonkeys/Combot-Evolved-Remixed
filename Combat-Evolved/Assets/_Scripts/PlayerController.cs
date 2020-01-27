@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         canFire = false;
         DefaultBullet clone = (DefaultBullet)Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
+        clone.source = this;
         Destroy(clone.gameObject, 2f);
         yield return new WaitForSeconds(fireRate);
         canFire = true;
