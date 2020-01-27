@@ -1165,6 +1165,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1241,10 +1246,36 @@ PrefabInstance:
       propertyPath: tankID
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
+    - target: {fileID: 2521234183508917237, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
-      propertyPath: m_Name
-      value: Player
+      propertyPath: enableKeyboard
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 791d3a9f-6877-4850-aa22-64e7d580055c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Player/Pause/Resume[/XInputControllerWindows/start,/DualShock4GamepadHID/start]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: ControllerScheme
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
@@ -1299,6 +1330,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_Name
+      value: Player1
+      objectReference: {fileID: 0}
     - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1370,10 +1406,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
+    - target: {fileID: 2521234183508917237, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
-      propertyPath: m_Name
-      value: Player1
+      propertyPath: enableKeyboard
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 791d3a9f-6877-4850-aa22-64e7d580055c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Player/Pause/Resume[/XInputControllerWindows/start,/DualShock4GamepadHID/start]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: ControllerScheme
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ControllerRotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917242, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ControllerMove
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
@@ -1384,6 +1456,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1502935547066266395, guid: 90ce0d4a81c329841bdd2ab2565784bd,
+        type: 3}
+      propertyPath: m_Name
+      value: WallTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502935547066266395, guid: 90ce0d4a81c329841bdd2ab2565784bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1502935547066266393, guid: 90ce0d4a81c329841bdd2ab2565784bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1439,16 +1521,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1502935547066266395, guid: 90ce0d4a81c329841bdd2ab2565784bd,
-        type: 3}
-      propertyPath: m_Name
-      value: WallTile
-      objectReference: {fileID: 0}
-    - target: {fileID: 1502935547066266395, guid: 90ce0d4a81c329841bdd2ab2565784bd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90ce0d4a81c329841bdd2ab2565784bd, type: 3}
 --- !u!1001 &8928059119913239157
@@ -1458,6 +1530,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8928059118918044158, guid: febe52912db072c4db4fe8d7356f9adb,
+        type: 3}
+      propertyPath: m_Name
+      value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928059118918044158, guid: febe52912db072c4db4fe8d7356f9adb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1756465242568100930, guid: febe52912db072c4db4fe8d7356f9adb,
         type: 3}
       propertyPath: m_BodyType
@@ -1518,16 +1600,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8928059118918044158, guid: febe52912db072c4db4fe8d7356f9adb,
-        type: 3}
-      propertyPath: m_Name
-      value: Bullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 8928059118918044158, guid: febe52912db072c4db4fe8d7356f9adb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: febe52912db072c4db4fe8d7356f9adb, type: 3}
 --- !u!1001 &9212127557344426883
@@ -1537,6 +1609,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9212127557727732966, guid: cbe151fb6abc4a8468640eb74ae7bff5,
+        type: 3}
+      propertyPath: m_Name
+      value: Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212127557727732966, guid: cbe151fb6abc4a8468640eb74ae7bff5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9212127557727732964, guid: cbe151fb6abc4a8468640eb74ae7bff5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1596,16 +1678,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_DrawMode
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9212127557727732966, guid: cbe151fb6abc4a8468640eb74ae7bff5,
-        type: 3}
-      propertyPath: m_Name
-      value: Block
-      objectReference: {fileID: 0}
-    - target: {fileID: 9212127557727732966, guid: cbe151fb6abc4a8468640eb74ae7bff5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9212127557727732969, guid: cbe151fb6abc4a8468640eb74ae7bff5,
         type: 3}
