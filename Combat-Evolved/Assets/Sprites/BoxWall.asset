@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BoxWall
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 423d539000612a3439a2b527114b093f, type: 3}
-  m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_Color: {r: 0.39607847, g: 0.39607847, b: 0.39607847, a: 1}
   m_Transform:
     e00: 1
     e01: 0
