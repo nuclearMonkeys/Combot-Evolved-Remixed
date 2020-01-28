@@ -15,9 +15,11 @@ public class ScoreboardManagerScript : MonoBehaviour
     private string secondString;
     public Text timer;
     public Transform scoreboardManager;
-    public static int[] playerKills = { 0, 0, 0, 0 };
-    public static int killThreshold = 15;
-    public static int numPlayers = 2;
+    private int[] playerKills = { 0, 0, 0, 0 };
+    public int killThreshold = 15;
+    public int numPlayers = 2;
+
+    public GameObject dataHolder;
 
     private GameObject spot0;
     private GameObject spot1;
@@ -32,7 +34,6 @@ public class ScoreboardManagerScript : MonoBehaviour
     private void Start()
     {
         updateScores(-1);
-        DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()
@@ -45,11 +46,15 @@ public class ScoreboardManagerScript : MonoBehaviour
         displaySeconds = (int)maxSeconds;
         timer.text = ((int) displaySeconds / 60 )+ ":" + displaySeconds % 60 ;
         
-        
+        if (Input.GetKeyDown("o"))
+        {
+            updateScores(0);
+        }
 
         if (Input.GetKey("p") || displaySeconds <= 0 || killThresholdReached())
         {
-            SceneManager.LoadScene("resultsScreen", LoadSceneMode.Single);
+            dataHolder.GetComponent<gameData>().setData(getData());
+            SceneManager.LoadScene("resultsScreen");
         }
     }
 
@@ -107,6 +112,18 @@ public class ScoreboardManagerScript : MonoBehaviour
             spot3.transform.Find("killCount").gameObject.GetComponent<Text>().text = "Player 4\n" + playerKills[3];
         }
 
+    }
+
+    public int[] getData()
+    {
+        int[] data = new int[6];
+        for (int i = 0; i < 4; ++i)
+        {
+            data[i] = playerKills[i];
+        }
+        data[4] = killThreshold;
+        data[5] = numPlayers;
+        return data;
     }
 
 }
