@@ -32,6 +32,8 @@ public class PlayerHealth : MonoBehaviour
         // Later on, tell GameManager this Player X killed
         // Player Y or something...
         Destroy(transform.parent.gameObject);
-        ScoreboardManagerScript.instance.updateScores(bullet.source.tankID);
+        // if die from stage hazard
+        if(bullet != null)
+            ScoreboardManagerScript.instance.updateScores(bullet.source.tankID);
     }
 }
