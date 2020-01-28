@@ -39,11 +39,11 @@ public class EncapsulatingWall : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Encapsulate();
+            StartCoroutine(Encapsulate());
         }
     }
 
-    void Encapsulate()
+    IEnumerator Encapsulate()
     {
         foreach(KeyValuePair<string, List<Vector2>> tilePair in tilesDictionary)
         {
@@ -59,7 +59,16 @@ public class EncapsulatingWall : MonoBehaviour
                 direction = Vector2.up;
             foreach (Vector2 tilePosition in tilePair.Value)
             {
-                Instantiate(indestructableBlockPrefab, tilePosition + direction * depth + new Vector2(.5f, .5f), Quaternion.identity);
+                Vector2 spawnPosition = tilePosition + direction * depth + new Vector2(.5f, .5f);
+                // only spwan if no tile exists there
+                if (!Physics2D.Raycast(spawnPosition, Vector2.zero, .1f, 1 << 11))
+                {
+                    RaycastHit2D playerHit = Physics2D.Raycast(spawnPosition, Vector2.zero, .1f, 1 << 9);
+                    if (playerHit)
+                        playerHit.collider.GetComponent<PlayerHealth>().Die(null);
+                    Instantiate(indestructableBlockPrefab, spawnPosition, Quaternion.identity);
+                    yield return new WaitForSeconds(.1f);
+                }
             }
         }
         depth++;
