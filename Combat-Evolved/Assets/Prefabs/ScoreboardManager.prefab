@@ -137,6 +137,7 @@ MonoBehaviour:
   scoreboardManager: {fileID: 6877303923441681563}
   killThreshold: 15
   numPlayers: 2
+  dataHolder: {fileID: 0}
 --- !u!1 &6877303923506671568
 GameObject:
   m_ObjectHideFlags: 0
