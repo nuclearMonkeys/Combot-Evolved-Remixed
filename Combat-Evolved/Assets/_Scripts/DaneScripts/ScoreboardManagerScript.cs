@@ -10,7 +10,7 @@ public class ScoreboardManagerScript : MonoBehaviour
     public static ScoreboardManagerScript instance;
 
     
-    float maxSeconds = 300;
+    public float maxSeconds = 300;
     public int displaySeconds;
     private string secondString;
     public Text timer;
