@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
             GameObject deathMessages = GameObject.Find("deathMessage");
             if (deathMessages != null)
             {
-                deathMessages.GetComponent<deathMessages>().setMessage(bullet.source.tankID, this.GetComponent<PlayerController>().tankID);
+                deathMessages.GetComponent<deathMessages>().setMessage(bullet.source.tankID, this.GetComponentInParent<PlayerController>().tankID);
             }
         }
     }

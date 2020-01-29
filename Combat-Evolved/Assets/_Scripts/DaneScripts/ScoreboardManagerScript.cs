@@ -51,7 +51,7 @@ public class ScoreboardManagerScript : MonoBehaviour
             updateScores(0);
         }
 
-        if (Input.GetKey("p") || displaySeconds <= 0 || killThresholdReached())
+        if (displaySeconds <= 0 || killThresholdReached())
         {
             dataHolder.GetComponent<gameData>().setData(getData());
             SceneManager.LoadScene("resultsScreen");
