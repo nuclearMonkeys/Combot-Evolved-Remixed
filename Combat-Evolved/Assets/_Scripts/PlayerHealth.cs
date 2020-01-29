@@ -34,6 +34,15 @@ public class PlayerHealth : MonoBehaviour
         Destroy(transform.parent.gameObject);
         // if die from stage hazard
         if(bullet != null)
+        {
             ScoreboardManagerScript.instance.updateScores(bullet.source.tankID);
+            GameObject deathMessages = GameObject.Find("deathMessage");
+            if (deathMessages != null)
+            {
+                deathMessages.GetComponent<deathMessages>().setMessage(bullet.source.tankID, this.GetComponent<PlayerController>().tankID);
+            }
+        }
+            
+        
     }
 }
