@@ -713,6 +713,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: finalCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5286831123666490803, guid: 4a168d32697101d428dd92eccb629c8e,
+        type: 3}
+      propertyPath: maxSeconds
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 5286831123918944659, guid: 4a168d32697101d428dd92eccb629c8e,
         type: 3}
       propertyPath: suicideText
