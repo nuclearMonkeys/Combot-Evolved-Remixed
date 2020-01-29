@@ -309,8 +309,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &639574878
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,8 +488,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 179e1428d77420a4db8bf4a632f91866, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -645,8 +641,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 179e1428d77420a4db8bf4a632f91866, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -800,8 +794,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 179e1428d77420a4db8bf4a632f91866, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1360,8 +1352,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1943886306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,8 +1415,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 179e1428d77420a4db8bf4a632f91866, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1739,8 +1727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbb82ec65350dd48a3655d7ed4c64be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankID: 1
-  enableKeyboard: 1
+  tankID: 0
+  enableKeyboard: 0
   body: {fileID: 0}
   head: {fileID: 0}
   firePoint: {fileID: 0}
@@ -1748,8 +1736,9 @@ MonoBehaviour:
     type: 3}
   m_movementSpeed: 2
   direction: {x: 0, y: 0}
-  fireRate: 0.5
   playerStamina: {fileID: 5374265522163675506}
+  fireRate: 0.5
+  fireStaminaUsage: 1
   dashSpeed: 15
   dashDuration: 0.5
   dashRotate: 0
@@ -1809,13 +1798,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceLostEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_DeviceRegainedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceRegainedEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
@@ -1830,8 +1815,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 92503f44-0f97-4449-b380-405f6d76f63c
     m_ActionName: Player/Fire[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
@@ -1847,8 +1830,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: f6100221-8289-426b-83f0-74a41f33b0f1
     m_ActionName: Player/Move[/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
@@ -1864,8 +1845,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 3167d926-fa4b-43aa-98d0-c27676983f1b
     m_ActionName: Player/Rotate[/XInputControllerWindows/rightStick/down]
   - m_PersistentCalls:
@@ -1881,8 +1860,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 68b8cfc5-5524-4362-8483-6930124983cf
     m_ActionName: Player/Dash[/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
@@ -1898,14 +1875,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: bbbf3f71-faeb-4332-9c86-b0c515d29f8b
     m_ActionName: Player/Aim[/DualShock4GamepadHID/leftTrigger]
   - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      m_Calls:
+      - m_Target: {fileID: 2521234183508917237}
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 791d3a9f-6877-4850-aa22-64e7d580055c
     m_ActionName: Player/Pause/Resume[/XInputControllerWindows/start,/DualShock4GamepadHID/start]
   m_NeverAutoSwitchControlSchemes: 1
@@ -1927,9 +1911,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaSlider: {fileID: 592602457}
   currentStamina: 0
-  resetStamina: 0
   maxStamina: 5
-  cooldown: 0
+  regenerateInterval: 1.5
   updateSpeedSecs: 0.5
 --- !u!61 &188397089
 BoxCollider2D:
@@ -2257,9 +2240,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.099999994, y: 0.099999994, z: 0.099999994, w: 0.099999994}
+    border: {x: 0.04329004, y: 0.04329004, z: 0.04329004, w: 0.04329004}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.37, y: 2.31}
+    oldSize: {x: 1.025974, y: 1}
     newSize: {x: 2.74, y: 1.54}
     adaptiveTilingThreshold: 0.5
     drawMode: 2

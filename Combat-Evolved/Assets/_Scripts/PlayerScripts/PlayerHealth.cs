@@ -42,7 +42,5 @@ public class PlayerHealth : MonoBehaviour
                 deathMessages.GetComponent<deathMessages>().setMessage(bullet.source.tankID, this.GetComponent<PlayerController>().tankID);
             }
         }
-            
-        
     }
 }

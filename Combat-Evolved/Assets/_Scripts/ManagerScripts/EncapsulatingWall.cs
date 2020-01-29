@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+// Place This Script on the WallMap Prefab!
 public class EncapsulatingWall : MonoBehaviour
 {
     public GameObject indestructableBlockPrefab;
@@ -19,6 +20,12 @@ public class EncapsulatingWall : MonoBehaviour
         tilesDictionary = new Dictionary<string, List<Vector2>>();
         Tilemap[] tilemaps = GetComponentsInChildren<Tilemap>();
 
+        if(tilemaps.Length != 4)
+        {
+            Debug.Log("WallMap Should have 4 Children!! ['LeftMap', 'RightMap', 'TopMap', 'BottomMap']");
+            Debug.Break();
+        }
+
         foreach (Tilemap tilemap in tilemaps)
         {
             foreach (Vector3Int position in tilemap.cellBounds.allPositionsWithin)
@@ -30,14 +37,13 @@ public class EncapsulatingWall : MonoBehaviour
                 if (!tilesDictionary.ContainsKey(tilemap.name))
                     tilesDictionary.Add(tilemap.name, new List<Vector2>());
                 tilesDictionary[tilemap.name].Add(tilemap.CellToWorld(position));
-                print(tilemap.CellToWorld(position));
             }
         }
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(Encapsulate());
         }
@@ -45,7 +51,8 @@ public class EncapsulatingWall : MonoBehaviour
 
     IEnumerator Encapsulate()
     {
-        foreach(KeyValuePair<string, List<Vector2>> tilePair in tilesDictionary)
+        // for each side of the four sides
+        foreach (KeyValuePair<string, List<Vector2>> tilePair in tilesDictionary)
         {
             // gets the direction to spawn
             Vector2 direction = Vector2.zero;
@@ -57,13 +64,15 @@ public class EncapsulatingWall : MonoBehaviour
                 direction = Vector2.down;
             else if (tilePair.Key.Contains("Bottom"))
                 direction = Vector2.up;
+            // for each block in the side
             foreach (Vector2 tilePosition in tilePair.Value)
             {
                 Vector2 spawnPosition = tilePosition + direction * depth + new Vector2(.5f, .5f);
                 // only spwan if no tile exists there
-                if (!Physics2D.Raycast(spawnPosition, Vector2.zero, .1f, 1 << 11))
+                if (!Physics2D.Raycast(spawnPosition, Vector2.zero, .1f, 1 << LayerManager.BLOCK))
                 {
-                    RaycastHit2D playerHit = Physics2D.Raycast(spawnPosition, Vector2.zero, .1f, 1 << 9);
+                    RaycastHit2D playerHit = Physics2D.Raycast(spawnPosition, Vector2.zero, .1f, 1 << LayerManager.TANKBODY);
+                    // spawning block on a player
                     if (playerHit)
                         playerHit.collider.GetComponent<PlayerHealth>().Die(null);
                     Instantiate(indestructableBlockPrefab, spawnPosition, Quaternion.identity);
