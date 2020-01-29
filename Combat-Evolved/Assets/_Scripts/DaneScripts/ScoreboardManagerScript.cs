@@ -44,7 +44,15 @@ public class ScoreboardManagerScript : MonoBehaviour
         }
         maxSeconds -= Time.smoothDeltaTime;
         displaySeconds = (int)maxSeconds;
-        timer.text = ((int) displaySeconds / 60 )+ ":" + displaySeconds % 60 ;
+        if (displaySeconds % 60 >= 10)
+        {
+            timer.text = ((int) displaySeconds / 60 )+ ":" + displaySeconds % 60 ;
+        }
+        else
+        {
+            timer.text = ((int)displaySeconds / 60) + ":0" + displaySeconds % 60;
+        }
+        
         
         if (Input.GetKeyDown("o"))
         {

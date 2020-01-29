@@ -13,6 +13,7 @@ public class deathMessages : MonoBehaviour
     string killerName;
     string victimName;
     List<string> killLines;
+    List<string> suicideLines;
     string[] players = { "PLAYER 1", "PLAYER 2", "PLAYER 3", "PLAYER 4" };
 
     bool messageSet = false;
@@ -21,6 +22,7 @@ public class deathMessages : MonoBehaviour
 
     public Text displayText;
     public TextAsset rawText;
+    public TextAsset suicideText;
     
     
 
@@ -30,6 +32,7 @@ public class deathMessages : MonoBehaviour
     void Start()
     {
         killLines = rawText.text.Split('\n').ToList();
+        suicideLines = suicideText.text.Split('\n').ToList();
         displayText.text = "";
     }
     private void Update()
@@ -62,6 +65,15 @@ public class deathMessages : MonoBehaviour
         return line;
     }
 
+    string chooseSuicideLine()
+    {
+        int randInt = UnityEngine.Random.Range(0, suicideLines.Count());
+        string line = suicideLines[randInt];
+        string tempVictimName = "<color=" + victimColor + ">" + victimName + "</color>";
+        line = line.Replace("VICTIM", tempVictimName);
+        return line;
+    }
+
     public void setMessage(int killer, int victim)
     {
         messageSet = true;
@@ -69,13 +81,13 @@ public class deathMessages : MonoBehaviour
         killerName = players[killer];
         victimName = players[victim];
         string line = "An error occured while displaying the kill message";
-        if (killer != victim)
+        if (killer != victim && victim != -1 && killer != -1)
         {
             line = chooseRandomLine();
         }
         else
         {
-            line = "PLACEHOLDER SUICIDE LINE";
+            line = chooseSuicideLine();
         }
         displayText.text = line;
     }
