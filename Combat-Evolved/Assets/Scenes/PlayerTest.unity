@@ -556,7 +556,7 @@ PrefabInstance:
     - target: {fileID: 2521234183508917237, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
       propertyPath: tankID
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2521234183508917237, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
@@ -712,6 +712,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: finalCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286831123918944659, guid: 4a168d32697101d428dd92eccb629c8e,
+        type: 3}
+      propertyPath: suicideText
+      value: 
+      objectReference: {fileID: 4900000, guid: 072b5f8353caff9459a05aea0f627400, type: 3}
+    - target: {fileID: 5286831123918944661, guid: 4a168d32697101d428dd92eccb629c8e,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a168d32697101d428dd92eccb629c8e, type: 3}

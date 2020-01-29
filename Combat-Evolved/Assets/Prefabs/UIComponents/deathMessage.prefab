@@ -93,3 +93,4 @@ MonoBehaviour:
   messageDuration: 3
   displayText: {fileID: 1173803241038049205}
   rawText: {fileID: 4900000, guid: 6a7abc4a2e6109842a93b3ce186fd6d6, type: 3}
+  suicideText: {fileID: 4900000, guid: 072b5f8353caff9459a05aea0f627400, type: 3}
