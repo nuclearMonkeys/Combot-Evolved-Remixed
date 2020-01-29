@@ -39,7 +39,17 @@ public class EncapsulatingWall : MonoBehaviour
                 tilesDictionary[tilemap.name].Add(tilemap.CellToWorld(position));
             }
         }
+
+        // Sort TopMap by increasing X
+        tilesDictionary["TopMap"].Sort((p1, p2) => (int)(p1.x - p2.x));
+        // Sort RightMap by decreasing Y
+        tilesDictionary["RightMap"].Sort((p1, p2) => (int)(p2.y - p1.y));
+        // Sort BottomMap by decreasing X
+        tilesDictionary["BottomMap"].Sort((p1, p2) => (int)(p2.x - p1.x));
+        // Sort LeftMap by increasing Y
+        tilesDictionary["LeftMap"].Sort((p1, p2) => (int)(p1.y - p2.y));
     }
+
 
     private void Update()
     {
