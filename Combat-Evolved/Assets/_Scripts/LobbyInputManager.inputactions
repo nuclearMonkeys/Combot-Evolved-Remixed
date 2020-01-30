@@ -7,9 +7,9 @@
             "actions": [
                 {
                     "name": "Activate",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "2c60fdd8-2eca-48ed-a2ca-ff5bda952a5c",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -20,6 +20,17 @@
                     "id": "869e33a0-f3f0-452e-b650-039e4bf43145",
                     "path": "<Gamepad>/start",
                     "interactions": "Press",
+                    "processors": "",
+                    "groups": "ControllerScheme",
+                    "action": "Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c28b62f6-c555-4ce1-b136-ace38e82830f",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
                     "processors": "",
                     "groups": "ControllerScheme",
                     "action": "Activate",

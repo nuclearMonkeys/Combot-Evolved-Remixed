@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Block
+  - Player One
+  - Player Two
   layers:
   - Default
   - TransparentFX

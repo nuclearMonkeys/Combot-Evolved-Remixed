@@ -153,6 +153,77 @@
                     "action": "Pause/Resume",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f808d92-7cf8-4c98-84c8-12f7967aa2f1",
+                    "path": "<DualShockGamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerScheme",
+                    "action": "Pause/Resume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a1bacee-84ad-4a6a-88a3-f2d0b294ace1",
+                    "path": "<XInputController>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerScheme",
+                    "action": "Pause/Resume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Lobby",
+            "id": "e721cb21-4938-43b8-a726-af480bd80b36",
+            "actions": [
+                {
+                    "name": "Ready",
+                    "type": "Value",
+                    "id": "20b2a43c-79d0-4931-830d-4da06483ef5b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "309ecdc9-2624-4a5d-982a-2e89bebdb822",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerScheme",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d843242d-125c-4587-9516-1a9ce21f15fc",
+                    "path": "<XInputController>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerScheme",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81300d2d-4452-49f0-8e4b-8a0ec14d2502",
+                    "path": "<DualShockGamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
