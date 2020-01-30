@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultBullet : MonoBehaviour
+public class BulletBase : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     public float damage;
-    public float speed = 5.0f;
+    public float speed;
     public PlayerController source;
-
 
     void Start() 
     {
@@ -20,12 +19,13 @@ public class DefaultBullet : MonoBehaviour
     {
         if (other.CompareTag("Bullet")) 
         {
-            Destroy(other.gameObject);
+            // if not from the same source
+            if(other.GetComponent<BulletBase>().source != source)
+                Destroy(other.gameObject);
         }
         else if(other.CompareTag("Player")) 
         {
             other.GetComponent<PlayerHealth>().TakeDamage(this);
-
             Destroy(this.gameObject);
         }
         else if(other.gameObject.layer == LayerManager.BLOCK)

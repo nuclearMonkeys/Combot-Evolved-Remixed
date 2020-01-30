@@ -16,7 +16,8 @@ public class PlayerHealth : MonoBehaviour
             currentHP = maxHP;
     }
 
-    public void TakeDamage(DefaultBullet bullet) 
+    // For Taking Damage by Bullet
+    public void TakeDamage(BulletBase bullet) 
     {
         currentHP -= bullet.damage;
         healthSlider.value = currentHP / maxHP;
@@ -27,7 +28,17 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void Die(DefaultBullet bullet) 
+    // For Taking Damage by Stage Hazard
+    public void TakeDamage(float amount)
+    {
+        currentHP -= amount;
+        healthSlider.value = currentHP / maxHP;
+
+        if (currentHP <= 0)
+            Die(null);
+    }
+
+    public void Die(BulletBase bullet) 
     {
         // Later on, tell GameManager this Player X killed
         // Player Y or something...

@@ -10,16 +10,13 @@ public class PlayerController : MonoBehaviour
     [Header("Tank GameObjects")]
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject head;
-    [SerializeField] private GameObject firePoint;
-    [SerializeField] private DefaultBullet bulletPrefab;
 
     [Header("Player Variables")]
     [SerializeField] private float m_movementSpeed = 5.0f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private PlayerStamina playerStamina;
-    // MOVE THESE TO GUN IN FUTURE
-    [SerializeField] private float fireRate = .5f;
-    [SerializeField] private int fireStaminaUsage = 1;
+    public Color tankColor;
+    private PlayerWeapons playerWeapons;
 
     [Header("Dash Variables")]
     [SerializeField] private float dashSpeed;
@@ -37,15 +34,16 @@ public class PlayerController : MonoBehaviour
     {
         body =        transform.Find("Body").gameObject;
         head =        transform.Find("Head").gameObject;
-        firePoint =   head.transform.Find("Barrel").Find("FirePoint").gameObject;
         m_rigidbody = this.GetComponent<Rigidbody2D>();
+        playerWeapons = GetComponent<PlayerWeapons>();
 
         foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
         {
             if (tankID == 0)
-                sr.color = Color.blue;
-            else if(tankID == 1)
-                sr.color = Color.red;
+                tankColor = Color.blue;
+            else if (tankID == 1)
+                tankColor = Color.red;
+            sr.color = tankColor;
         }
     }
 
@@ -113,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
-        if(canFire && playerStamina.HasEnoughStamina(fireStaminaUsage) && !PauseMenu.instance.isPaused)
+        if(canFire && !PauseMenu.instance.isPaused)
         {
             StartCoroutine(fireEnumerator());
         }
@@ -121,12 +119,16 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator fireEnumerator()
     {
-        canFire = false;
-        DefaultBullet clone = (DefaultBullet)Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
-        clone.source = this;
-        playerStamina.DecrementStamina(fireStaminaUsage);
-        yield return new WaitForSeconds(fireRate);
-        canFire = true;
+        GunBase gun = playerWeapons.gunReference;
+        BulletBase bullet = playerWeapons.bulletPrefab;
+        if(playerStamina.HasEnoughStamina(gun.fireStaminaUsage))
+        {
+            canFire = false;
+            gun.FireBullet(bullet, this);
+            playerStamina.DecrementStamina(gun.fireStaminaUsage);
+            yield return new WaitForSeconds(gun.fireRate);
+            canFire = true;
+        }
     }
 
     public void Dash() 
