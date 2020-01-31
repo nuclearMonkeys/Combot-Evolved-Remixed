@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CubeRotate : MonoBehaviour
 {
-    private int cooldown = 25;
+    public int cooldown = 25;
 
     void Update ()
     {
         if( cooldown == 0 )
         {
             StartCoroutine( RotateAround( Vector3.right, 90.0f, 1.0f) );
+            cooldown = 120;
         }
         cooldown--;
     }
@@ -27,6 +28,6 @@ public class CubeRotate : MonoBehaviour
             yield return null;
         }
         transform.RotateAround(transform.position, axis, angle - rotated );
-        cooldown = 120;
+        
     }
 }

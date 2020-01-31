@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
                 tankColor = Color.blue;
             else if (tankID == 1)
                 tankColor = Color.red;
+            else if (tankID == 2)
+                tankColor = Color.yellow;
+            else if (tankID == 3)
+                tankColor = Color.green;
             sr.color = tankColor;
         }
     }

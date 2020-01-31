@@ -28,19 +28,17 @@ public class TankSelectionManager : MonoBehaviour
                 continue;
             players.Add(playerArr[i].gameObject);
         }
-
-        print(controllersToPlayers.Keys);
     }
 
     public void AssignControllerToPlayer(ref int index, string controllerType) 
     {
-        print("ASSIGN!");
         TankPlayerSelection tps = players[index].GetComponent<TankPlayerSelection>();
 
         if (index >= players.Count)
             return;
 
         string value = string.Empty;
+
         if(tps.currentController == string.Empty &&
             !controllersToPlayers.TryGetValue(controllerType, out value)) 
         {
@@ -54,9 +52,14 @@ public class TankSelectionManager : MonoBehaviour
         } else if (tps.currentController == controllerType) {
             tps.currentController = string.Empty;
             tps.isReady = !tps.isReady;
+
+            tps.promptCube = Instantiate(referencePromptCube, tps.promptCubePos,
+                    referencePromptCube.transform.rotation, tps.transform);
+
+            tps.promptCube.GetComponent<CubeRotate>().cooldown = 
+                referencePromptCube.GetComponent<CubeRotate>().cooldown;
+
             controllersToPlayers.Remove(controllerType);
         }
-
-        print(controllersToPlayers);
     }
 }

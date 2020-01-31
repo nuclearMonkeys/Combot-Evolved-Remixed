@@ -5,12 +5,19 @@ using UnityEngine.InputSystem;
 
 public class TankPlayerSelection : MonoBehaviour
 {
-    // Start is called before the first frame update
     public string currentController = string.Empty;
     public bool isReady;
     public GameObject promptCube;
     public int cooldown = 0;
     public int maxCooldown = 60;
+    public GameObject playerSpace;
+
+    [HideInInspector] public Vector3 promptCubePos;
+
+    private void Start()
+    {
+        promptCubePos = promptCube.transform.position;
+    }
 
     private void Update() 
     {

@@ -906,6 +906,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7300142138843365408}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &332411267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2043948591654154050, guid: bb87fed510ad4064ea6f3cfda3439b7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 597204106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &367274653
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +961,8 @@ MonoBehaviour:
   promptCube: {fileID: 537224851}
   cooldown: 0
   maxCooldown: 60
+  playerSpace: {fileID: 299443303}
+  promptCubePos: {x: 0, y: 0, z: 0}
 --- !u!114 &367274656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2430,6 +2438,8 @@ MonoBehaviour:
   promptCube: {fileID: 650331870}
   cooldown: 0
   maxCooldown: 60
+  playerSpace: {fileID: 1543384941}
+  promptCubePos: {x: 0, y: 0, z: 0}
 --- !u!114 &836244796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3732,6 +3742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+  referencePromptCube: {fileID: 332411267}
 --- !u!1001 &2429244812360118181
 PrefabInstance:
   m_ObjectHideFlags: 0
