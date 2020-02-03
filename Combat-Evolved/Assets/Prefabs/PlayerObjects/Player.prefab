@@ -1532,9 +1532,10 @@ MonoBehaviour:
   enableKeyboard: 0
   body: {fileID: 0}
   head: {fileID: 0}
-  m_movementSpeed: 2
+  m_movementSpeed: 3.5
   direction: {x: 0, y: 0}
   playerStamina: {fileID: 5712629659544188897}
+  tankColor: {r: 0, g: 0, b: 0, a: 0}
   dashSpeed: 15
   dashDuration: 0.5
   dashRotate: 0
@@ -1724,6 +1725,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 791d3a9f-6877-4850-aa22-64e7d580055c
     m_ActionName: Player/Pause/Resume[/XInputControllerWindows/start,/DualShock4GamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 20b2a43c-79d0-4931-830d-4da06483ef5b
+    m_ActionName: Lobby/Ready[/XInputControllerWindows/start,/DualShock4GamepadHID/start,/XInputControllerWindows/start,/DualShock4GamepadHID/start]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: e87a7e71-eff4-4173-89f8-286d74d83a90

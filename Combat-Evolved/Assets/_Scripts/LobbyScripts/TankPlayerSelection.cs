@@ -10,9 +10,16 @@ public class TankPlayerSelection : MonoBehaviour
     public GameObject promptCube;
     public int cooldown = 0;
     public int maxCooldown = 60;
-    public GameObject playerSpace;
+
+    private PlayerInput playerInput;
+    public InputManager inputManager;
 
     [HideInInspector] public Vector3 promptCubePos;
+
+    private void Awake() 
+    {
+        inputManager = new InputManager();
+    }
 
     private void Start()
     {
@@ -31,9 +38,15 @@ public class TankPlayerSelection : MonoBehaviour
             return;
 
         string controllerType = context.control.ToString().Split('/')[1];
-        int index = 0;
-        TankSelectionManager.instance.AssignControllerToPlayer(ref index, controllerType);
+        TankSelectionManager.instance.AssignControllerToPlayer(this.gameObject, controllerType);
         
         cooldown = maxCooldown;
+
+        isReady = !isReady;
+        
+        if(isReady)
+            currentController = controllerType;
+        else
+            currentController = string.Empty;
     }
 }

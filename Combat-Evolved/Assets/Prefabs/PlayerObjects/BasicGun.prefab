@@ -74,10 +74,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c4955e7285fa94890aaf2cc470891b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.5
+  fireRate: 0.2
   fireStaminaUsage: 1
   damageModifier: 1
   bulletsPerShot: 1
+  spreadInAngles: 0
   firePoint: {fileID: 2153631104054339520}
 --- !u!1 &7497063860356095877
 GameObject:
