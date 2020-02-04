@@ -1725,12 +1725,8 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 791d3a9f-6877-4850-aa22-64e7d580055c
     m_ActionName: Player/Pause/Resume[/XInputControllerWindows/start,/DualShock4GamepadHID/start]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 20b2a43c-79d0-4931-830d-4da06483ef5b
-    m_ActionName: Lobby/Ready[/XInputControllerWindows/start,/DualShock4GamepadHID/start,/XInputControllerWindows/start,/DualShock4GamepadHID/start]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: ControllerScheme
   m_DefaultActionMap: e87a7e71-eff4-4173-89f8-286d74d83a90
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

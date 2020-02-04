@@ -18,13 +18,7 @@ public class BulletBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.CompareTag("Bullet")) 
-        {
-            // if not from the same source
-            if(other.GetComponent<BulletBase>().source != source)
-                Destroy(other.gameObject);
-        }
-        else if(other.CompareTag("Player")) 
+        if(other.CompareTag("Player")) 
         {
             other.GetComponent<PlayerHealth>().TakeDamage(this);
             Destroy(this.gameObject);

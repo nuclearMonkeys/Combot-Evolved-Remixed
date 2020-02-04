@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.5
-  speed: 10
+  speed: 15
   source: {fileID: 0}
 --- !u!96 &223366128
 TrailRenderer:

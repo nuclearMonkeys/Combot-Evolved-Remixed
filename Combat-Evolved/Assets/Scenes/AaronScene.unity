@@ -490,21 +490,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1943886307, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1943886307, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2521234183508917236, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
@@ -561,10 +550,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
+    - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943886307, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943886307, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
@@ -575,21 +575,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1943886307, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1943886307, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: m_Name
+      value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 2521234183508917236, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
@@ -654,12 +643,23 @@ PrefabInstance:
     - target: {fileID: 2521234183508917237, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
       propertyPath: enableKeyboard
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
-        type: 3}
-      propertyPath: m_Name
-      value: Player2
+    - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354413239, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943886307, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943886307, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a91d3019ab377140bc026d85f47174a, type: 3}
@@ -670,6 +670,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5286831122612646724, guid: 4a168d32697101d428dd92eccb629c8e,
+        type: 3}
+      propertyPath: m_Name
+      value: finalCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 5286831122612646720, guid: 4a168d32697101d428dd92eccb629c8e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -774,11 +779,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5286831122612646724, guid: 4a168d32697101d428dd92eccb629c8e,
-        type: 3}
-      propertyPath: m_Name
-      value: finalCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5286831123918944660, guid: 4a168d32697101d428dd92eccb629c8e,
         type: 3}
