@@ -8,6 +8,7 @@ TagManager:
   - Block
   - Player One
   - Player Two
+  - ReadyLine
   layers:
   - Default
   - TransparentFX

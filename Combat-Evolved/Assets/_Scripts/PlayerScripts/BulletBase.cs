@@ -13,17 +13,12 @@ public class BulletBase : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
+        Destroy(this.gameObject, 2.0f);
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.CompareTag("Bullet")) 
-        {
-            // if not from the same source
-            if(other.GetComponent<BulletBase>().source != source)
-                Destroy(other.gameObject);
-        }
-        else if(other.CompareTag("Player")) 
+        if(other.CompareTag("Player")) 
         {
             other.GetComponent<PlayerHealth>().TakeDamage(this);
             Destroy(this.gameObject);
@@ -31,6 +26,15 @@ public class BulletBase : MonoBehaviour
         else if(other.gameObject.layer == LayerManager.BLOCK)
         {
             Destroy(gameObject);
+        }
+        else if(other.CompareTag("ReadyLine")) 
+        {
+            SpriteRenderer sprite = other.GetComponent<SpriteRenderer>();
+            if(sprite.color != Color.yellow)
+                sprite.color = Color.yellow;
+            else
+                sprite.color = Color.red;
+            Destroy(this.gameObject);
         }
     }
 }
