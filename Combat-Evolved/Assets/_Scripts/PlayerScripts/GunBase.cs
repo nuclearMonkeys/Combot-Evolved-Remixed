@@ -16,7 +16,7 @@ public class GunBase : MonoBehaviour
     // where to fire the bullet from
     public GameObject firePoint;
 
-    public void FireBullet(BulletBase bulletPrefab, PlayerController source)
+    public virtual void FireBullet(BulletBase bulletPrefab, PlayerController source)
     {
         // One bullet guaranteed to travel straight
         BulletBase clone = Instantiate(bulletPrefab.gameObject, firePoint.transform.position, transform.rotation).GetComponent<BulletBase>();

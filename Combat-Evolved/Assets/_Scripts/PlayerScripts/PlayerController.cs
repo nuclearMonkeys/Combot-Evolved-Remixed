@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
         head =        transform.Find("Head").gameObject;
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         playerWeapons = GetComponent<PlayerWeapons>();
+
+        AssignTankID(tankID);
     }
 
     public void AssignTankID(int id)
