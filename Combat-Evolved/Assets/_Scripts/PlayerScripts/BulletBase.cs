@@ -13,7 +13,12 @@ public class BulletBase : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
-        Destroy(this.gameObject, 2.0f);
+    }
+
+    public void SetDirection(Vector2 direction)
+    {
+        transform.right = direction;
+        rb.velocity = transform.right * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
