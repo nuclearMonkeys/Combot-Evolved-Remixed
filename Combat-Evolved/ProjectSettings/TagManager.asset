@@ -6,8 +6,6 @@ TagManager:
   tags:
   - Bullet
   - Block
-  - Player One
-  - Player Two
   - ReadyLine
   layers:
   - Default

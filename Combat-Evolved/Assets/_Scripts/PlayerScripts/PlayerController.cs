@@ -86,8 +86,6 @@ public class PlayerController : MonoBehaviour
 
     public void Move(Vector2 inputDirection) 
     {
-        if (PauseMenu.instance.isPaused)
-            return;
         // if not dashing, move according to joystick
         if(!isDashing || dashRotate)
         {
@@ -107,6 +105,8 @@ public class PlayerController : MonoBehaviour
 
     public void Rotate(Vector2 inputDirection) 
     {
+        if(!PauseMenu.instance.gameObject.activeSelf)
+            return;
         if (PauseMenu.instance.isPaused)
             return;
         // When you release stick on resting place
@@ -160,6 +160,10 @@ public class PlayerController : MonoBehaviour
 
     public void Pause()
     {
+        if (PauseMenu.instance == null) {
+            TankSelectionManager.instance.PlayerLeft(this.gameObject.GetComponent<PlayerInput>());
+            return;
+        }
         if (!PauseMenu.instance.isPaused)
             PauseMenu.instance.PauseGame();
         else

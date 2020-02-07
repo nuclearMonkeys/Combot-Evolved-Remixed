@@ -35,6 +35,7 @@ public class BulletBase : MonoBehaviour
             else
                 sprite.color = Color.red;
             Destroy(this.gameObject);
+            TankSelectionManager.instance.CheckAllPlayerStatus();
         }
     }
 }
