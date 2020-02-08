@@ -2074,7 +2074,7 @@ GameObject:
   - component: {fileID: 644933608}
   m_Layer: 0
   m_Name: ReadyPlayerFour
-  m_TagString: Untagged
+  m_TagString: ReadyLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2158,7 +2158,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 179e1428d77420a4db8bf4a632f91866, type: 3}
-  m_Color: {r: 1, g: 0.9685757, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2626,7 +2626,7 @@ GameObject:
   - component: {fileID: 677638500}
   m_Layer: 0
   m_Name: ReadyPlayerThree
-  m_TagString: Untagged
+  m_TagString: ReadyLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2710,7 +2710,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 179e1428d77420a4db8bf4a632f91866, type: 3}
-  m_Color: {r: 1, g: 0.9685757, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4275,7 +4275,7 @@ GameObject:
   - component: {fileID: 1161208322}
   m_Layer: 0
   m_Name: ReadyPlayerOne
-  m_TagString: Untagged
+  m_TagString: ReadyLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4359,7 +4359,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 179e1428d77420a4db8bf4a632f91866, type: 3}
-  m_Color: {r: 1, g: 0.9685757, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4512,7 +4512,7 @@ GameObject:
   - component: {fileID: 1274626706}
   m_Layer: 0
   m_Name: ReadyPlayerTwo
-  m_TagString: Untagged
+  m_TagString: ReadyLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4596,7 +4596,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 179e1428d77420a4db8bf4a632f91866, type: 3}
-  m_Color: {r: 1, g: 0.9685757, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5089,7 +5089,7 @@ PrefabInstance:
     - target: {fileID: 9033377318313096331, guid: 431600cc814287547b270a27b3d6ddf2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033377318313096328, guid: 431600cc814287547b270a27b3d6ddf2,
         type: 3}
@@ -5853,9 +5853,11 @@ MonoBehaviour:
   players: []
   promptCubes: []
   controllerEmblems: []
+  readyLines: []
   promptCubeContainer: {fileID: 1833637440}
   controllerEmblemContainer: {fileID: 1492534958}
   referencePromptCube: {fileID: 332411267}
+  readyLineContainer: {fileID: 1697405882}
   spawnpoints: {fileID: 357190528}
 --- !u!1 &1932966595
 GameObject:

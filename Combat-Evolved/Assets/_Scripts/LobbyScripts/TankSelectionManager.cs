@@ -92,20 +92,17 @@ public class TankSelectionManager : MonoBehaviour
 
     public void CheckAllPlayerStatus() {
         int numOfPlayerReady = 0;
+
         for(int i = 0; i < readyLines.Count; i++) {
-            if (readyLines[i].GetComponent<SpriteRenderer>().color == Color.red)
-                return;
-            numOfPlayerReady++;
-            print(numOfPlayerReady);
+            if (readyLines[i].GetComponent<SpriteRenderer>().color == Color.yellow)
+                numOfPlayerReady++;
         }
 
+        print(numOfPlayerReady);
         if (numOfPlayerReady == 1)
             return;
-
-        for(int i = 0; i < readyLines.Count; i++) 
-            readyLines[i].gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-        print("going");
-        SceneManager.LoadScene("PlayerTest");
-        return;
+        
+        if(numOfPlayerReady == players.Count)
+            SceneManager.LoadScene("PlayerTest");
     }
 }
