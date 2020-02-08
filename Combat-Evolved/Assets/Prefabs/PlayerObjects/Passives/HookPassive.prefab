@@ -117,6 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d860482f1e411454da59c8b921fc4620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lr: {fileID: 6325797066766354275}
+  hp: {fileID: 6325797067039148942}
+  rb: {fileID: 6325797066766354286}
 --- !u!58 &6325797066766354272
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -273,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7017438253943643a1164f3d9c65541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
-  hookRange: 5
+  cooldown: 3
+  hook: {fileID: 6325797066766354273}
+  hookRange: 8
   pc: {fileID: 0}

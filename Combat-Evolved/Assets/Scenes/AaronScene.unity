@@ -195,8 +195,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6923307191264112670, guid: 93bb6932f6e783c45944e9284a352ab5,
         type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923307191264112670, guid: 93bb6932f6e783c45944e9284a352ab5,
+        type: 3}
+      propertyPath: m_CompositePaths.m_Paths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923307191264112670, guid: 93bb6932f6e783c45944e9284a352ab5,
+        type: 3}
       propertyPath: m_UsedByEffector
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923307191264112672, guid: 93bb6932f6e783c45944e9284a352ab5,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923307191264112672, guid: 93bb6932f6e783c45944e9284a352ab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6923307192040193251, guid: 93bb6932f6e783c45944e9284a352ab5,
         type: 3}
@@ -351,7 +371,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812609137}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e04cb31066aa2cf4898e4ffb793f3b15, type: 3}
   m_Name: 

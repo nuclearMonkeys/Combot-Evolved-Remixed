@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Hook : MonoBehaviour
 {
-    LineRenderer lr;
+    public LineRenderer lr;
     public HookPassive hp;
-    Rigidbody2D rb;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        lr = GetComponent<LineRenderer>();
-    }
+    public Rigidbody2D rb;
 
     public void SetVelocity(Vector2 direction, float speed)
     {
@@ -40,9 +34,10 @@ public class Hook : MonoBehaviour
         }
         else
         {
-            RaycastHit2D blockhit = Physics2D.Raycast(transform.position, rb.velocity.normalized, .1f, 1 << LayerManager.BLOCK);
+            RaycastHit2D blockhit = Physics2D.Raycast(transform.position, rb.velocity.normalized, .5f, 1 << LayerManager.BLOCK);
             if (blockhit)
             {
+
                 hp.HookTerrain(blockhit.point + (Vector2)rb.velocity.normalized * -1f);
                 gameObject.SetActive(false);
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HookPassive : PassiveBase
 {
-    Hook hook;
+    public Hook hook;
     bool isHooking;
     public float hookRange = 8;
     float hookSpeed = 15;
@@ -15,13 +15,12 @@ public class HookPassive : PassiveBase
     private void Start()
     {
         pc = GetComponentInParent<PlayerController>();
-        hook = GetComponentInChildren<Hook>();
-        hook.hp = this;
         hook.gameObject.SetActive(false);
     }
 
     public override void ActivatePassive(PlayerController pc)
     {
+        StopAllCoroutines();
         hook.transform.parent = null;
         hook.transform.position = transform.position;
         hook.transform.up = -1 * pc.GetGunDirection();
