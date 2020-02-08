@@ -32,4 +32,8 @@ public class GunBase : MonoBehaviour
             clone.source = source;
         }
     }
+
+    public virtual void FireRelease()
+    {
+    }
 }

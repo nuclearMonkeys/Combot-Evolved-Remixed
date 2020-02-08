@@ -14,18 +14,15 @@ public class PlayerController : MonoBehaviour
     [Header("Player Variables")]
     [SerializeField] private float m_movementSpeed = 5.0f;
     [SerializeField] private Vector2 direction;
+    [SerializeField] private Vector2 gunDirection;
     [SerializeField] private PlayerStamina playerStamina;
     public Color tankColor;
     private PlayerWeapons playerWeapons;
 
-    [Header("Dash Variables")]
-    [SerializeField] private float dashSpeed;
-    [SerializeField] private float dashDuration;
-    [SerializeField] private bool dashRotate = false;
-
     // private variables. no touchy touchy.
-    private bool isDashing = false;
+    private bool canMove = true;
     private bool canFire = true;
+    private bool canActivatePassive = true;
 
     // Components
     private Rigidbody2D m_rigidbody;
@@ -71,7 +68,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
                 Fire();
             if (Input.GetKeyDown(KeyCode.LeftShift))
-                Dash();
+                ActivatePassive();
             if (Input.GetKeyDown(KeyCode.P))
                 Pause();
             Move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized);
@@ -89,7 +86,7 @@ public class PlayerController : MonoBehaviour
     public void Move(Vector2 inputDirection) 
     {
         // if not dashing, move according to joystick
-        if(!isDashing || dashRotate)
+        if(canMove)
         {
             direction = inputDirection;
         }
@@ -117,6 +114,7 @@ public class PlayerController : MonoBehaviour
         if(rotation.magnitude > .1f)
         {
             head.transform.right = rotation;
+            gunDirection = rotation;
         }
     }
 
@@ -142,27 +140,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Dash() 
+    public void ActivatePassive()
     {
-        if(!isDashing && !PauseMenu.instance.isPaused)
+        if(canActivatePassive && !PauseMenu.instance.isPaused)
         {
-            StartCoroutine(dashEnumerator());
+            StartCoroutine(ActivatePassiveEnumerator());
         }
     }
 
-    IEnumerator dashEnumerator() 
+    IEnumerator ActivatePassiveEnumerator()
     {
-        isDashing = true;
-        float oldSpeed = m_movementSpeed;
-        m_movementSpeed = dashSpeed;
-        yield return new WaitForSeconds(dashDuration);
-        m_movementSpeed = oldSpeed;
-        isDashing = false;
+        canActivatePassive = false;
+        playerWeapons.passiveReference.ActivatePassive(this);
+        yield return new WaitForSeconds(playerWeapons.passiveReference.cooldown);
+        canActivatePassive = true;
     }
 
     public void Pause()
     {
-        if (PauseMenu.instance == null) {
+        if (PauseMenu.instance == null)
+        {
             TankSelectionManager.instance.PlayerLeft(this.gameObject.GetComponent<PlayerInput>());
             return;
         }
@@ -171,4 +168,14 @@ public class PlayerController : MonoBehaviour
         else
             PauseMenu.instance.ResumeGame();
     }
+
+    public float GetMovementSpeed() { return m_movementSpeed; }
+    public void SetMovementSpeed(float f) { m_movementSpeed = f; }
+    public Vector2 GetDirection() { return direction; }
+    public void SetDirection(Vector2 dir) { direction = dir; }
+    public Vector2 GetGunDirection() { return gunDirection; }
+    public void SetGunDirection(Vector2 dir) { gunDirection = dir; }
+    public bool GetCanMove() { return canMove; }
+    public void SetCanMove(bool b) { canMove = b; }
+    
 }

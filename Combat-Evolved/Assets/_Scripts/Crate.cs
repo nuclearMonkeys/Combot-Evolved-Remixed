@@ -6,36 +6,11 @@ public class Crate : MonoBehaviour
 {
     public bool isGunCrate;
     public bool isBulletCrate;
+    public bool isPassiveCrate;
 
     public GunBase gunPrefab;
     public BulletBase bulletPrefab;
-
-    // Just Debugging Tools
-    private void Start()
-    {
-        // if neither or both bools are on
-        if((isGunCrate && isBulletCrate) || (!isGunCrate && !isBulletCrate))
-        {
-            Debug.Log("One Crate Option Should Be Checked!!");
-            Debug.Break();
-        }
-        if (isGunCrate)
-        {
-            if (gunPrefab == null || bulletPrefab != null)
-            {
-                Debug.Log("Gun Crate Should Have Gun Prefab Only!!");
-                Debug.Break();
-            }
-        }
-        if (isBulletCrate)
-        {
-            if (gunPrefab != null || bulletPrefab == null)
-            {
-                Debug.Log("Bullet Crate Should Have Bullet Prefab Only!!");
-                Debug.Break();
-            }
-        }
-    }
+    public PassiveBase passivePrefab;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -46,6 +21,8 @@ public class Crate : MonoBehaviour
                 pw.AssignGun(gunPrefab);
             else if (isBulletCrate)
                 pw.AssignBullet(bulletPrefab);
+            else if (isPassiveCrate)
+                pw.AssignPassive(passivePrefab);
             Destroy(gameObject);
         }
     }

@@ -9,6 +9,8 @@ public class PlayerWeapons : MonoBehaviour
     public BulletBase bulletPrefab;
     // Reference to the Gun Object on the player
     public GunBase gunReference;
+    // Reference to the Passive script on the player body
+    public PassiveBase passiveReference;
 
     private void Start()
     {
@@ -34,5 +36,14 @@ public class PlayerWeapons : MonoBehaviour
         {
             sr.color = myPC.tankColor;
         }
+    }
+
+    // When Getting Passive Crate, call this
+    public void AssignPassive(PassiveBase newPassivePrefab)
+    {
+        // Destroys existing passive
+        Destroy(passiveReference.gameObject);
+        // Instantiate new Passive
+        passiveReference = Instantiate(newPassivePrefab, transform.Find("Body"));
     }
 }
