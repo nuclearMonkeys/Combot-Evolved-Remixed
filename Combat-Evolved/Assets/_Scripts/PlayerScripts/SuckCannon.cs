@@ -35,7 +35,15 @@ public class SuckCannon : GunBase
             ammo.transform.position = firePoint.transform.position;
             ammo.SetDirection(transform.right);
             ammo.source = GetComponentInParent<PlayerController>();
+            if(ammos.Count == 0)
+                StartCoroutine(DelayedStaminaIncrease());
         }
+    }
+
+    IEnumerator DelayedStaminaIncrease()
+    {
+        yield return null;
+        fireStaminaUsage = 5;
     }
 
     IEnumerator Suck()

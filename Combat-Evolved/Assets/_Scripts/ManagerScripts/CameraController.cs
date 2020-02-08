@@ -25,12 +25,12 @@ public class CameraController : MonoBehaviour
     public float shake_intensity;
 
     private void Start() {
-        if(!instance)
-            instance = this;
-        else {
-            Destroy(this.gameObject);
-            return;
+        instance = this;
+        foreach(GameObject player in TankSelectionManager.instance.players) 
+        {
+            targets.Add(player.transform);
         }
+        
     }
  
     void LateUpdate()
