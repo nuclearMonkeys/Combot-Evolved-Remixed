@@ -7,7 +7,7 @@ public class SuckCannon : GunBase
     bool isSucking;
     float suckingDuration = 3;
     int maxAmmo = 5;
-    Stack<GameObject> ammos;
+    [SerializeField] public Stack<GameObject> ammos;
     public GameObject suctionSprite;
 
     private void Start()
@@ -32,7 +32,8 @@ public class SuckCannon : GunBase
             fireStaminaUsage = 1;
             BulletBase ammo = ammos.Pop().GetComponent<BulletBase>();
             ammo.gameObject.SetActive(true);
-            ammo.transform.position = firePoint.transform.position;
+            // adapt offset based on ammo size
+            ammo.transform.position = firePoint.transform.position + transform.right * ammo.transform.localScale.x;
             ammo.SetDirection(transform.right);
             ammo.source = GetComponentInParent<PlayerController>();
             if(ammos.Count == 0)
@@ -57,10 +58,36 @@ public class SuckCannon : GunBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet") && isSucking && ammos.Count < maxAmmo)
+        if(isSucking && ammos.Count < maxAmmo)
         {
-            collision.gameObject.SetActive(false);
-            ammos.Push(collision.gameObject);
+            // prevent sucking twice if bullet has multiple colliders
+            if (ammos.Contains(collision.gameObject))
+            {
+                Debug.Log("Ammos already contains " + collision.name);
+                Debug.Break();
+            }
+            // if sucking bullet
+            if(collision.CompareTag("Bullet"))
+            {
+                collision.gameObject.SetActive(false);
+                ammos.Push(collision.gameObject);
+                fireStaminaUsage = 1;
+            }
+            // if sucking a TNT
+            else if(collision.CompareTag("TNT"))
+            {
+                // get the type of the current bullet
+                BulletBase currentBullet = GetComponentInParent<PlayerWeapons>().bulletPrefab.GetComponent<BulletBase>();
+                // attach bullet script to tnt
+                BulletBase tntBullet = collision.gameObject.AddComponent(currentBullet.GetType()) as BulletBase;
+                // set speed and source
+                tntBullet.damage = 0;
+                tntBullet.speed = currentBullet.speed;
+                tntBullet.source = GetComponentInParent<PlayerController>();
+                collision.gameObject.SetActive(false);
+                ammos.Push(collision.gameObject);
+                fireStaminaUsage = 1;
+            }
         }
     }
 }

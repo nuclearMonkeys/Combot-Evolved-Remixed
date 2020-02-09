@@ -56,12 +56,13 @@ public class HookPassive : PassiveBase
         float originalSpeed = otherpc.GetMovementSpeed();
         otherpc.SetCanMove(false);
         pc.SetDirection(Vector2.zero);
-        while ((otherpc.transform.position - transform.position).magnitude > 1)
+        while (otherpc && (otherpc.transform.position - transform.position).magnitude > 1)
         {
             otherpc.transform.position = Vector2.MoveTowards(otherpc.transform.position, transform.position, hookSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        otherpc.SetCanMove(true);
+        if(otherpc)
+            otherpc.SetCanMove(true);
     }
 
     private void OnDestroy()
