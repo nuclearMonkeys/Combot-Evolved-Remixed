@@ -111,8 +111,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: TO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03a024a49fe58dd4fa51436ca11b5fe4, type: 2}
@@ -317,8 +315,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: START
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03a024a49fe58dd4fa51436ca11b5fe4, type: 2}
@@ -504,7 +500,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2043948591654154050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37767d5fe23c4145b58325fedc62bee, type: 3}
+  m_Script: {fileID: 11500000, guid: f41766d9872e7f2479d7b92700f401db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3044301482666489675
@@ -618,8 +614,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: JOIN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03a024a49fe58dd4fa51436ca11b5fe4, type: 2}
@@ -824,8 +818,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: PRESS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03a024a49fe58dd4fa51436ca11b5fe4, type: 2}

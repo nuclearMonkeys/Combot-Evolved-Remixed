@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Block
+  - ReadyLine
+  - TNT
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Tank Body
   - Tank Wall Collider
   - Block
-  - 
+  - Dotted Block
   - 
   - 
   - 

@@ -16,30 +16,30 @@ public class PlayerHealth : MonoBehaviour
             currentHP = maxHP;
     }
 
-    public void TakeDamage(DefaultBullet bullet) 
+    // Taking any source of damage
+    public void TakeDamage(float amount, PlayerController cause = null)
     {
-        currentHP -= bullet.damage;
+        print("Taking " + amount + " From " + (cause == null ? "Hazard" : cause.name));
+        currentHP -= amount;
         healthSlider.value = currentHP / maxHP;
-        
-        if (currentHP <= 0.0f) 
-        {
-            Die(bullet);
-        }
+
+        if (currentHP <= 0)
+            Die(cause);
     }
 
-    public void Die(DefaultBullet bullet) 
+    public void Die(PlayerController cause) 
     {
         // Later on, tell GameManager this Player X killed
         // Player Y or something...
         Destroy(transform.parent.gameObject);
         // if die from stage hazard
-        if(bullet != null)
+        if(cause != null)
         {
-            ScoreboardManagerScript.instance.updateScores(bullet.source.tankID);
+            ScoreboardManagerScript.instance.updateScores(cause.tankID);
             GameObject deathMessages = GameObject.Find("deathMessage");
             if (deathMessages != null)
             {
-                deathMessages.GetComponent<deathMessages>().setMessage(bullet.source.tankID, this.GetComponentInParent<PlayerController>().tankID);
+                deathMessages.GetComponent<deathMessages>().setMessage(cause.tankID, this.GetComponentInParent<PlayerController>().tankID);
             }
         }
     }
