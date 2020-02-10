@@ -49,11 +49,7 @@ public class sceneManager : MonoBehaviour
             countdownLength = 3f;
             //nextScene();
         }*/
-        countdownLength -= Time.deltaTime;
-        if (countdownLength <= 0)
-        {
-            nextScene(chooseRandomLevel());
-        }
+        
 
     }
 
