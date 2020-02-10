@@ -53,7 +53,7 @@ public class ScoreboardManagerScript : MonoBehaviour
             timer.text = ((int)displaySeconds / 60) + ":0" + displaySeconds % 60;
         }
         
-        
+        //for debug purposes only
         if (Input.GetKeyDown("o"))
         {
             updateScores(0);
