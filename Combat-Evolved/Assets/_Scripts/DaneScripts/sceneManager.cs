@@ -38,6 +38,7 @@ public class sceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         currentLiving = GameObject.FindGameObjectsWithTag("Player").Length;
         if (currentLiving <= 1)
         {
@@ -47,12 +48,21 @@ public class sceneManager : MonoBehaviour
         {
             countdownLength = 3f;
             //nextScene();
+        }*/
+        countdownLength -= Time.deltaTime;
+        if (countdownLength <= 0)
+        {
+            nextScene(chooseRandomLevel());
         }
 
     }
 
-    void nextScene(string sceneName)
+    void nextScene(string sceneName = "")
     {
+        if (sceneName == "")
+        {
+            sceneName = chooseRandomLevel();
+        }
         SceneManager.LoadScene(sceneName);
     }
 
@@ -61,9 +71,12 @@ public class sceneManager : MonoBehaviour
         kills[index] += 1;
     }
 
-    string chooseRandomLevel()
+    private string chooseRandomLevel()
     {
         int i = Random.Range(0, levels.Count);
-        return levels[i];
+        string level = levels[i];
+        level = Path.GetFileName(level);
+        level = level.Substring(0, level.Length - 6);
+        return level;
     }
 }
