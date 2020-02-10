@@ -20,7 +20,7 @@ public class Block : MonoBehaviour
 
             hitParticleClone.transform.Rotate(0, 0, 180);
 
-            Destroy(hitParticleClone.gameObject, 0.3f);
+            Destroy(hitParticleClone.gameObject, 0.75f);
 
             if(hitPoints <= 0.0f)
                 Destroy(this.gameObject);
