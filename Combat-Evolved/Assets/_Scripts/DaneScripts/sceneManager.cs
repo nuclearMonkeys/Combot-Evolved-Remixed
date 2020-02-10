@@ -53,7 +53,7 @@ public class sceneManager : MonoBehaviour
 
     }
 
-    void nextScene(string sceneName = "")
+    public void nextScene(string sceneName = "")
     {
         if (sceneName == "")
         {
@@ -74,5 +74,15 @@ public class sceneManager : MonoBehaviour
         level = Path.GetFileName(level);
         level = level.Substring(0, level.Length - 6);
         return level;
+    }
+
+    public int[] getKillCounts()
+    {
+        return kills;
+    }
+
+    public int getPlayerCount()
+    {
+        return players;
     }
 }
