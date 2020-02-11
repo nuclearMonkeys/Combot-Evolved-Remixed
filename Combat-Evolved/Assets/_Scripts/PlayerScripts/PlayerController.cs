@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
         if(playerStamina.HasEnoughStamina(gun.fireStaminaUsage))
         {
             canFire = false;
-            gun.FireBullet(bullet, this);
+            gun.FireBullet(bullet);
             playerStamina.DecrementStamina(gun.fireStaminaUsage);
             yield return new WaitForSeconds(gun.fireRate);
             canFire = true;

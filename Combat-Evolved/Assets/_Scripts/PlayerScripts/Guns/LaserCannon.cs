@@ -10,13 +10,13 @@ public class LaserCannon : GunBase
     public float zappingTime = 3;
     bool zapping = false;
 
-    private void Start()
+    public override void ExtendedStart()
     {
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
     }
 
-    public override void FireBullet(BulletBase bulletPrefab, PlayerController source)
+    public override void FireBullet(BulletBase bulletPrefab)
     {
         if(!zapping)
         {
@@ -41,7 +41,7 @@ public class LaserCannon : GunBase
             if (playerhit)
             {
                 lr.SetPosition(1, playerhit.point);
-                playerhit.collider.GetComponent<PlayerHealth>().TakeDamage(laserDamage * Time.deltaTime);
+                playerhit.collider.GetComponent<PlayerHealth>().TakeDamage(laserDamage * Time.deltaTime, owner);
             }
             else
             {

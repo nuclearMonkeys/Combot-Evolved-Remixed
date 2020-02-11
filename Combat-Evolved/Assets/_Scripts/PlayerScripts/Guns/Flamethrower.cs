@@ -15,7 +15,7 @@ public class Flamethrower : GunBase
         flameArc.SetActive(false);
     }
 
-    public override void FireBullet(BulletBase bulletPrefab, PlayerController source) 
+    public override void FireBullet(BulletBase bulletPrefab) 
     {
         if(!gasing)
             StartCoroutine(Gas());

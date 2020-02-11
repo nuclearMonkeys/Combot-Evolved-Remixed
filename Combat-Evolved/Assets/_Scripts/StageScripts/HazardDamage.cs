@@ -16,7 +16,7 @@ public class HazardDamage : MonoBehaviour
         else if(collision.CompareTag("TNT"))
         {
             TNT tnt = collision.GetComponent<TNT>();
-            tnt.StartCoroutine(tnt.DelayedExplode(null));
+            tnt.StartCoroutine(tnt.DelayedExplode(cause));
         }
     }
 }

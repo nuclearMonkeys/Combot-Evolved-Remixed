@@ -16,7 +16,7 @@ public class SuckCannon : GunBase
         suctionSprite.SetActive(false);
     }
 
-    public override void FireBullet(BulletBase bulletPrefab, PlayerController source)
+    public override void FireBullet(BulletBase bulletPrefab)
     {
         if (isSucking)
             return;

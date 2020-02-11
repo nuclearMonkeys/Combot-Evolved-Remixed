@@ -15,13 +15,23 @@ public class GunBase : MonoBehaviour
     public float spreadInAngles;
     // where to fire the bullet from
     public GameObject firePoint;
+    // gun owner
+    public PlayerController owner;
 
-    public virtual void FireBullet(BulletBase bulletPrefab, PlayerController source)
+    private void Start()
+    {
+        owner = GetComponentInParent<PlayerController>();
+        ExtendedStart();
+    }
+
+    public virtual void ExtendedStart() { }
+
+    public virtual void FireBullet(BulletBase bulletPrefab)
     {
         // One bullet guaranteed to travel straight
         BulletBase clone = Instantiate(bulletPrefab.gameObject, firePoint.transform.position, transform.rotation).GetComponent<BulletBase>();
         clone.damage *= damageModifier;
-        clone.source = source;
+        clone.source = owner;
 
         // Addditional bullets have random spread
         for (int i = 0; i < bulletsPerShot - 1; i++)
@@ -29,11 +39,7 @@ public class GunBase : MonoBehaviour
             Quaternion offsetRotation = Quaternion.Euler(new Vector3(0, 0, Random.value * spreadInAngles - spreadInAngles / 2));
             clone = Instantiate(bulletPrefab.gameObject, firePoint.transform.position, transform.rotation * offsetRotation).GetComponent<BulletBase>();
             clone.damage *= damageModifier;
-            clone.source = source;
+            clone.source = owner;
         }
-    }
-
-    public virtual void FireRelease()
-    {
     }
 }
