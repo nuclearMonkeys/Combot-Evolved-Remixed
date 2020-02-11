@@ -8,29 +8,33 @@ public class CameraController : MonoBehaviour
     public static CameraController instance = null;
     public List<Transform> targets;
 
-    private Vector3 velocity;
-
-    public Vector3 offset;
     public float smoothTime = 0.5f;
-
-    public float minZoom = 180f;
-    public float maxZoom = 10f;
-    public float zoomLimiter = 2.5f;
+    // set top margin to 2 so scoreboard wont cover player
+    // top/right/down/right
+    public Vector4 cameraMargin = new Vector4(2,0,0,0);
+    // map zoom size to offset size
+    // the more its zoomed in, the higher the margin
+    public Vector2 zoomSizeBounds = new Vector2(3, 15);
+    public Vector2 marginSizeBounds = new Vector2(4, 1);
+    float sizeOffset;
 
     public Camera cam;
 
-    private Vector3 originPosition;
-    private Quaternion originRotation;
-    public float shake_decay;
+    public float shake_duration;
     public float shake_intensity;
 
-    private void Start() {
+    private void Awake()
+    {
         instance = this;
-        foreach(GameObject player in TankSelectionManager.instance.players) 
-        {
-            targets.Add(player.transform);
-        }
-        
+    }
+
+    private void Start() {
+        // find players
+        if (TankSelectionManager.instance != null)
+            foreach(GameObject player in TankSelectionManager.instance.players) 
+            {
+                targets.Add(player.transform);
+            }        
     }
  
     void LateUpdate()
@@ -39,33 +43,34 @@ public class CameraController : MonoBehaviour
             if(targets[i] == null)
                 return;
         }
-        if (shake_intensity > 0){
-        transform.position = originPosition + Random.insideUnitSphere * shake_intensity;
-        transform.rotation = new Quaternion(
-            originRotation.x + Random.Range (-shake_intensity,shake_intensity) * .2f,
-            originRotation.y + Random.Range (-shake_intensity,shake_intensity) * .2f,
-            originRotation.z + Random.Range (-shake_intensity,shake_intensity) * .2f,
-            originRotation.w + Random.Range (-shake_intensity,shake_intensity) * .2f);
-        shake_intensity -= shake_decay;
-        }
         Zoom();
     }
 
-/*
-    void LateUpdate() {
-        if(targets.Count == 0)
-            return;
+    // Zooms to encapsulate all players
+    void Zoom()
+    {
+        float minX = targets.Min(t => t.transform.position.x) - cameraMargin.w;
+        float maxX = targets.Max(t => t.transform.position.x) + cameraMargin.y;
+        float minY = targets.Min(t => t.transform.position.y) - cameraMargin.z;
+        float maxY = targets.Max(t => t.transform.position.y) + cameraMargin.x;
+        float desiredWidth = maxX - minX;
+        float desiredHeight = maxY - minY;
+        float currentWidth = Screen.width;
+        float currentHeight = Screen.height;
+        float targetSize
+            = desiredWidth > desiredHeight
+            ? ((desiredWidth / currentWidth) * currentHeight) / 2.0f
+            : ((desiredHeight / currentHeight) * currentWidth) / 2.0f
+            ;
+        // find the right offset margin
+        sizeOffset = map(targetSize, zoomSizeBounds.x, zoomSizeBounds.y, marginSizeBounds.x, marginSizeBounds.y);
+        targetSize += sizeOffset;
+        this.cam.orthographicSize = Mathf.Lerp(this.cam.orthographicSize, targetSize, Time.deltaTime);
 
-        Move();
-        Zoom();
-    }
-*/
-    void Move() {
-        Vector3 centerPoint = GetCenterPoint();
-
-        Vector3 newPosition = centerPoint + offset;
-
-        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+        Vector3 position = this.cam.transform.position;
+        position.x = maxX * 0.5f + minX * 0.5f;
+        position.y = maxY * 0.5f + minY * 0.5f;
+        this.cam.transform.position = position;
     }
 
     Vector3 GetCenterPoint() {
@@ -89,41 +94,34 @@ public class CameraController : MonoBehaviour
 
         return bounds.size.x;
     }
-
-    void Zoom() {
-        float minX = targets.Min(t => t.transform.position.x);
-        float maxX = targets.Max(t => t.transform.position.x);
-        float minY = targets.Min(t => t.transform.position.y);
-        float maxY = targets.Max(t => t.transform.position.y);
-        float desiredWidth = maxX - minX;
-        float desiredHeight = maxY - minY;
-        float currentWidth = Screen.width;
-        float currentHeight = Screen.height;
-        float targetSize
-            = desiredWidth > desiredHeight
-            ? ((desiredWidth / currentWidth) * currentHeight) / 2.0f
-            : ((desiredHeight / currentHeight) * currentWidth) / 2.0f
-            ;
-        targetSize += 1.0f;
-        this.cam.orthographicSize = Mathf.Lerp(this.cam.orthographicSize, targetSize, Time.deltaTime);
- 
-        Vector3 position = this.cam.transform.position;
-        position.x = maxX * 0.5f + minX * 0.5f;
-        position.y = maxY * 0.5f + minY * 0.5f;
-        this.cam.transform.position = position;
-    }
-
-    void ZoomWinner() {
-        float currentWidth = Screen.width;
-        float currentHeight = Screen.height;
-
-        //float 
-    }
  
     public void ShakeCamera(){
-        originPosition = transform.position;
-        originRotation = transform.rotation;
-        shake_intensity = 0.4f;
-        shake_decay = 0.02f;
+        StartCoroutine(ShakeCameraEnumerator());
+    }
+
+    IEnumerator ShakeCameraEnumerator()
+    {
+        Quaternion originRotation = transform.rotation;
+
+        float time = 0;
+        while(time < shake_duration)
+        {
+            Vector2 shakeOffset = Random.insideUnitSphere;
+            transform.position = (Vector3)transform.position + (Vector3)shakeOffset * shake_intensity;
+            transform.rotation = new Quaternion(
+                originRotation.x + Random.Range(-shake_intensity, shake_intensity) * .2f,
+                originRotation.y + Random.Range(-shake_intensity, shake_intensity) * .2f,
+                originRotation.z + Random.Range(-shake_intensity, shake_intensity) * .2f,
+                originRotation.w + Random.Range(-shake_intensity, shake_intensity) * .2f);
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        
+        transform.rotation = Quaternion.identity;
+    }
+
+    float map(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
 }

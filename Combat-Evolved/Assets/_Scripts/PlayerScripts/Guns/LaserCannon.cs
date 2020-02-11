@@ -45,7 +45,7 @@ public class LaserCannon : GunBase
             }
             else
             {
-                RaycastHit2D blockhit = Physics2D.Raycast(firePoint.transform.position, transform.right, 100000, 1 << LayerManager.BLOCK);
+                RaycastHit2D blockhit = Physics2D.Raycast(firePoint.transform.position, transform.right, 100000, 1 << LayerManager.BLOCK | 1 << LayerManager.STAGEHAZARD);
                 if (blockhit)
                 {
                     lr.SetPosition(1, blockhit.point);
