@@ -14,6 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/resultsScreen.unity
     guid: 0b0ea26a5a52bcd43b5c24d9ac8b43c9
+  - enabled: 1
+    path: Assets/Scenes/Levels/LittleBunkerHill.unity
+    guid: 44ecf36cfa3df3f4b94a938ebe06fd72
+  - enabled: 1
+    path: Assets/Scenes/Levels/SpaceInvaders.unity
+    guid: e01d67514ba78bb44bf81973fb894ca2
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6ebf997df8fd1d54cba22cb6352c3e84,
       type: 2}
