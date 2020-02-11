@@ -7,6 +7,9 @@ using System.Linq;
 
 public class sceneManager : MonoBehaviour
 {
+
+    
+
     //the 4 indexes are the current player indexes
     private int[] kills = {0, 0, 0, 0};
     private int maxKills = 15;
@@ -15,8 +18,23 @@ public class sceneManager : MonoBehaviour
     public int currentLiving = 2;
     public float countdownLength = 3f;
     List<string> levels = new List<string>();
-    GameObject[] players;
+    List<GameObject> players = new List<GameObject>();
 
+    private static sceneManager _instance;
+
+    public static sceneManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<sceneManager>();
+            }
+
+            return _instance;
+        }
+
+    }
 
     private void Awake()
     {
@@ -35,7 +53,12 @@ public class sceneManager : MonoBehaviour
                 levels.Add(file);
             }
         }
-        players = GameObject.FindGameObjectsWithTag("Player");
+        PlayerController[] playerControllers = GameObject.FindObjectsOfType<PlayerController>();
+        foreach (PlayerController pc in playerControllers)
+        {
+            players.Add(pc.gameObject);
+        }
+        //players = GameObject.FindObjectsOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -50,12 +73,13 @@ public class sceneManager : MonoBehaviour
 
     public void nextScene(string sceneName = "")
     {
+        print("next scene called");
         if (sceneName == "")
         {
             sceneName = chooseRandomLevel();
         }
         currentLiving = GameObject.FindGameObjectsWithTag("Player").Length;
-        if (currentLiving <= 1)
+        if (currentLiving <= 1 || SceneManager.GetActiveScene().name == "LyndonScene")
         {
             StartCoroutine(startTimer(countdownLength, sceneName));
         }
@@ -88,7 +112,9 @@ public class sceneManager : MonoBehaviour
 
     IEnumerator startTimer(float seconds, string sceneName)
     {
+        print("entered timer");
         yield return new WaitForSeconds(seconds);
+        print("loading scene: " + sceneName);
         SceneManager.LoadScene(sceneName);
         GameObject[] spawns = GameObject.FindGameObjectsWithTag("spawnPoint");
         List<GameObject> spawnPoints = new List<GameObject>(spawns);

@@ -9,6 +9,7 @@ TagManager:
   - ReadyLine
   - TNT
   - spawnPoint
+  - sceneManager
   layers:
   - Default
   - TransparentFX

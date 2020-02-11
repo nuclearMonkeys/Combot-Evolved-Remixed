@@ -101,8 +101,9 @@ public class TankSelectionManager : MonoBehaviour
         print(numOfPlayerReady);
         if (numOfPlayerReady == 1)
             return;
-        
-        if(numOfPlayerReady == players.Count)
-            SceneManager.LoadScene("PlayerTest");
+
+        if (numOfPlayerReady == players.Count)
+            sceneManager.Instance.nextScene();
+            //SceneManager.LoadScene("PlayerTest");
     }
 }
