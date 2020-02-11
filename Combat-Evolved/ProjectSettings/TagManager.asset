@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Block
+  - ReadyLine
+  - TNT
+  - spawnPoint
+  - sceneManager
   layers:
   - Default
   - TransparentFX
