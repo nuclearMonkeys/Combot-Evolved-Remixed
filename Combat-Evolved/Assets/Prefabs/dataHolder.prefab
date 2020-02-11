@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9122498772028114703}
   - component: {fileID: 9122498772028114702}
+  - component: {fileID: 1916891590}
   m_Layer: 0
   m_Name: dataHolder
   m_TagString: Untagged
@@ -44,3 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: 
+--- !u!114 &1916891590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122498772028114697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b3509e3bcdbd7418289b853c17c8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLiving: 2
+  countdownLength: 3
