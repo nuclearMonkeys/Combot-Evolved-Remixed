@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using System.Linq;
 
 public class sceneManager : MonoBehaviour
 {
     //the 4 indexes are the current player indexes
     private int[] kills = {0, 0, 0, 0};
     private int maxKills = 15;
-    private int players = 2;
+    private int playerCount = 2;
     private List<string> scenes;
     public int currentLiving = 2;
-    float countdownLength = 3f;
+    public float countdownLength = 3f;
     List<string> levels = new List<string>();
+    GameObject[] players;
+
 
     private void Awake()
     {
@@ -32,24 +35,16 @@ public class sceneManager : MonoBehaviour
                 levels.Add(file);
             }
         }
-        print(chooseRandomLevel());
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        currentLiving = GameObject.FindGameObjectsWithTag("Player").Length;
-        if (currentLiving <= 1)
+        if (Input.GetKeyDown("p"))
         {
-            countdownLength -= Time.deltaTime;
+            nextScene();
         }
-        if (countdownLength <= 0)
-        {
-            countdownLength = 3f;
-            //nextScene();
-        }*/
-        
 
     }
 
@@ -59,7 +54,12 @@ public class sceneManager : MonoBehaviour
         {
             sceneName = chooseRandomLevel();
         }
-        SceneManager.LoadScene(sceneName);
+        currentLiving = GameObject.FindGameObjectsWithTag("Player").Length;
+        if (currentLiving <= 1)
+        {
+            StartCoroutine(startTimer(countdownLength, sceneName));
+        }
+        
     }
 
     public void updateKills(int index)
@@ -83,6 +83,23 @@ public class sceneManager : MonoBehaviour
 
     public int getPlayerCount()
     {
-        return players;
+        return playerCount;
     }
+
+    IEnumerator startTimer(float seconds, string sceneName)
+    {
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene(sceneName);
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("spawnPoint");
+        List<GameObject> spawnPoints = new List<GameObject>(spawns);
+        foreach (GameObject player in players)
+        {
+            player.SetActive(true);
+            GameObject spawnPos = spawnPoints[Random.Range(0, spawnPoints.Count)];
+            spawnPoints.Remove(spawnPos);
+            player.GetComponent<Transform>().position = spawnPos.GetComponent<Transform>().position;
+        }
+    }
+
+    
 }
