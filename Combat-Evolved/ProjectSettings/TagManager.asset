@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Bullet
-  - Block
-  - ReadyLine
-  - TNT
-  - spawnPoint
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -18,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - Damage
-  - Tank Body
-  - Tank Wall Collider
-  - Block
-  - Dotted Block
-  - Stage Hazard
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
