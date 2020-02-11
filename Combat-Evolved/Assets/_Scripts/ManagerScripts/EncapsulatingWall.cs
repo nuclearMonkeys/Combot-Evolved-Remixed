@@ -85,6 +85,10 @@ public class EncapsulatingWall : MonoBehaviour
                     // spawning block on a player
                     if (playerHit)
                         playerHit.collider.GetComponent<PlayerHealth>().Die(null);
+                    RaycastHit2D tntHit = Physics2D.Raycast(spawnPosition, Vector2.zero, .1f, 1 << LayerManager.STAGEHAZARD);
+                    // explode tnt
+                    if (tntHit && tntHit.collider.CompareTag("TNT"))
+                        tntHit.collider.GetComponent<TNT>().Explode(null);
                     Instantiate(indestructableBlockPrefab, spawnPosition, Quaternion.identity);
                     yield return new WaitForSeconds(.1f);
                 }
