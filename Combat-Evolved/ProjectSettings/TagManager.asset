@@ -19,12 +19,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Damager
+  - TankBody
+  - TankWallCollider
+  - Block
+  - Circle
+  - StageHazard
   - 
   - 
   - 
