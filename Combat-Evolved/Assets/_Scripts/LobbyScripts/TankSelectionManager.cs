@@ -60,6 +60,21 @@ public class TankSelectionManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            CreatePlayer();
+        }
+    }
+
+    // should only be called by keyboard player
+    public void CreatePlayer()
+    {
+        GameObject newPlayer = Instantiate(GetComponent<PlayerInputManager>().playerPrefab);
+        newPlayer.GetComponent<PlayerController>().enableKeyboard = true;
+    }
+
     public void PlayerJoin(PlayerInput playerInput) 
     {
         print("START");

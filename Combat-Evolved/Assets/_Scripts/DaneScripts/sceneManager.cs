@@ -79,7 +79,7 @@ public class sceneManager : MonoBehaviour
             sceneName = chooseRandomLevel();
         }
         currentLiving = GameObject.FindGameObjectsWithTag("Player").Length;
-        if (currentLiving <= 1 || SceneManager.GetActiveScene().name == "LyndonScene")
+        if (currentLiving <= 1 || SceneManager.GetActiveScene().name == "Lobby")
         {
             StartCoroutine(startTimer(countdownLength, sceneName));
         }

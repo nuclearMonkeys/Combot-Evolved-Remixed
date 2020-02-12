@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PlayerHealth : MonoBehaviour
     // Taking any source of damage
     public void TakeDamage(float amount, PlayerController cause = null)
     {
+        if (SceneManager.GetActiveScene().name.Equals("Lobby"))
+            return;
         print("Taking " + amount + " From " + (cause == null ? "Hazard" : cause.name));
         currentHP -= amount;
         healthSlider.value = currentHP / maxHP;
@@ -31,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // Later on, tell GameManager this Player X killed
         // Player Y or something...
-        Destroy(transform.parent.gameObject);
+        transform.parent.gameObject.SetActive(false);
         // if die from stage hazard
         if(cause != null)
         {

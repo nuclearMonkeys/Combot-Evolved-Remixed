@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.P))
                 Pause();
             Move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized);
-            Rotate((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - ((Vector2)transform.position).normalized);
+            Rotate(((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position).normalized);
         }
 
         m_rigidbody.velocity = direction * m_movementSpeed;
