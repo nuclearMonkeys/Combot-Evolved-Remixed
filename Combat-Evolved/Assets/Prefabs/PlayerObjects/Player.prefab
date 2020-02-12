@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankID: 0
-  enableKeyboard: 1
+  enableKeyboard: 0
   body: {fileID: 0}
   head: {fileID: 0}
   m_movementSpeed: 3.5

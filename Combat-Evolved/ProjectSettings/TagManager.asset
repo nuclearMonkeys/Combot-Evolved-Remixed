@@ -19,11 +19,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Damage
+  - Tank Body
+  - Tank Wall Collider
+  - Block
+  - Circle
   - 
   - 
   - 
