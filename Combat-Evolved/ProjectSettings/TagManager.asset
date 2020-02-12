@@ -19,9 +19,9 @@ TagManager:
   - UI
   - 
   - 
-  - Damager
-  - TankBody
-  - TankWallCollider
+  - Damage
+  - Tank Body
+  - Tank Wall Collider
   - Block
   - Circle
   - StageHazard
