@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3880477008174810081}
-  - component: {fileID: 6215330867328413369}
   - component: {fileID: 7165822946845036270}
   m_Layer: 0
   m_Name: Flamethrower
@@ -35,27 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &6215330867328413369
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091973964682589149}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &7165822946845036270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,10 +51,12 @@ MonoBehaviour:
   damageModifier: 0
   bulletsPerShot: 0
   spreadInAngles: 0
-  firePoint: {fileID: 0}
-  flameArc: {fileID: 0}
-  flameDamage: 2
+  firePoint: {fileID: 5883220030611548439}
+  owner: {fileID: 0}
+  flameArc: {fileID: 6533109393330720355}
+  flameDamage: 0.05
   fireTime: 3
+  hittingPlayer: 0
 --- !u!1 &3591673339591315138
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +83,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3591673339591315138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1, y: -0.562, z: 0.05}
+  m_LocalPosition: {x: 1.1, y: 0, z: 0.05}
   m_LocalScale: {x: 0.75, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 3880477008174810081}
@@ -311,7 +291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6533109393330720355}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 6.39, y: -0.5, z: 0}
+  m_LocalPosition: {x: 6.39, y: 0, z: 0}
   m_LocalScale: {x: 1.86, y: 2.23, z: 1}
   m_Children: []
   m_Father: {fileID: 3880477008174810081}
@@ -376,7 +356,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -423,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2529d226d8f43c45b221d11a9d2a938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flamethrower: {fileID: 0}
+  flamethrower: {fileID: 7165822946845036270}
 --- !u!1 &8356509604407061601
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8356509604407061601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.53, y: -0.51, z: 0}
+  m_LocalPosition: {x: 2.53, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 5, z: 1}
   m_Children:
   - {fileID: 5248619188232321561}

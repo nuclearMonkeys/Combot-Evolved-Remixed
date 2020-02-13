@@ -10,7 +10,13 @@ public class ArcCollider : MonoBehaviour
     {
         if (other.CompareTag("Player")) 
         {
-            flamethrower.Hit(other.GetComponent<PlayerController>());
+            flamethrower.hittingPlayer = true;
+            flamethrower.Hit(other.GetComponent<PlayerHealth>());
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) 
+    {
+        flamethrower.hittingPlayer = false;
     }
 }

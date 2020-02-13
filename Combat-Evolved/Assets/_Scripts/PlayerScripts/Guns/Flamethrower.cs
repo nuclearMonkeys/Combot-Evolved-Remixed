@@ -8,7 +8,7 @@ public class Flamethrower : GunBase
     public float flameDamage = 2;
     public float fireTime = 3;
     bool gasing = false;
-    bool hittingPlayer = false;
+    public bool hittingPlayer = false;
 
     private void Start() 
     {
@@ -26,12 +26,16 @@ public class Flamethrower : GunBase
         gasing = true;
         yield return new WaitForSeconds(fireTime);
         gasing = false;
+        hittingPlayer = false;
     }
 
-    public void Hit(PlayerController playerController) 
+    public void Hit(PlayerHealth playerHealth) 
     {
         if (hittingPlayer)
-            playerController.GetComponent<PlayerHealth>().TakeDamage(flameDamage * Time.deltaTime);
+        {
+            print(flameDamage * 0.2f);
+            playerHealth.TakeDamage(flameDamage * 0.2f);
+        }
     }
 
     private void Update() 
