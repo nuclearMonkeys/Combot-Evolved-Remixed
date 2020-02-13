@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name.Equals("Lobby"))
             return;
-        print("Taking " + amount + " From " + (cause == null ? "Hazard" : cause.name));
         currentHP -= amount;
         healthSlider.value = currentHP / maxHP;
 
@@ -30,15 +29,24 @@ public class PlayerHealth : MonoBehaviour
             Die(cause);
     }
 
+    public void ResetHealth()
+    {
+        currentHP = maxHP;
+        healthSlider.value = currentHP / maxHP;
+    }
+
     public void Die(PlayerController cause) 
     {
         // Later on, tell GameManager this Player X killed
         // Player Y or something...
-        transform.parent.gameObject.SetActive(false);
+        transform.parent.position = new Vector3(1000, 1000);
+        FindObjectOfType<CameraController>().targets.Remove(transform.parent);
         // if die from stage hazard
         if(cause != null)
         {
             ScoreboardManagerScript.instance.updateScores(cause.tankID);
+            sceneManager.Instance.currentLiving--;
+            sceneManager.Instance.nextScene();
             GameObject deathMessages = GameObject.Find("deathMessage");
             if (deathMessages != null)
             {

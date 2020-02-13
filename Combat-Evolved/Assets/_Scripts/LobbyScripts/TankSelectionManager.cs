@@ -22,6 +22,7 @@ public class TankSelectionManager : MonoBehaviour
     public GameObject referencePromptCube;
     public GameObject readyLineContainer;
     public GameObject spawnpoints;
+    public GameObject gameCanvas;
 
     private void Awake() 
     {
@@ -77,7 +78,7 @@ public class TankSelectionManager : MonoBehaviour
 
     public void PlayerJoin(PlayerInput playerInput) 
     {
-        print("START");
+        print("PLAYER JOINED");
         playerInput.gameObject.transform.parent = this.transform;
         int tankID = players.Count;
         playerInput.name = "Player" + tankID;
@@ -95,14 +96,14 @@ public class TankSelectionManager : MonoBehaviour
 
     public void PlayerLeft(PlayerInput playerInput) 
     {
-        print("STOP");
-        int tankID = players.Count;
-        // playerInput.GetComponent<PlayerController>().AssignTankID(tankID);
-        
-        promptCubes[tankID].SetActive(true);
-        controllerEmblems[tankID].SetActive(false);
-        players.Remove(playerInput.gameObject);
-        Destroy(playerInput.gameObject);
+        print("PLAYER LEFT");
+        //int tankID = players.Count;
+        //// playerInput.GetComponent<PlayerController>().AssignTankID(tankID);
+
+        //promptCubes[tankID].SetActive(true);
+        //controllerEmblems[tankID].SetActive(false);
+        //players.Remove(playerInput.gameObject);
+        //Destroy(playerInput.gameObject);
     }
 
     public void CheckAllPlayerStatus() {
@@ -113,12 +114,14 @@ public class TankSelectionManager : MonoBehaviour
                 numOfPlayerReady++;
         }
 
-        print(numOfPlayerReady);
+        print("NUMBER PLAYERS READY: " + numOfPlayerReady);
         if (numOfPlayerReady == 1)
             return;
 
         if (numOfPlayerReady == players.Count)
+        {
+            gameCanvas.SetActive(true);
             sceneManager.Instance.nextScene();
-            //SceneManager.LoadScene("PlayerTest");
+        }
     }
 }

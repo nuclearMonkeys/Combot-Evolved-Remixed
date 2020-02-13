@@ -11,16 +11,13 @@ public class PauseMenu : MonoBehaviour
     public bool isPaused;
     GameObject menuObject;
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
     private void Start()
     {
+        instance = this;
         menuObject = transform.Find("PauseMenuPanel").gameObject;
         menuObject.SetActive(false);
         isPaused = false;
+        transform.parent.gameObject.SetActive(false);
     }
 
     // Called by Players
