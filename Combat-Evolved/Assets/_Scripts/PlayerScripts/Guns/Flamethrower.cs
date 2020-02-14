@@ -34,7 +34,7 @@ public class Flamethrower : GunBase
         if (hittingPlayer)
         {
             print(flameDamage * 0.2f);
-            playerHealth.TakeDamage(flameDamage * 0.2f);
+            playerHealth.TakeDamage(flameDamage * 0.2f, owner);
         }
     }
 
