@@ -27,15 +27,6 @@ public class CameraController : MonoBehaviour
     {
         instance = this;
     }
-
-    private void Start() {
-        // find players
-        if (TankSelectionManager.instance != null)
-            foreach(GameObject player in TankSelectionManager.instance.players) 
-            {
-                targets.Add(player.transform);
-            }        
-    }
  
     void LateUpdate()
     {

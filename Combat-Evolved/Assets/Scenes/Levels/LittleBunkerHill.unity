@@ -1339,16 +1339,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04cb31066aa2cf4898e4ffb793f3b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
+  targets: []
   smoothTime: 0.5
-  minZoom: 180
-  maxZoom: 10
-  zoomLimiter: 2.5
+  cameraMargin: {x: 2, y: 0, z: 0, w: 0}
+  zoomSizeBounds: {x: 3, y: 15}
+  marginSizeBounds: {x: 4, y: 1}
   cam: {fileID: 635843782}
-  shake_decay: 0
+  shake_duration: 0
   shake_intensity: 0
 --- !u!1 &657815497
 GameObject:

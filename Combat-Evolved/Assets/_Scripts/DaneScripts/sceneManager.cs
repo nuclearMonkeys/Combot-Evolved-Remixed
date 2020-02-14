@@ -116,6 +116,7 @@ public class sceneManager : MonoBehaviour
     //called when the new scene is loaded
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        print("Loading Scene!");
         // find all players
         List<GameObject> players = TankSelectionManager.instance.players;
         //resets the current living player count to the proper max
@@ -125,11 +126,13 @@ public class sceneManager : MonoBehaviour
         List<GameObject> spawnPoints = new List<GameObject>(spawns);
 
         //clears the camera of players
-        CameraController.instance.targets.Clear();
+        if(CameraController.instance)
+            CameraController.instance.targets.Clear();
         foreach (GameObject player in players)
         {
             //adds each player to the camera
-            CameraController.instance.targets.Add(player.transform);
+            if (CameraController.instance)
+                CameraController.instance.targets.Add(player.transform);
 
             //resets each player's health to max and sets the player to be active
             player.GetComponentInChildren<PlayerHealth>().ResetHealth();
