@@ -36,19 +36,19 @@ public class movingBlock : MonoBehaviour
 
         //add rounding
 
-        if (block.position.x < positions[i].position.x)
+        if ((int)(block.position.x * 10) < (int)(positions[i].position.x * 10))
         {
             block.position = new Vector3(block.position.x + Time.deltaTime * speed, block.position.y, 0f);
         }
-        else if (block.position.x > positions[i].position.x)
+        else if ((int)(block.position.x * 10) > (int)(positions[i].position.x * 10))
         {
             block.position = new Vector3(block.position.x - Time.deltaTime * speed, block.position.y, 0f);
         }
-        if (block.position.y < positions[i].position.y)
+        if ((int)(block.position.y * 10) < (int)(positions[i].position.y * 10))
         {
             block.position = new Vector3(block.position.x, block.position.y + Time.deltaTime * speed, 0f);
         }
-        else if (block.position.y > positions[i].position.y)
+        else if ((int)(block.position.y * 10) > (int)(positions[i].position.y * 10))
         {
             block.position = new Vector3(block.position.x, block.position.y - Time.deltaTime * speed, 0f);
         }
