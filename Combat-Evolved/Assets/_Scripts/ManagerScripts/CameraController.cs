@@ -61,7 +61,8 @@ public class CameraController : MonoBehaviour
         Vector3 position = this.cam.transform.position;
         position.x = maxX * 0.5f + minX * 0.5f;
         position.y = maxY * 0.5f + minY * 0.5f;
-        this.cam.transform.position = position;
+        //this.cam.transform.position = position;
+        this.cam.transform.position = Vector3.MoveTowards(this.cam.transform.position, position, 5 * Time.deltaTime);
     }
 
     Vector3 GetCenterPoint() {

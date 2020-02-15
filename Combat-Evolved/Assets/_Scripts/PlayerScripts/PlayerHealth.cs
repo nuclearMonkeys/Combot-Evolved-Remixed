@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -37,21 +38,43 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die(PlayerController cause) 
     {
-        // Later on, tell GameManager this Player X killed
-        // Player Y or something...
+        // spawns a placeholder for camera to track
+        StartCoroutine(DelayedCameraRemoval(transform.position));
+        // move away from playable
         transform.parent.position = new Vector3(1000, 1000);
-        FindObjectOfType<CameraController>().targets.Remove(transform.parent);
+        CameraController.instance.targets.Remove(transform.parent);
+        // decrement players alive
+        sceneManager.Instance.currentLiving--;
+        sceneManager.Instance.nextScene();
         // if die from stage hazard
-        if(cause != null)
+        if (cause != null)
         {
             ScoreboardManagerScript.instance.updateScores(cause.tankID);
-            sceneManager.Instance.currentLiving--;
-            sceneManager.Instance.nextScene();
             GameObject deathMessages = GameObject.Find("deathMessage");
             if (deathMessages != null)
             {
                 deathMessages.GetComponent<deathMessages>().setMessage(cause.tankID, this.GetComponentInParent<PlayerController>().tankID);
             }
         }
+        else
+        {
+            GameObject deathMessages = GameObject.Find("deathMessage");
+            int tankID = this.GetComponentInParent<PlayerController>().tankID;
+            if (deathMessages != null)
+            {
+                deathMessages.GetComponent<deathMessages>().setMessage(tankID, tankID);
+            }
+        }
+    }
+
+
+    IEnumerator DelayedCameraRemoval(Vector2 deathPosition)
+    {
+        GameObject placeHolder = new GameObject();
+        placeHolder.transform.position = deathPosition;
+        CameraController.instance.targets.Add(placeHolder.transform);
+        yield return new WaitForSeconds(2);
+        CameraController.instance.targets.Remove(placeHolder.transform);
+        Destroy(placeHolder);
     }
 }
