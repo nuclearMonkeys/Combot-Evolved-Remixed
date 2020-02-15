@@ -33,11 +33,13 @@ public class ScoreboardManagerScript : MonoBehaviour
 
     private void Start()
     {
+        numPlayers = TankSelectionManager.instance.players.Count;
         updateScores(-1);
     }
 
     void Update()
     {
+        //numPlayers = TankSelectionManager.instance.players.Count;
         if (numPlayers > 4)
         {
             numPlayers = 4;
@@ -53,11 +55,6 @@ public class ScoreboardManagerScript : MonoBehaviour
             timer.text = ((int)displaySeconds / 60) + ":0" + displaySeconds % 60;
         }
         
-        //for debug purposes only
-        if (Input.GetKeyDown("o"))
-        {
-            updateScores(0);
-        }
 
         if (displaySeconds <= 0 || killThresholdReached())
         {
