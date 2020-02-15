@@ -7,9 +7,6 @@ using System.Linq;
 
 public class sceneManager : MonoBehaviour
 {
-
-    
-
     //the 4 indexes are the current player indexes
     private int[] kills = {0, 0, 0, 0};
     private int maxKills = 15;
