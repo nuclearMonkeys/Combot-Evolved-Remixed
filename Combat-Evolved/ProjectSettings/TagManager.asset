@@ -10,6 +10,7 @@ TagManager:
   - TNT
   - spawnPoint
   - sceneManager
+  - ItemDropPoint
   layers:
   - Default
   - TransparentFX
