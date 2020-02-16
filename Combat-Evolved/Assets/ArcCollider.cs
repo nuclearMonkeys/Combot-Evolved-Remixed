@@ -5,18 +5,23 @@ using UnityEngine;
 public class ArcCollider : MonoBehaviour
 {
     public Flamethrower flamethrower;
+    public ParticleSystem flameParticles;
+    private List<ParticleCollisionEvent> collisionEvents;
 
-    private void OnTriggerStay2D(Collider2D other) 
+    void Start() 
     {
-        if (other.CompareTag("Player")) 
-        {
-            flamethrower.hittingPlayer = true;
-            flamethrower.Hit(other.GetComponent<PlayerHealth>());
-        }
+        flameParticles = GetComponent<ParticleSystem>();
+        collisionEvents = new List<ParticleCollisionEvent>();
+        // flameParticles.Pause();
+        
     }
 
-    private void OnTriggerExit2D(Collider2D other) 
+    void OnParticleCollision(GameObject other) 
     {
-        flamethrower.hittingPlayer = false;
+        Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+        PlayerHealth playerHealth = other.GetComponentInChildren<PlayerHealth>();
+        
+        if(playerHealth)
+            flamethrower.Hit(playerHealth);
     }
 }

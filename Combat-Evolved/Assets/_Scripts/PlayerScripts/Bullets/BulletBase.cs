@@ -5,12 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BulletBase : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
     public float damage;
     public float speed;
     public PlayerController source;
 
-    void Start() 
+    void Awake() 
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;

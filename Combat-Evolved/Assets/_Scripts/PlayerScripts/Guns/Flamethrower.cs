@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Flamethrower : GunBase
 {
-    public GameObject flameArc;
+    public ArcCollider flameArc;
     public float flameDamage = 2;
     public float fireTime = 3;
-    bool gasing = false;
-    public bool hittingPlayer = false;
+    private bool gasing = false;
 
     private void Start() 
     {
-        flameArc.SetActive(false);
+        owner = this.GetComponentInParent<PlayerController>();
     }
 
     public override void FireBullet(BulletBase bulletPrefab) 
     {
+        print("Fire");
         if(!gasing)
             StartCoroutine(Gas());
     }
@@ -26,25 +26,20 @@ public class Flamethrower : GunBase
         gasing = true;
         yield return new WaitForSeconds(fireTime);
         gasing = false;
-        hittingPlayer = false;
     }
 
     public void Hit(PlayerHealth playerHealth) 
     {
-        if (hittingPlayer)
-        {
-            print(flameDamage * 0.2f);
-            playerHealth.TakeDamage(flameDamage * 0.2f, owner);
-        }
+        playerHealth.TakeDamage(flameDamage * 0.2f, owner);
     }
 
     private void Update() 
     {
         if(!gasing) 
         {
-            flameArc.SetActive(false);
+            flameArc.flameParticles.Stop();
             return;
         }
-        flameArc.SetActive(true);
+        flameArc.flameParticles.Play();
     }
 }

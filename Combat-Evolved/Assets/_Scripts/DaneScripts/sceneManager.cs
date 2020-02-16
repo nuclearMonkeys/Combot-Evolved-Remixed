@@ -114,6 +114,7 @@ public class sceneManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         print("Loading Scene!");
+        return;
         // find all players
         List<GameObject> players = TankSelectionManager.instance.players;
         //resets the current living player count to the proper max

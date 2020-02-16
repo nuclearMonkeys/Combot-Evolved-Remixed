@@ -784,6 +784,12 @@ PrefabInstance:
       propertyPath: gunReference
       value: 
       objectReference: {fileID: 1187039921}
+    - target: {fileID: 74212967617193891, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: -1679823287182670671, guid: 484901db6710c5f458777f4f959af6f2,
+        type: 3}
     - target: {fileID: 2521234183508917236, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -792,7 +798,7 @@ PrefabInstance:
     - target: {fileID: 2521234183508917236, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 2521234183508917236, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
@@ -838,6 +844,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521234183508917237, guid: 9a91d3019ab377140bc026d85f47174a,
+        type: 3}
+      propertyPath: tankID
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2521234183508917238, guid: 9a91d3019ab377140bc026d85f47174a,
         type: 3}
@@ -1082,6 +1093,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5873072508626109133, guid: 93bb6932f6e783c45944e9284a352ab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6923307191264112670, guid: 93bb6932f6e783c45944e9284a352ab5,
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.size
