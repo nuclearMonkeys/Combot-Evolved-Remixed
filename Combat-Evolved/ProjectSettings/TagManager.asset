@@ -11,6 +11,7 @@ TagManager:
   - spawnPoint
   - sceneManager
   - ItemDropPoint
+  - Crate
   layers:
   - Default
   - TransparentFX

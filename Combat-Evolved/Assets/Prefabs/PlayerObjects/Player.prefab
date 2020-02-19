@@ -1553,6 +1553,12 @@ MonoBehaviour:
     type: 3}
   gunReference: {fileID: 4297505621903098213}
   passiveReference: {fileID: 228488074106855047}
+  initBulletPrefab: {fileID: 8166971920374979649, guid: febe52912db072c4db4fe8d7356f9adb,
+    type: 3}
+  initGunReference: {fileID: 8166183247475737483, guid: a342f9c908200c240b52bf2ac833f045,
+    type: 3}
+  initPassiveReference: {fileID: 8556870130919644236, guid: 99437eec18c5923479dd823146bb85c4,
+    type: 3}
 --- !u!50 &2521234183508917243
 Rigidbody2D:
   serializedVersion: 4

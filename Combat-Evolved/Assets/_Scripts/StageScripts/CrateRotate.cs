@@ -22,14 +22,7 @@ public class CrateRotate : MonoBehaviour
     }
 
     void Update()
-    {     
-        // if (Input.GetAxis("Jump") == 1 && !isHit) {
-        //     Accelerate();
-        // } else if(Input.GetAxis("Jump") == 1 && isHit)
-        // {
-        //     elapsed = 0;
-        //     currentSpeed = hitSpeed;
-        // }
+    {
         transform.Rotate(0, currentSpeed * Time.deltaTime, 0);
     }
 
