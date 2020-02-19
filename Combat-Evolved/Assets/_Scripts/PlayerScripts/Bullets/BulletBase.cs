@@ -10,10 +10,20 @@ public class BulletBase : MonoBehaviour
     public float speed;
     public PlayerController source;
 
+    public GameObject boxColliderPrefab;
+
+    private GameObject boxCollider;
+
     void Awake() 
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
+        boxCollider = Instantiate(boxColliderPrefab, 
+            this.transform.position, 
+            this.transform.rotation);
+        
+        boxCollider.GetComponent<BulletBoxArea>().bullet = this.gameObject;
+        boxCollider.GetComponent<BulletBoxArea>().rb.velocity = this.rb.velocity;
     }
 
     public void SetDirection(Vector2 direction)
@@ -38,6 +48,7 @@ public class BulletBase : MonoBehaviour
             {
                 // player takes damage
                 other.GetComponent<PlayerHealth>().TakeDamage(damage, source);
+                Destroy(boxCollider);
                 Destroy(this.gameObject);
             }
             // if hit TNT
@@ -45,12 +56,14 @@ public class BulletBase : MonoBehaviour
             {
                 // Explode the TNT
                 other.GetComponent<TNT>().Explode(source);
+                Destroy(boxCollider);
                 Destroy(gameObject);
             }
             // if hit Block
             else if (other.gameObject.layer == LayerManager.BLOCK)
             {
                 // Destroy the bullet
+                Destroy(boxCollider);
                 Destroy(gameObject);
             }
             // if hit Ready
@@ -62,6 +75,7 @@ public class BulletBase : MonoBehaviour
                     sprite.color = Color.yellow;
                 else
                     sprite.color = Color.red;
+                Destroy(boxCollider);
                 Destroy(this.gameObject);
                 TankSelectionManager.instance.CheckAllPlayerStatus();
             }
