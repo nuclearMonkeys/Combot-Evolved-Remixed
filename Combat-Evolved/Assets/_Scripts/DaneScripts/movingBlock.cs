@@ -6,10 +6,12 @@ public class movingBlock : MonoBehaviour
 {
 
     List<Transform> positions = new List<Transform>();
+    //List<LineRenderer>() lines;
     Transform block;
     int i = 0;
 
     public float speed = 1f;
+    public Material defaultLine;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,25 @@ public class movingBlock : MonoBehaviour
         }
         block = positions[0];
         positions.RemoveAt(0);
+        for (int i = 0; i < positions.Count; ++i)
+        {
+            print("in loop");
+            LineRenderer ln = gameObject.AddComponent<LineRenderer>();
+                //.
+            ln.material = defaultLine;
+            ln.SetPosition(0, positions[i].position);
+            Vector3 secondPos;
+            if (i < positions.Count)
+            {
+                secondPos = positions[i + 1].position;
+            }
+            else
+            {
+                secondPos = positions[0].position;
+            }
+            ln.SetPosition(1, secondPos);
+        }
+        
     }
 
     // Update is called once per frame
