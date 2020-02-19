@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    public GameObject cratePrefab;
+
     void Start() 
     {
-        OnSceneLoaded();
+        SetPlayerSpawn();
+        SetCrateSpawn();
     }
 
-    void OnSceneLoaded()
+    void SetPlayerSpawn()
     {
-        print("Loading Scene!");
         // find all players
         List<GameObject> players = TankSelectionManager.instance.players;
         //resets the current living player count to the proper max
@@ -29,6 +31,8 @@ public class Level : MonoBehaviour
             //adds each player to the camera
             if (CameraController.instance)
                 CameraController.instance.targets.Add(player.transform);
+            
+            player.GetComponent<PlayerWeapons>().ResetWeapons();
 
             //resets each player's health to max and sets the player to be active
             player.GetComponentInChildren<PlayerHealth>().ResetHealth();
@@ -39,6 +43,16 @@ public class Level : MonoBehaviour
             GameObject spawnPos = spawnPoints[spawnIndex];
             spawnPoints.Remove(spawnPos);
             player.transform.position = spawnPos.transform.position;
+        }
+    }
+
+    void SetCrateSpawn() 
+    {
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("ItemDropPoint");
+        List<GameObject> cratePoints = new List<GameObject>(spawns);
+
+        foreach (GameObject point in cratePoints) {
+            Instantiate(cratePrefab, point.transform.position, point.transform.rotation);
         }
     }
 }

@@ -145,3 +145,5 @@ MonoBehaviour:
   damage: 1
   speed: 6.5
   source: {fileID: 0}
+  boxColliderPrefab: {fileID: 800297559044926758, guid: 230cf96454cff83499974d767462a35a,
+    type: 3}

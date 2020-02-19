@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class HomingBullet : BulletBase
 {
+    public GameObject homingAreaPrefab;
+    GameObject clone;
+
+    void Start() 
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right * speed;
+        
+        clone = Instantiate(homingAreaPrefab, this.transform.position, this.transform.rotation);
+        clone.GetComponent<HomingArea>().homingBullet = this;
+        clone.GetComponent<HomingArea>().rb.velocity = transform.right * speed;
+    }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
@@ -16,18 +28,21 @@ public class HomingBullet : BulletBase
                 // player takes damage
                 other.GetComponent<PlayerHealth>().TakeDamage(damage, source);
                 Destroy(this.gameObject);
+                Destroy(clone);
             }
             // if hit TNT
             else if (other.CompareTag("TNT"))
             {
                 // Explode the TNT
                 other.GetComponent<TNT>().Explode(source);
+                Destroy(clone);
                 Destroy(gameObject);
             }
             // if hit Block
             else if (other.gameObject.layer == LayerManager.BLOCK)
             {
                 // Destroy the bullet
+                Destroy(clone);
                 Destroy(gameObject);
             }
             // if hit Ready
@@ -39,6 +54,7 @@ public class HomingBullet : BulletBase
                     sprite.color = Color.yellow;
                 else
                     sprite.color = Color.red;
+                Destroy(clone);
                 Destroy(this.gameObject);
                 TankSelectionManager.instance.CheckAllPlayerStatus();
             }

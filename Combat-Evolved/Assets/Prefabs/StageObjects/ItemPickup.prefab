@@ -94,12 +94,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45c60792adf2de40b7bf8779bd34409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGunCrate: 0
-  isBulletCrate: 0
-  isPassiveCrate: 1
   gunPrefab: {fileID: 0}
   bulletPrefab: {fileID: 0}
   passivePrefab: {fileID: 0}
+  guns:
+  - {fileID: 4125611310080684406, guid: 53b71cb64471a9048b5d29e0b9c5e140, type: 3}
+  - {fileID: 6266121759083471514, guid: a342f9c908200c240b52bf2ac833f045, type: 3}
+  - {fileID: 77425603512849961, guid: b1460435d2cbb11498ecd1561f06b31a, type: 3}
+  - {fileID: 1091973964682589149, guid: a4a2f08e3307a0642b831cb30e143435, type: 3}
+  bullets:
+  - {fileID: 8928059118918044158, guid: febe52912db072c4db4fe8d7356f9adb, type: 3}
+  - {fileID: 8969204872830082300, guid: 668602ad2191aef45830a6da97b0d01a, type: 3}
+  passives:
+  - {fileID: 2712768665217318852, guid: 5fdc238f8c8279f4fb11b1a27f302fbb, type: 3}
+  - {fileID: 7446105440491770682, guid: 99437eec18c5923479dd823146bb85c4, type: 3}
+  - {fileID: 4146172003348086794, guid: 85cc32511d996f04c9a85fecb21bb4fa, type: 3}
+  - {fileID: 6325797067039148928, guid: 2db40358a0fdc994e85cb682f3ad9475, type: 3}
 --- !u!58 &881404251872954231
 CircleCollider2D:
   m_ObjectHideFlags: 0

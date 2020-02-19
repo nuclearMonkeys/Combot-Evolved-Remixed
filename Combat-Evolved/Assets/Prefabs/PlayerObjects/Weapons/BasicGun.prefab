@@ -80,6 +80,7 @@ MonoBehaviour:
   bulletsPerShot: 1
   spreadInAngles: 0
   firePoint: {fileID: 2153631104054339520}
+  owner: {fileID: 0}
 --- !u!1 &7497063860356095877
 GameObject:
   m_ObjectHideFlags: 0

@@ -903,6 +903,7 @@ GameObject:
   - component: {fileID: 6923307192040193253}
   - component: {fileID: 6923307192040193250}
   - component: {fileID: 6923307192040193252}
+  - component: {fileID: 5873072508626109133}
   m_Layer: 0
   m_Name: WallMap
   m_TagString: Untagged
@@ -953,6 +954,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indestructableBlockPrefab: {fileID: 1502935547066266395, guid: 90ce0d4a81c329841bdd2ab2565784bd,
+    type: 3}
+--- !u!114 &5873072508626109133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923307192040193251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fed5507006aa7642b9fd29e81e4eb84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cratePrefab: {fileID: 881404251872954230, guid: 541a41f8d60fa0e489c2344bd2a7ab4b,
     type: 3}
 --- !u!1 &6923307192207239432
 GameObject:

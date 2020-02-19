@@ -12,6 +12,10 @@ public class PlayerWeapons : MonoBehaviour
     // Reference to the Passive script on the player body
     public PassiveBase passiveReference;
 
+    public BulletBase initBulletPrefab;
+    public GunBase initGunReference;
+    public PassiveBase initPassiveReference;
+
     private void Start()
     {
         myPC = GetComponent<PlayerController>();
@@ -45,5 +49,12 @@ public class PlayerWeapons : MonoBehaviour
         Destroy(passiveReference.gameObject);
         // Instantiate new Passive
         passiveReference = Instantiate(newPassivePrefab, transform.Find("Body"));
+    }
+
+    public void ResetWeapons()
+    {
+        AssignBullet(initBulletPrefab);
+        AssignGun(initGunReference);
+        AssignPassive(initPassiveReference);
     }
 }
