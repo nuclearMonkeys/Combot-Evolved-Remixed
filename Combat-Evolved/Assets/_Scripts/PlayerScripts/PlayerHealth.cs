@@ -7,10 +7,8 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
     public Slider healthSlider;
-
     public float currentHP;
     public float maxHP;
-
     PlayerController pc;
 
     void Start() 
@@ -31,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
             Die(cause);
     }
 
+    // Refill health
     public void ResetHealth()
     {
         currentHP = maxHP;
@@ -46,31 +45,29 @@ public class PlayerHealth : MonoBehaviour
         // decrement players alive
         sceneManager.Instance.currentLiving--;
         sceneManager.Instance.nextScene();
-        // if die from stage hazard
+        // if died from other player
         if (cause != null)
         {
             ScoreboardManagerScript.instance.updateScores(cause.tankID);
-            GameObject deathMessages = GameObject.Find("deathMessage");
-            if (deathMessages != null)
-            {
-                deathMessages.GetComponent<deathMessages>().setMessage(cause.tankID, pc.tankID);
-            }
+            deathMessages.instance.setMessage(cause.tankID, pc.tankID);
         }
+        // if died from stage hazard
         else
         {
-            GameObject deathMessages = GameObject.Find("deathMessage");
             int tankID = pc.tankID;
-            if (deathMessages != null)
-            {
-                deathMessages.GetComponent<deathMessages>().setMessage(tankID, tankID);
-            }
+            deathMessages.instance.setMessage(tankID, tankID);
         }
     }
 
-
+    // Waits 2 seconds to be untracked from the camera
     IEnumerator DelayedCameraRemoval()
     {
         yield return new WaitForSeconds(2);
         CameraController.instance.targets.Remove(transform.parent);
+    }
+
+    private void OnDestroy()
+    {
+        Die(null);
     }
 }

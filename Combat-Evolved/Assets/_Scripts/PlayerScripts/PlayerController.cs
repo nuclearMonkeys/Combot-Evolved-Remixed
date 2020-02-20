@@ -13,11 +13,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Variables")]
     [SerializeField] private float m_movementSpeed = 5.0f;
+    private float init_movementSpeed;
     [SerializeField] private Vector2 direction;
     [SerializeField] private Vector2 gunDirection;
-    [SerializeField] private PlayerStamina playerStamina;
     public Color tankColor;
+
+    // components
     private PlayerWeapons playerWeapons;
+    private PlayerHealth playerHealth;
+    private PlayerStamina playerStamina;
 
     // private variables. no touchy touchy.
     private bool canMove = true;
@@ -33,6 +37,12 @@ public class PlayerController : MonoBehaviour
         head =        transform.Find("Head").gameObject;
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         playerWeapons = GetComponent<PlayerWeapons>();
+
+        init_movementSpeed = m_movementSpeed;
+
+        playerWeapons = GetComponent<PlayerWeapons>();
+        playerHealth = GetComponentInChildren<PlayerHealth>();
+        playerStamina = GetComponentInChildren<PlayerStamina>();
 
         AssignTankID(tankID);
     }
@@ -168,6 +178,24 @@ public class PlayerController : MonoBehaviour
         else
             PauseMenu.instance.ResumeGame();
     }
+
+    // Called when loading new level
+    public void Reset()
+    {
+        gameObject.SetActive(true);
+
+        // Reset components
+        playerHealth.ResetHealth();
+        playerStamina.ResetStamina();
+        playerWeapons.ResetWeapons();
+
+        // Reset flags
+        StopAllCoroutines();
+        m_movementSpeed = init_movementSpeed;
+        canMove = true;
+        canFire = true;
+        canActivatePassive = true;
+}
 
     public float GetMovementSpeed() { return m_movementSpeed; }
     public void SetMovementSpeed(float f) { m_movementSpeed = f; }

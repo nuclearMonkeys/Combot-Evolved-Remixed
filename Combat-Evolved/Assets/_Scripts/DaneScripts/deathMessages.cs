@@ -8,6 +8,8 @@ using System;
 
 public class deathMessages : MonoBehaviour
 {
+    public static deathMessages instance;
+
     string killerColor = "RED";
     string victimColor = "BLUE";
     string killerName;
@@ -23,10 +25,13 @@ public class deathMessages : MonoBehaviour
     public Text displayText;
     public TextAsset rawText;
     public TextAsset suicideText;
-    
-    
 
     //gradually increase transparency to 0;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -98,7 +103,4 @@ public class deathMessages : MonoBehaviour
         }
         displayText.text = line;
     }
-    
-
-
 }

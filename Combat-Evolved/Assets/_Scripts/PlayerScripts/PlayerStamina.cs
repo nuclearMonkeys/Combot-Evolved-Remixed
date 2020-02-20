@@ -24,11 +24,13 @@ public class PlayerStamina : MonoBehaviour
         staminaSlider.value    = currentStamina;
     }
 
+    // Query to check if has enough stamina
     public bool HasEnoughStamina(int amount)
     {
         return amount <= currentStamina;
     }
 
+    // Reduce stamina
     public void DecrementStamina(int amount) 
     {
         if(!HasEnoughStamina(amount))
@@ -50,7 +52,7 @@ public class PlayerStamina : MonoBehaviour
             regenRoutine = StartCoroutine(RegenerateStamina());
     }
 
-    // passively regenerates stamina
+    // Passively regenerates stamina
     private IEnumerator RegenerateStamina() 
     {
         if (currentStamina >= maxStamina)
@@ -79,6 +81,7 @@ public class PlayerStamina : MonoBehaviour
             regenRoutine = null;
     }
 
+    // Animates the stamina bar to a certain value
     private IEnumerator BarAnimation(int value) 
     {
         float elapsed = 0f;
@@ -92,5 +95,15 @@ public class PlayerStamina : MonoBehaviour
         staminaSlider.value = value;
         // successfully ended a bar animation routine
         barRoutine = null;
+    }
+
+    // Refills stamina
+    public void ResetStamina()
+    {
+        StopAllCoroutines();
+        regenRoutine = null;
+        barRoutine = null;
+        currentStamina = maxStamina;
+        staminaSlider.value = currentStamina;
     }
 }

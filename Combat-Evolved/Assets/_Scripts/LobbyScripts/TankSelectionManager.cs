@@ -63,24 +63,32 @@ public class TankSelectionManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return) && players.Count < GetComponent<PlayerInputManager>().maxPlayerCount)
+        // Spawning players with keyboard
+        if(Input.GetKeyDown(KeyCode.Return) && players.Count < GetComponent<PlayerInputManager>().maxPlayerCount && SceneManager.GetActiveScene().name == "Lobby")
         {
-            CreatePlayer();
+            GameObject newPlayer = Instantiate(GetComponent<PlayerInputManager>().playerPrefab);
+            newPlayer.GetComponentInChildren<PlayerController>().enableKeyboard = true;
         }
     }
 
-    // should only be called by keyboard player
-    public void CreatePlayer()
+    private int FindOpenPlayerSlot()
     {
-        GameObject newPlayer = Instantiate(GetComponent<PlayerInputManager>().playerPrefab);
-        newPlayer.GetComponentInChildren<PlayerController>().enableKeyboard = true;
+        for (int i = 0; i < promptCubes.Count; i++)
+        {
+            if(promptCubes[i].activeSelf)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void PlayerJoin(PlayerInput playerInput) 
     {
         AudioManager.instance.PlaySound("Ready");
+        // places player under this object to carry over scenes
         playerInput.gameObject.transform.parent = this.transform;
-        int tankID = players.Count;
+        int tankID = FindOpenPlayerSlot();
         playerInput.name = "Player" + tankID;
         // assign tank id and change color
         playerInput.GetComponentInChildren<PlayerController>().AssignTankID(tankID);
@@ -89,21 +97,23 @@ public class TankSelectionManager : MonoBehaviour
         // set controller logo and show emblem
         controllerEmblems[tankID].SetActive(true);
         // reposition to spawn point
-        playerInput.transform.position = spawnpoints.transform.GetChild(tankID).position;
+        playerInput.transform.Find("Player").transform.position = spawnpoints.transform.GetChild(tankID).position;
         // add to player list
         players.Add(playerInput.transform.Find("Player").gameObject);
     }
 
     public void PlayerLeft(PlayerInput playerInput) 
     {
-        //print("PLAYER LEFT");
-        //int tankID = players.Count;
-        //// playerInput.GetComponent<PlayerController>().AssignTankID(tankID);
-
-        //promptCubes[tankID].SetActive(true);
-        //controllerEmblems[tankID].SetActive(false);
-        //players.Remove(playerInput.gameObject);
-        //Destroy(playerInput.gameObject);
+        int tankID = playerInput.GetComponentInChildren<PlayerController>().tankID;
+        // if left inside of lobby
+        if(SceneManager.GetActiveScene().name == "Lobby")
+        {
+            promptCubes[tankID].SetActive(true);
+            promptCubes[tankID].transform.rotation = Quaternion.identity;
+            controllerEmblems[tankID].SetActive(false);
+        }
+        players.Remove(playerInput.transform.Find("Player").gameObject);
+        Destroy(playerInput.gameObject);
     }
 
     public void CheckAllPlayerStatus() {
@@ -120,7 +130,9 @@ public class TankSelectionManager : MonoBehaviour
 
         if (numOfPlayerReady == players.Count)
         {
+            // activate canvas
             gameCanvas.SetActive(true);
+            // move to next scene
             sceneManager.Instance.nextScene();
         }
     }
