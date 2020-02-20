@@ -36,17 +36,6 @@ public class sceneManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // called first
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    // called when the game is terminated
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -108,39 +97,5 @@ public class sceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(sceneName);
-    }
-
-    //called when the new scene is loaded
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        print("Loading Scene!");
-        return;
-        // find all players
-        List<GameObject> players = TankSelectionManager.instance.players;
-        //resets the current living player count to the proper max
-        currentLiving = players.Count;
-        // find spawn points
-        GameObject[] spawns = GameObject.FindGameObjectsWithTag("spawnPoint");
-        List<GameObject> spawnPoints = new List<GameObject>(spawns);
-
-        //clears the camera of players
-        if(CameraController.instance)
-            CameraController.instance.targets.Clear();
-        foreach (GameObject player in players)
-        {
-            //adds each player to the camera
-            if (CameraController.instance)
-                CameraController.instance.targets.Add(player.transform);
-
-            //resets each player's health to max and sets the player to be active
-            player.GetComponentInChildren<PlayerHealth>().ResetHealth();
-            player.SetActive(true);
-
-            //spawns the player at a random spawn point
-            int spawnIndex = Random.Range(0, spawnPoints.Count);
-            GameObject spawnPos = spawnPoints[spawnIndex];
-            spawnPoints.Remove(spawnPos);
-            player.transform.position = spawnPos.transform.position;
-        }
     }
 }

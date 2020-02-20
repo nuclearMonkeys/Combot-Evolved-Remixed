@@ -78,7 +78,6 @@ public class TankSelectionManager : MonoBehaviour
 
     public void PlayerJoin(PlayerInput playerInput) 
     {
-        print("PLAYER JOINED");
         AudioManager.instance.PlaySound("Ready");
         playerInput.gameObject.transform.parent = this.transform;
         int tankID = players.Count;
@@ -97,7 +96,7 @@ public class TankSelectionManager : MonoBehaviour
 
     public void PlayerLeft(PlayerInput playerInput) 
     {
-        print("PLAYER LEFT");
+        //print("PLAYER LEFT");
         //int tankID = players.Count;
         //// playerInput.GetComponent<PlayerController>().AssignTankID(tankID);
 
@@ -115,7 +114,7 @@ public class TankSelectionManager : MonoBehaviour
                 numOfPlayerReady++;
         }
 
-        print("NUMBER PLAYERS READY: " + numOfPlayerReady);
+        //print("NUMBER PLAYERS READY: " + numOfPlayerReady);
         if (numOfPlayerReady == 1)
             return;
 

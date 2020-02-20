@@ -74,12 +74,19 @@ public class deathMessages : MonoBehaviour
         return line;
     }
 
+    string colorToHex(Color c)
+    {
+        return "#" + ColorUtility.ToHtmlStringRGB(c);
+    }
+
     public void setMessage(int killer, int victim)
     {
         messageSet = true;
         timeLeft = messageDuration;
         killerName = players[killer];
         victimName = players[victim];
+        killerColor = colorToHex(TankSelectionManager.instance.players[killer].GetComponent<PlayerController>().tankColor);
+        victimColor = colorToHex(TankSelectionManager.instance.players[victim].GetComponent<PlayerController>().tankColor);
         string line = "An error occured while displaying the kill message";
         if (killer != victim && victim != -1 && killer != -1)
         {
