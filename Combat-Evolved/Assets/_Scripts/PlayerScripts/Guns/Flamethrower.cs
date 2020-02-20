@@ -14,7 +14,7 @@ public class Flamethrower : GunBase
         owner = this.GetComponentInParent<PlayerController>();
     }
 
-    public override void FireBullet(BulletBase bulletPrefab) 
+    public override void ExtendedFireBullet(BulletBase bulletPrefab) 
     {
         print("Fire");
         if(!gasing)
@@ -26,6 +26,8 @@ public class Flamethrower : GunBase
         gasing = true;
         yield return new WaitForSeconds(fireTime);
         gasing = false;
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource) Destroy(audioSource);
     }
 
     public void Hit(PlayerHealth playerHealth) 

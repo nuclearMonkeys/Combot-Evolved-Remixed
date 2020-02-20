@@ -74,7 +74,8 @@ public class PlayerHealth : MonoBehaviour
         placeHolder.transform.position = deathPosition;
         CameraController.instance.targets.Add(placeHolder.transform);
         yield return new WaitForSeconds(2);
-        CameraController.instance.targets.Remove(placeHolder.transform);
+        if(placeHolder)
+            CameraController.instance.targets.Remove(placeHolder.transform);
         Destroy(placeHolder);
     }
 }

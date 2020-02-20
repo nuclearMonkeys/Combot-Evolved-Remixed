@@ -16,7 +16,7 @@ public class LaserCannon : GunBase
         lr.enabled = false;
     }
 
-    public override void FireBullet(BulletBase bulletPrefab)
+    public override void ExtendedFireBullet(BulletBase bulletPrefab)
     {
         if(!zapping)
         {

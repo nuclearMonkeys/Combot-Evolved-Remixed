@@ -26,6 +26,7 @@ public class ItemPickup : MonoBehaviour
         {
             passivePrefab = passives[(int)(Random.value * passives.Count)].GetComponent<PassiveBase>();
         }
+        gunPrefab = guns[4].GetComponent<GunBase>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -17,6 +17,8 @@ public class GunBase : MonoBehaviour
     public GameObject firePoint;
     // gun owner
     public PlayerController owner;
+    // sound to play when firing
+    public string soundEffect;
 
     private void Start()
     {
@@ -26,7 +28,14 @@ public class GunBase : MonoBehaviour
 
     public virtual void ExtendedStart() { }
 
-    public virtual void FireBullet(BulletBase bulletPrefab)
+    public void FireBullet(BulletBase bulletPrefab)
+    {
+        // Plays sound effect
+        AudioManager.instance.PlaySound(soundEffect, gameObject);
+        ExtendedFireBullet(bulletPrefab);
+    }
+
+    public virtual void ExtendedFireBullet(BulletBase bulletPrefab)
     {
         // One bullet guaranteed to travel straight
         BulletBase clone = Instantiate(bulletPrefab.gameObject, firePoint.transform.position, transform.rotation).GetComponent<BulletBase>();

@@ -46,13 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd72972176a340a40880c44c9350c8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.5
-  fireStaminaUsage: 1
+  fireRate: 3
+  fireStaminaUsage: 3
   damageModifier: 0
   bulletsPerShot: 0
   spreadInAngles: 0
   firePoint: {fileID: 5883220030611548439}
   owner: {fileID: 0}
+  soundEffect: flamethrower_fire
   flameArc: {fileID: 233258869289781908}
   flameDamage: 0.05
   fireTime: 3
