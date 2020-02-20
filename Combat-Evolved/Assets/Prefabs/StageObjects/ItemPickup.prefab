@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 881404251872954216}
   - component: {fileID: 881404251872954231}
   m_Layer: 0
-  m_Name: CratePrefab
+  m_Name: ItemPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   - {fileID: 6266121759083471514, guid: a342f9c908200c240b52bf2ac833f045, type: 3}
   - {fileID: 77425603512849961, guid: b1460435d2cbb11498ecd1561f06b31a, type: 3}
   - {fileID: 1091973964682589149, guid: a4a2f08e3307a0642b831cb30e143435, type: 3}
+  - {fileID: 1091973964682589149, guid: a544e9470781f7d49b94f7635faf7e4b, type: 3}
   bullets:
   - {fileID: 8928059118918044158, guid: febe52912db072c4db4fe8d7356f9adb, type: 3}
   - {fileID: 8969204872830082300, guid: 668602ad2191aef45830a6da97b0d01a, type: 3}

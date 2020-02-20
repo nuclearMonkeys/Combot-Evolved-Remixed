@@ -50,6 +50,8 @@ MonoBehaviour:
   bulletsPerShot: 6
   spreadInAngles: 60
   firePoint: {fileID: 5333830632764560243}
+  owner: {fileID: 0}
+  soundEffect: shotgun_fire
 --- !u!1 &4606132915197373238
 GameObject:
   m_ObjectHideFlags: 0

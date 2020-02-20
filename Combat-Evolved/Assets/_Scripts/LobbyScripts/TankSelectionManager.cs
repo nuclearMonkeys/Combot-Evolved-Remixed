@@ -63,7 +63,7 @@ public class TankSelectionManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) && players.Count < GetComponent<PlayerInputManager>().maxPlayerCount)
         {
             CreatePlayer();
         }
@@ -78,7 +78,7 @@ public class TankSelectionManager : MonoBehaviour
 
     public void PlayerJoin(PlayerInput playerInput) 
     {
-        //print("PLAYER JOINED");
+        AudioManager.instance.PlaySound("Ready");
         playerInput.gameObject.transform.parent = this.transform;
         int tankID = players.Count;
         playerInput.name = "Player" + tankID;
