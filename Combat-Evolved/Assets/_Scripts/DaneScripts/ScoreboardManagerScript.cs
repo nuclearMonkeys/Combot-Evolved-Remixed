@@ -34,7 +34,6 @@ public class ScoreboardManagerScript : MonoBehaviour
     private void Start()
     {
         numPlayers = TankSelectionManager.instance.players.Count;
-        print(numPlayers);
         updateScores(-1);
     }
 
