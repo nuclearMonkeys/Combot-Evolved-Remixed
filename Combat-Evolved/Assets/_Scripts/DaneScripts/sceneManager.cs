@@ -36,17 +36,6 @@ public class sceneManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // called first
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    // called when the game is terminated
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
 
     // Start is called before the first frame update
     void Start()
