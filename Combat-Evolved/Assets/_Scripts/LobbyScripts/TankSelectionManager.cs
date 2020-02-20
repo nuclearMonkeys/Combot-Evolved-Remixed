@@ -73,7 +73,7 @@ public class TankSelectionManager : MonoBehaviour
     public void CreatePlayer()
     {
         GameObject newPlayer = Instantiate(GetComponent<PlayerInputManager>().playerPrefab);
-        newPlayer.GetComponent<PlayerController>().enableKeyboard = true;
+        newPlayer.GetComponentInChildren<PlayerController>().enableKeyboard = true;
     }
 
     public void PlayerJoin(PlayerInput playerInput) 
@@ -83,7 +83,7 @@ public class TankSelectionManager : MonoBehaviour
         int tankID = players.Count;
         playerInput.name = "Player" + tankID;
         // assign tank id and change color
-        playerInput.GetComponent<PlayerController>().AssignTankID(tankID);
+        playerInput.GetComponentInChildren<PlayerController>().AssignTankID(tankID);
         // remove prompt cube
         promptCubes[tankID].SetActive(false);
         // set controller logo and show emblem
@@ -91,7 +91,7 @@ public class TankSelectionManager : MonoBehaviour
         // reposition to spawn point
         playerInput.transform.position = spawnpoints.transform.GetChild(tankID).position;
         // add to player list
-        players.Add(playerInput.gameObject);
+        players.Add(playerInput.transform.Find("Player").gameObject);
     }
 
     public void PlayerLeft(PlayerInput playerInput) 

@@ -31,9 +31,9 @@ public class Level : MonoBehaviour
             //adds each player to the camera
             if (CameraController.instance)
                 CameraController.instance.targets.Add(player.transform);
-            
-            player.GetComponent<PlayerWeapons>().ResetWeapons();
 
+            // resets each player weapons to default
+            player.GetComponent<PlayerWeapons>().ResetWeapons();
             //resets each player's health to max and sets the player to be active
             player.GetComponentInChildren<PlayerHealth>().ResetHealth();
             player.SetActive(true);

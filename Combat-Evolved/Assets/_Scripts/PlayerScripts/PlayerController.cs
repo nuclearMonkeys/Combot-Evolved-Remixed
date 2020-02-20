@@ -177,5 +177,4 @@ public class PlayerController : MonoBehaviour
     public void SetGunDirection(Vector2 dir) { gunDirection = dir; }
     public bool GetCanMove() { return canMove; }
     public void SetCanMove(bool b) { canMove = b; }
-    
 }

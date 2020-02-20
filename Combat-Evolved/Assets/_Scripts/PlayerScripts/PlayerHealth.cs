@@ -9,13 +9,14 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
 
     public float currentHP;
-    public bool resetHP;
     public float maxHP;
+
+    PlayerController pc;
 
     void Start() 
     {
-        if (resetHP)
-            currentHP = maxHP;
+        pc = GetComponentInParent<PlayerController>();
+        currentHP = maxHP;
     }
 
     // Taking any source of damage
@@ -39,10 +40,9 @@ public class PlayerHealth : MonoBehaviour
     public void Die(PlayerController cause) 
     {
         // spawns a placeholder for camera to track
-        StartCoroutine(DelayedCameraRemoval(transform.position));
-        // move away from playable
-        transform.parent.position = new Vector3(1000, 1000);
-        CameraController.instance.targets.Remove(transform.parent);
+        StartCoroutine(DelayedCameraRemoval());
+        // deactivate player
+        transform.parent.gameObject.SetActive(false);
         // decrement players alive
         sceneManager.Instance.currentLiving--;
         sceneManager.Instance.nextScene();
@@ -53,13 +53,13 @@ public class PlayerHealth : MonoBehaviour
             GameObject deathMessages = GameObject.Find("deathMessage");
             if (deathMessages != null)
             {
-                deathMessages.GetComponent<deathMessages>().setMessage(cause.tankID, this.GetComponentInParent<PlayerController>().tankID);
+                deathMessages.GetComponent<deathMessages>().setMessage(cause.tankID, pc.tankID);
             }
         }
         else
         {
             GameObject deathMessages = GameObject.Find("deathMessage");
-            int tankID = this.GetComponentInParent<PlayerController>().tankID;
+            int tankID = pc.tankID;
             if (deathMessages != null)
             {
                 deathMessages.GetComponent<deathMessages>().setMessage(tankID, tankID);
@@ -68,14 +68,9 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
-    IEnumerator DelayedCameraRemoval(Vector2 deathPosition)
+    IEnumerator DelayedCameraRemoval()
     {
-        GameObject placeHolder = new GameObject();
-        placeHolder.transform.position = deathPosition;
-        CameraController.instance.targets.Add(placeHolder.transform);
         yield return new WaitForSeconds(2);
-        if(placeHolder)
-            CameraController.instance.targets.Remove(placeHolder.transform);
-        Destroy(placeHolder);
+        CameraController.instance.targets.Remove(transform.parent);
     }
 }
