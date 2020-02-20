@@ -229,8 +229,10 @@ MonoBehaviour:
   bulletsPerShot: 0
   spreadInAngles: 0
   firePoint: {fileID: 8239226935282070572}
+  owner: {fileID: 0}
   laserDamage: 0.5
-  zappingTime: 2
+  endDamageMultiplier: 4
+  zappingTime: 1
 --- !u!120 &6967831645605556052
 LineRenderer:
   m_ObjectHideFlags: 0

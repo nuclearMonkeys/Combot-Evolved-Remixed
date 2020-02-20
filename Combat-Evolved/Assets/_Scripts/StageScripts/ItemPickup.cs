@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
+    public bool debug;
+
     public GunBase gunPrefab;
     public BulletBase bulletPrefab;
     public PassiveBase passivePrefab;
@@ -14,6 +16,9 @@ public class ItemPickup : MonoBehaviour
 
     void Start() 
     {
+        if(debug)
+            return;
+        
         if(Random.value < .33f) 
         {
             gunPrefab = guns[(int)(Random.value * guns.Count)].GetComponent<GunBase>();
@@ -32,7 +37,6 @@ public class ItemPickup : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-
             PlayerWeapons pw = collision.GetComponentInParent<PlayerWeapons>();
             if (gunPrefab)
                 pw.AssignGun(gunPrefab);

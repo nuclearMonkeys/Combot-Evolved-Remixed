@@ -7,6 +7,7 @@ public class LaserCannon : GunBase
     LineRenderer lr;
     // damage per second
     public float laserDamage = 1;
+    public float endDamageMultiplier = 4;
     public float zappingTime = 3;
     bool zapping = false;
 
@@ -27,14 +28,33 @@ public class LaserCannon : GunBase
     IEnumerator Zap()
     {
         zapping = true;
+        // yield return new WaitForSecondsRealtime(2f);
         yield return new WaitForSeconds(zappingTime);
         zapping = false;
+    }
+
+    IEnumerator FireEndLaser() 
+    {
+        lr.startWidth = 0.1f;
+        yield return new WaitForSeconds(zappingTime/2);
+
+        float referenceDamage = laserDamage;
+        laserDamage = laserDamage * endDamageMultiplier;
+        lr.startWidth = 1f;
+        
+
+        yield return new WaitForSeconds(zappingTime/2);
+        laserDamage = referenceDamage;
     }
 
     private void Update()
     {
         if(zapping)
         {
+            if(!lr.enabled)
+                StartCoroutine(FireEndLaser());
+
+            
             lr.enabled = true;
             lr.SetPosition(0, firePoint.transform.position);
             RaycastHit2D playerhit = Physics2D.Raycast(firePoint.transform.position, transform.right, 100000, 1 << LayerManager.TANKBODY);
