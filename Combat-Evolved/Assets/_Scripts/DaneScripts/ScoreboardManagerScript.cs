@@ -34,12 +34,18 @@ public class ScoreboardManagerScript : MonoBehaviour
     private void Start()
     {
         numPlayers = TankSelectionManager.instance.players.Count;
+        print(numPlayers);
         updateScores(-1);
     }
 
     void Update()
     {
-        //numPlayers = TankSelectionManager.instance.players.Count;
+        if (numPlayers < 2)
+        {
+            numPlayers = TankSelectionManager.instance.players.Count;
+            updateScores(-1);
+        }
+        
         if (numPlayers > 4)
         {
             numPlayers = 4;
