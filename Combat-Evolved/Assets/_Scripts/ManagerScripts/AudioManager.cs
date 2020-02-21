@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(string name, GameObject playFrom=null)
+    public void PlaySound(string name, GameObject playFrom = null, bool fadeOut = false)
     {
         for (int i = 0; i < clips.Count; i++)
         {
@@ -58,10 +58,41 @@ public class AudioManager : MonoBehaviour
                     audioSource.clip = clips[i];
                     // play the clip
                     audioSource.Play();
+
+                    if (fadeOut) 
+                    {
+                        StartCoroutine(FadeOut(audioSource, audioSource.time));
+                        return;
+                    }
+                    
                     // destroy audiosource after clip ends
                     Destroy(audioSource, clips[i].length);
                 }
             }
+        }
+    }
+
+    public static IEnumerator FadeOut(AudioSource audioSource, float fadeTime) 
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0) 
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+
+            yield return null;
+        }
+        
+        Destroy(audioSource);
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float fadeTime, float targetVolume) 
+    {
+        while (audioSource.volume < targetVolume) 
+        {
+            audioSource.volume += targetVolume * Time.deltaTime / fadeTime;
+
+            yield return null;
         }
     }
 }
