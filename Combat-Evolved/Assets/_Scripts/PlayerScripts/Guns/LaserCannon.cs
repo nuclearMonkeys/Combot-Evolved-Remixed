@@ -50,9 +50,9 @@ public class LaserCannon : GunBase
         lr1.startWidth = 0.07f;
         lr2.startWidth = 0.2f;
 
-        float offset = (lr1.transform.position - lr1.GetPosition(0)).magnitude;
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + offset, 0);
-        GameObject clone = Instantiate(suckParticle, pos, transform.rotation, this.transform).gameObject;
+        // float offset = (lr1.transform.position - lr1.GetPosition(0)).magnitude;
+        // Vector3 pos = new Vector3(transform.position.x, transform.position.y + offset, 0);
+        GameObject clone = Instantiate(suckParticle, firePoint.transform.position, firePoint.transform.rotation, this.transform).gameObject;
         yield return new WaitForSeconds(zappingTime/3);
 
         //Lerp the lr.startWidth
