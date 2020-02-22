@@ -48,7 +48,6 @@ public class TeleportPassive : PassiveBase
         if (!bullet)
             return;
         owner.transform.position = bullet.transform.position;
-        Destroy(bullet.GetComponent<BulletBase>().boxCollider);
         Destroy(bullet);
     }
 }
