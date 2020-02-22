@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_movementSpeed = 5.0f;
     private float init_movementSpeed;
     [SerializeField] private Vector2 direction;
-    [SerializeField] private Vector2 gunDirection;
+    [HideInInspector] public Vector2 gunDirection;
     public Color tankColor;
 
     // components

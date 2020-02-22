@@ -15,6 +15,7 @@ public class GunBase : MonoBehaviour
     public float spreadInAngles;
     // where to fire the bullet from
     public GameObject firePoint;
+    public ParticleSystem fireParticle;
     // gun owner
     public PlayerController owner;
     // sound to play when firing
@@ -32,8 +33,14 @@ public class GunBase : MonoBehaviour
     public void FireBullet(BulletBase bulletPrefab)
     {
         // Plays sound effect
+        if(fireParticle) 
+        {
+            GameObject clone = Instantiate(fireParticle, firePoint.transform.position, firePoint.transform.rotation).gameObject;
+            Destroy(clone, 0.75f);
+        }
         AudioManager.instance.PlaySound(soundEffect, gameObject, fadeInSound);
         ExtendedFireBullet(bulletPrefab);
+        
     }
 
     public virtual void ExtendedFireBullet(BulletBase bulletPrefab)

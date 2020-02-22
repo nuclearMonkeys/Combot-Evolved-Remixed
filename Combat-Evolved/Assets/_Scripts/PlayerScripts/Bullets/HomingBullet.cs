@@ -5,7 +5,7 @@ using UnityEngine;
 public class HomingBullet : BulletBase
 {
     GameObject playerToTarget;
-    float honeStrength = 4;
+    public float honeStrength = 4;
 
     public void SetPlayerToTarget(GameObject target)
     {

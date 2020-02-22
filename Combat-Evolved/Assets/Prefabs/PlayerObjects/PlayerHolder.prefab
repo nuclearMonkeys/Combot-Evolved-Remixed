@@ -2556,6 +2556,8 @@ MonoBehaviour:
   bulletsPerShot: 1
   spreadInAngles: 0
   firePoint: {fileID: 3675559784491999396}
+  fireParticle: {fileID: 1812058192228658549, guid: 3d9189260ba534f40a34976fd9106fce,
+    type: 3}
   owner: {fileID: 0}
   soundEffect: Pop
   fadeInSound: 0

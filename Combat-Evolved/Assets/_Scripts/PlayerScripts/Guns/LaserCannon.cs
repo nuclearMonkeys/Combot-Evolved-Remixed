@@ -59,7 +59,6 @@ public class LaserCannon : GunBase
         float elapsed = 0;
 
         CameraController.instance.ShakeCamera();
-
         Destroy(clone);
         while (elapsed < updateSpeedSecs) 
         {
