@@ -146,6 +146,8 @@ MonoBehaviour:
   damage: 0.5
   speed: 15
   source: {fileID: 0}
+  boxColliderPrefab: {fileID: 800297559044926758, guid: 230cf96454cff83499974d767462a35a,
+    type: 3}
 --- !u!96 &223366128
 TrailRenderer:
   serializedVersion: 2

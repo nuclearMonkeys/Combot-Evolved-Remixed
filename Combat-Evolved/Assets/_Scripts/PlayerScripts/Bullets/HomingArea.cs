@@ -4,45 +4,29 @@ using UnityEngine;
 
 public class HomingArea : MonoBehaviour
 {
-    [HideInInspector] public HomingBullet homingBullet;
-    public float updateSpeedSecs = 0.30f;
-    public Rigidbody2D rb;
+    private HomingBullet homingBullet;
 
-    private void Start() 
+    private void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        homingBullet = GetComponentInParent<HomingBullet>();
     }
 
+    // if player target enters
     private void OnTriggerEnter2D(Collider2D other) 
     {
         PlayerController playerController = other.GetComponent<PlayerController>();
-
         if (playerController && homingBullet.source != playerController) 
         {
-            StartCoroutine(SmoothSetDirection(other.gameObject));
+            homingBullet.SetPlayerToTarget(playerController.gameObject);
         }
     }
 
-    private IEnumerator SmoothSetDirection(GameObject other) 
+    // if target leaves
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        Vector3 newDirection = (other.gameObject.transform.position - 
-            homingBullet.gameObject.transform.position).normalized;
-
-        float elapsed = 0f;
-
-        while (elapsed < updateSpeedSecs) 
+        if(collision.gameObject.Equals(homingBullet.GetPlayerToTarget()))
         {
-            elapsed += Time.deltaTime;
-            Vector3 transitionDirection = Vector3.Slerp(
-                rb.velocity, 
-                (other.gameObject.transform.position - 
-                    homingBullet.gameObject.transform.position).normalized,
-                elapsed / updateSpeedSecs);
-            homingBullet.SetDirection(transitionDirection);
-            yield return new WaitForEndOfFrame();
+            homingBullet.SetPlayerToTarget(null);
         }
-        // yield return null;
-
-        homingBullet.SetDirection(newDirection);
     }
 }

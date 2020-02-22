@@ -19,6 +19,7 @@ public class GunBase : MonoBehaviour
     public PlayerController owner;
     // sound to play when firing
     public string soundEffect;
+    public bool fadeInSound = false;
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class GunBase : MonoBehaviour
     public void FireBullet(BulletBase bulletPrefab)
     {
         // Plays sound effect
-        AudioManager.instance.PlaySound(soundEffect, gameObject);
+        AudioManager.instance.PlaySound(soundEffect, gameObject, fadeInSound);
         ExtendedFireBullet(bulletPrefab);
     }
 

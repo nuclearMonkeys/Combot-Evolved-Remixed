@@ -9,9 +9,9 @@ public class Flamethrower : GunBase
     public float fireTime = 3;
     private bool gasing = false;
 
-    private void Start() 
+    public override void ExtendedStart()
     {
-        owner = this.GetComponentInParent<PlayerController>();
+        fadeInSound = true;
     }
 
     public override void ExtendedFireBullet(BulletBase bulletPrefab) 
@@ -26,8 +26,7 @@ public class Flamethrower : GunBase
         gasing = true;
         yield return new WaitForSeconds(fireTime);
         gasing = false;
-        AudioSource audioSource = GetComponent<AudioSource>();
-        if (audioSource) Destroy(audioSource);
+        AudioManager.instance.StopSound(soundEffect, gameObject, true);
     }
 
     public void Hit(PlayerHealth playerHealth) 

@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 7233836765937339507}
   - component: {fileID: 7624966222344436042}
   m_Layer: 0
-  m_Name: PlayerHolder2
+  m_Name: PlayerHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -532,7 +532,7 @@ MonoBehaviour:
     type: 3}
   gunReference: {fileID: 6896442971528807663}
   passiveReference: {fileID: 7439129091799571213}
-  initBulletPrefab: {fileID: 8166971920374979649, guid: febe52912db072c4db4fe8d7356f9adb,
+  initBulletPrefab: {fileID: -1679823287182670671, guid: 484901db6710c5f458777f4f959af6f2,
     type: 3}
   initGunReference: {fileID: 8166183247475737483, guid: a342f9c908200c240b52bf2ac833f045,
     type: 3}
@@ -693,7 +693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e34223492bb804c9b255fcb44128e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 3675559784491999396}
 --- !u!96 &7212190240211181881
 TrailRenderer:
   serializedVersion: 2
@@ -2559,3 +2558,4 @@ MonoBehaviour:
   firePoint: {fileID: 3675559784491999396}
   owner: {fileID: 0}
   soundEffect: Pop
+  fadeInSound: 0

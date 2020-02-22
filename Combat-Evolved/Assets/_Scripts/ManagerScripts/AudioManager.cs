@@ -7,7 +7,10 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public List<AudioClip> clips;
+    // parallel array, associates AudioClip to an AudioSource
     private AudioSource[] sources;
+    // audio fade duration
+    public float fadeDuration = .75f;
 
     private void Awake()
     {
@@ -23,7 +26,7 @@ public class AudioManager : MonoBehaviour
         FileInfo[] info = dir.GetFiles("*.*");
         foreach (FileInfo f in info)
         {
-            if(f.Name.EndsWith("wav"))
+            if (f.Name.EndsWith("wav"))
             {
                 clips.Add(Resources.Load<AudioClip>(Path.GetFileNameWithoutExtension(f.Name)));
                 index++;
@@ -40,59 +43,114 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(string name, GameObject playFrom = null, bool fadeOut = false)
+    // gets an audio clip index by name
+    private int GetAudioClipIndex(string name)
     {
         for (int i = 0; i < clips.Count; i++)
         {
             if (clips[i].name.Equals(name))
             {
-                // play sound from the manager
-                if(playFrom == null)
-                    sources[i].Play();
-                // play sound on another object
-                else
-                {
-                    // create audio source
-                    AudioSource audioSource = playFrom.AddComponent<AudioSource>();
-                    // attach clip to audioSource
-                    audioSource.clip = clips[i];
-                    // play the clip
-                    audioSource.Play();
-
-                    if (fadeOut) 
-                    {
-                        StartCoroutine(FadeOut(audioSource, audioSource.time));
-                        return;
-                    }
-                    
-                    // destroy audiosource after clip ends
-                    Destroy(audioSource, clips[i].length);
-                }
+                return i;
             }
         }
+        return -1;
     }
 
-    public static IEnumerator FadeOut(AudioSource audioSource, float fadeTime) 
+    // plays an audio clip by name
+    // specify playFrom if want to create audio source on separate object
+    public void PlaySound(string name, GameObject playFrom = null, bool fadeIn = false)
+    {
+        int i = GetAudioClipIndex(name);
+        Debug.Assert(i != -1, "AudioManager:PlaySound:: AudioSource Manager has no sound: " + name + "! Check the Audio/Resources folder!!");
+        AudioSource audioSource = null;
+        // determine where to play sound from
+        // play sound from the manager
+        if (playFrom == null)
+        {
+            audioSource = sources[i];
+        }
+        // play sound on another object
+        else
+        {
+            // create audio source
+            audioSource = playFrom.AddComponent<AudioSource>();
+            // attach clip to audioSource
+            audioSource.clip = clips[i];
+            // destroy audiosource after clip ends
+            Destroy(audioSource, clips[i].length);
+        }
+
+        // plays the sound
+        audioSource.volume = 1;
+        audioSource.Play();
+
+        // if want to fade in
+        if (fadeIn)
+            StartCoroutine(FadeIn(audioSource, fadeDuration));
+    }
+
+    public void StopSound(string name, GameObject stopFrom = null, bool fadeOut = false)
+    {
+        AudioSource audioSource = null;
+        // if stopping sound from manager
+        if (stopFrom == null)
+        {
+            int i = GetAudioClipIndex(name);
+            Debug.Assert(i == -1, "AudioManager:StopSound:: AudioSource Manager has no sound: " + name + "! Check the Audio/Resources folder!!");
+            audioSource = sources[i];
+        }
+        else
+        {
+            AudioSource[] audioSources = stopFrom.GetComponents<AudioSource>();
+            Debug.Assert(audioSources.Length >= 1, "AudioManager:StopSound::" + stopFrom.name + " has no AudioSources!");
+            bool sourceFound = false;
+            // find the correct audio source associated with the clip
+            for (int i = 0; i < audioSources.Length; i++)
+            {
+                // if found correct source
+                if (audioSources[i].clip.name.Equals(name))
+                {
+                    // if duplicate source
+                    if (sourceFound)
+                        Destroy(audioSources[i]);
+                    // set source
+                    else
+                    {
+                        audioSource = audioSources[i];
+                        sourceFound = true;
+                    }
+                }
+            }
+            Debug.Assert(audioSource != null, "AudioManager:StopSound:: No AudioSource with " + name + " found!");
+            Destroy(audioSource, fadeDuration * 2);
+        }
+
+        if(fadeOut)
+            StartCoroutine(FadeOut(audioSource, fadeDuration));
+        else
+            audioSource.Stop();
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float fadeTime)
+    {
+        audioSource.volume = 0;
+        while (audioSource.volume < 1)
+        {
+            audioSource.volume += 1 * Time.deltaTime / fadeTime;
+            yield return null;
+        }
+        audioSource.volume = 1;
+    }
+
+    public static IEnumerator FadeOut(AudioSource audioSource, float fadeTime)
     {
         float startVolume = audioSource.volume;
-
-        while (audioSource.volume > 0) 
+        while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
-
             yield return null;
         }
-        
-        Destroy(audioSource);
-    }
-
-    public static IEnumerator FadeIn(AudioSource audioSource, float fadeTime, float targetVolume) 
-    {
-        while (audioSource.volume < targetVolume) 
-        {
-            audioSource.volume += targetVolume * Time.deltaTime / fadeTime;
-
-            yield return null;
-        }
+        audioSource.Stop();
+        audioSource.volume = 1;
     }
 }
