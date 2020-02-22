@@ -455,8 +455,8 @@ MonoBehaviour:
   zoomSizeBounds: {x: 3, y: 15}
   marginSizeBounds: {x: 4, y: 1}
   cam: {fileID: 519420031}
-  shake_duration: 0
-  shake_intensity: 0
+  shake_duration: 0.1
+  shake_intensity: 0.03
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

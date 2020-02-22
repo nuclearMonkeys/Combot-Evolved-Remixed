@@ -80,6 +80,8 @@ MonoBehaviour:
   bulletsPerShot: 1
   spreadInAngles: 0
   firePoint: {fileID: 2153631104054339520}
+  fireParticle: {fileID: 1812058192228658549, guid: 5a1f91e2e138f7d42bfaa70ea5443366,
+    type: 3}
   owner: {fileID: 0}
   soundEffect: Pop
 --- !u!1 &7497063860356095877

@@ -6,6 +6,7 @@ public class TeleportPassive : PassiveBase
 {
     public GameObject firepoint;
     public PlayerController owner;
+
     public string soundEffect;
 
     // Start is called before the first frame update
@@ -16,12 +17,13 @@ public class TeleportPassive : PassiveBase
 
     public override void ActivatePassive(PlayerController pc) 
     {
-
+        FireBullet(pc.gameObject.GetComponent<PlayerWeapons>().bulletPrefab);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void FireBullet(BulletBase bulletPrefab) 
     {
-        
+        BulletBase clone = Instantiate(bulletPrefab.gameObject, firepoint.transform.position, transform.rotation).GetComponent<BulletBase>();
+        clone.damage = 0;
+        clone.source = owner;
     }
 }

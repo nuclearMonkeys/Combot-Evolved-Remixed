@@ -50,6 +50,8 @@ MonoBehaviour:
   bulletsPerShot: 6
   spreadInAngles: 60
   firePoint: {fileID: 5333830632764560243}
+  fireParticle: {fileID: 1812058192228658549, guid: 3d9189260ba534f40a34976fd9106fce,
+    type: 3}
   owner: {fileID: 0}
   soundEffect: shotgun_fire
 --- !u!1 &4606132915197373238

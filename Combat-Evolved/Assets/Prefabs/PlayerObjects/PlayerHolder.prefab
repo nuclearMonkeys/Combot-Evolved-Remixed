@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 7233836765937339507}
   - component: {fileID: 7624966222344436042}
   m_Layer: 0
-  m_Name: PlayerHolder2
+  m_Name: PlayerHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -693,7 +693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e34223492bb804c9b255fcb44128e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 3675559784491999396}
 --- !u!96 &7212190240211181881
 TrailRenderer:
   serializedVersion: 2
@@ -2557,5 +2556,7 @@ MonoBehaviour:
   bulletsPerShot: 1
   spreadInAngles: 0
   firePoint: {fileID: 3675559784491999396}
+  fireParticle: {fileID: 1812058192228658549, guid: 3d9189260ba534f40a34976fd9106fce,
+    type: 3}
   owner: {fileID: 0}
   soundEffect: Pop
