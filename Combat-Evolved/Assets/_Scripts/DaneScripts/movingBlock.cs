@@ -1,80 +1,91 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class movingBlock : MonoBehaviour
 {
-
-    List<Transform> positions = new List<Transform>();
-    //List<LineRenderer>() lines;
-    Transform block;
+    List<Vector3> positions = new List<Vector3>();
     int i = 0;
-
     public float speed = 1f;
-    public Material defaultLine;
-    // Start is called before the first frame update
-    void Start()
+    Transform box;
+    Rigidbody2D rb;
+
+    public float lineWidth = 0.2f;
+    public Color lineColor = Color.white;
+    public Material m;
+    float dotSize = 0.3f;
+
+    private void Start()
     {
+        box = transform.GetChild(0);
+        rb = box.gameObject.GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.mass = 0f;
+        rb.gravityScale = 0f;
         foreach (Transform child in transform)
         {
-            positions.Add(child);
-        }
-        block = positions[0];
-        positions.RemoveAt(0);
-        for (int i = 0; i < positions.Count; ++i)
-        {
-            print("in loop");
-            LineRenderer ln = gameObject.AddComponent<LineRenderer>();
-                //.
-            ln.material = defaultLine;
-            ln.SetPosition(0, positions[i].position);
-            Vector3 secondPos;
-            if (i < positions.Count)
+            child.position = new Vector3(child.position.x, child.position.y, 0f);
+            if (child.position != transform.GetChild(0).transform.position)
             {
-                secondPos = positions[i + 1].position;
+                child.localScale = new Vector3(dotSize, dotSize, 1f);
+                positions.Add(child.transform.position);
+            }
+            
+        }
+
+        for (int i = 0; i < positions.Count; i++)
+        {
+            LineRenderer ln = transform.GetChild(i).gameObject.AddComponent<LineRenderer>();
+            ln.material = m;
+            ln.widthMultiplier = lineWidth;
+            ln.positionCount = 2;
+            ln.endColor = lineColor;
+            ln.startColor = lineColor;
+            ln.SetPosition(0, positions[i]);
+            if (i == positions.Count - 1)
+            {
+                print("to first");
+                ln.SetPosition(1, positions[0]);
             }
             else
             {
-                secondPos = positions[0].position;
+                print("not to first");
+                ln.SetPosition(1, positions[i + 1]);
             }
-            ln.SetPosition(1, secondPos);
         }
-        
+        box.position = positions[0];
+        i = 1;
+        rb.velocity = (positions[i] - box.position).normalized * speed;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    Vector3 setSpeed()
     {
+        Vector3 temp = Vector3.zero;
+        if (Math.Round(box.position.x, 1) != Math.Round(positions[i].x, 1))
+        {
+            temp.x = Mathf.Sign(positions[i].x - box.position.x) * speed;
+        }
+        if (Math.Round(box.position.y, 1) != Math.Round(positions[i].y, 1))
+        {
+            temp.y = Mathf.Sign(positions[i].y - box.position.y) * speed;
+        }
+        return temp;
+    }
 
-        if ((int)(block.position.x * 10) == (int)(positions[i].position.x * 10) && (int)(block.position.y * 10) == (int)(positions[i].position.y * 10))
+    private void Update()
+    {
+        //print("Moving to position " + positions[i] + " at index " + i);
+        if((positions[i] - box.position).magnitude <= .1f)
         {
             i++;
-            if (i == positions.Count)
+            if (i >= positions.Count)
             {
                 i = 0;
             }
+            rb.velocity = (positions[i] - box.position).normalized * speed;
         }
-
-        //add rounding
-
-        if ((int)(block.position.x * 10) < (int)(positions[i].position.x * 10))
-        {
-            block.position = new Vector3(block.position.x + Time.deltaTime * speed, block.position.y, 0f);
-        }
-        else if ((int)(block.position.x * 10) > (int)(positions[i].position.x * 10))
-        {
-            block.position = new Vector3(block.position.x - Time.deltaTime * speed, block.position.y, 0f);
-        }
-        if ((int)(block.position.y * 10) < (int)(positions[i].position.y * 10))
-        {
-            block.position = new Vector3(block.position.x, block.position.y + Time.deltaTime * speed, 0f);
-        }
-        else if ((int)(block.position.y * 10) > (int)(positions[i].position.y * 10))
-        {
-            block.position = new Vector3(block.position.x, block.position.y - Time.deltaTime * speed, 0f);
-        }
-
-
-        
     }
+
 }
