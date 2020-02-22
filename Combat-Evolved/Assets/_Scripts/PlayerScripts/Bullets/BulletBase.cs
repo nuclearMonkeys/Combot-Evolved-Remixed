@@ -12,7 +12,7 @@ public class BulletBase : MonoBehaviour
 
     public GameObject boxColliderPrefab;
 
-    private GameObject boxCollider;
+    [HideInInspector] public GameObject boxCollider;
 
     void Awake() 
     {
