@@ -39,9 +39,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7784750424714760870}
-  - component: {fileID: 8166183247475737483}
+  - component: {fileID: -6439707469843426879}
   m_Layer: 0
-  m_Name: BasicGun
+  m_Name: RemoteControlCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8166183247475737483
+--- !u!114 &-6439707469843426879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,19 +71,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6266121759083471514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c4955e7285fa94890aaf2cc470891b, type: 3}
+  m_Script: {fileID: 11500000, guid: b1bd3338569e8e24396d15aae412ddf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.2
+  fireRate: 0.5
   fireStaminaUsage: 1
-  damageModifier: 1
-  bulletsPerShot: 1
+  damageModifier: 0
+  bulletsPerShot: 0
   spreadInAngles: 0
   firePoint: {fileID: 2153631104054339520}
-  fireParticle: {fileID: 1812058192228658549, guid: 5a1f91e2e138f7d42bfaa70ea5443366,
-    type: 3}
+  fireParticle: {fileID: 0}
   owner: {fileID: 0}
   soundEffect: Pop
+  fadeInSound: 0
+  bullet: {fileID: 0}
 --- !u!1 &7497063860356095877
 GameObject:
   m_ObjectHideFlags: 0

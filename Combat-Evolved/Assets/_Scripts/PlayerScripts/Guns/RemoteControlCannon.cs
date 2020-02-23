@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RemoteControlCannon : GunBase
 {
-    private GameObject bullet;
+    BulletBase bullet;
 
     public override void ExtendedFireBullet(BulletBase bulletPrefab) 
     {
@@ -14,11 +14,13 @@ public class RemoteControlCannon : GunBase
         BulletBase clone = Instantiate(bulletPrefab.gameObject, firePoint.transform.position, transform.rotation).GetComponent<BulletBase>();
         clone.damage *= damageModifier;
         clone.source = owner;
-        bullet = clone.gameObject;
+        bullet = clone;
     }
     
     private void Update() 
     {
-        bullet.GetComponent<BulletBase>().SetDirection( owner.gunDirection );
+        if (bullet) {
+            bullet.SetDirection( owner.gunDirection );
+        }
     }
 }
