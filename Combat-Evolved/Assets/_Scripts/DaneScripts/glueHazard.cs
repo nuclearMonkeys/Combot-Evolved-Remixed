@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class glueHazard : MonoBehaviour
 {
+    float speed = -1f;
+
+    public float speedReducer = 0.33f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,28 @@ public class glueHazard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (speed == -1)
+        {
+            speed = collision.GetComponentInParent<PlayerController>().GetMovementSpeed();
+        }
+        if (collision.tag == "Player")
+        {
+            collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed * speedReducer);
+        }
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed);
+        }
         
     }
 }

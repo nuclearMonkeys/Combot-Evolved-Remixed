@@ -12,6 +12,7 @@ TagManager:
   - sceneManager
   - ItemDropPoint
   - Crate
+  - outerWall
   - StagePlane
   - Border
   layers:
