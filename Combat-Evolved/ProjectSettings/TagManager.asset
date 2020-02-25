@@ -12,6 +12,7 @@ TagManager:
   - sceneManager
   - ItemDropPoint
   - Crate
+  - StagePlane
   layers:
   - Default
   - TransparentFX
