@@ -211,6 +211,10 @@ MonoBehaviour:
   currentSpeed: 100
   regenerateInterval: 2
   updateSpeedSecs: 1.3
+  constantRotate: 1
+  x: 0
+  y: 0
+  z: 0
 --- !u!61 &4613792064712458834
 BoxCollider2D:
   m_ObjectHideFlags: 0

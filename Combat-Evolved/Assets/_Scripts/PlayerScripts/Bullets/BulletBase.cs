@@ -10,8 +10,6 @@ public class BulletBase : MonoBehaviour
     public float speed;
     public PlayerController source;
 
-
-
     void Awake() 
     {
         rb = GetComponent<Rigidbody2D>();
@@ -69,8 +67,12 @@ public class BulletBase : MonoBehaviour
             }
             else if (other.CompareTag("Crate")) 
             {
-                other.GetComponent<CrateRotate>().HitCrate();
+                other.GetComponent<StageObjRotate>().HitObj();
                 Destroy(this.gameObject);
+            }
+            else if (other.CompareTag("StagePlane")) 
+            {
+                other.GetComponent<StageObjRotate>().HitObj();
             }
         }
         // if is a TNT object
