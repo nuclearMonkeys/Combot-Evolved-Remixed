@@ -36,10 +36,13 @@ public class Level : MonoBehaviour
             player.GetComponent<PlayerController>().Reset();
 
             //spawns the player at a random spawn point
-            int spawnIndex = Random.Range(0, spawnPoints.Count);
-            GameObject spawnPos = spawnPoints[spawnIndex];
-            spawnPoints.Remove(spawnPos);
-            player.transform.position = spawnPos.transform.position;
+            if(spawnPoints.Count >  0)
+            {
+                int spawnIndex = Random.Range(0, spawnPoints.Count);
+                GameObject spawnPos = spawnPoints[spawnIndex];
+                spawnPoints.Remove(spawnPos);
+                player.transform.position = spawnPos.transform.position;
+            }
         }
     }
 

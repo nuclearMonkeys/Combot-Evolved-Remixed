@@ -30,6 +30,8 @@ public class BulletBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
+        if (!ExtendedOnTriggerEnter2D(other))
+            return;
         // if is a bullet object
         if (CompareTag("Bullet"))
         {
@@ -87,4 +89,7 @@ public class BulletBase : MonoBehaviour
             }
         }
     }
+
+    // return whether or not to continue checking trigger
+    public virtual bool ExtendedOnTriggerEnter2D(Collider2D other) { return true; }
 }

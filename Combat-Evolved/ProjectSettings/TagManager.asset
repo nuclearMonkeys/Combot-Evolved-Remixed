@@ -13,6 +13,7 @@ TagManager:
   - ItemDropPoint
   - Crate
   - StagePlane
+  - Border
   layers:
   - Default
   - TransparentFX
