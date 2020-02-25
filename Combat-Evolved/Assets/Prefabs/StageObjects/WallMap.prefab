@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6923307191264112670}
   m_Layer: 11
   m_Name: TopMap
-  m_TagString: Untagged
+  m_TagString: outerWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 6923307191960027706}
   m_Layer: 11
   m_Name: RightMap
-  m_TagString: Untagged
+  m_TagString: outerWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 5873072508626109133}
   m_Layer: 0
   m_Name: WallMap
-  m_TagString: Untagged
+  m_TagString: outerWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -962,7 +962,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6923307192040193251}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fed5507006aa7642b9fd29e81e4eb84, type: 3}
   m_Name: 
@@ -985,7 +985,7 @@ GameObject:
   - component: {fileID: 6923307192207239439}
   m_Layer: 11
   m_Name: LeftMap
-  m_TagString: Untagged
+  m_TagString: outerWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1386,7 +1386,7 @@ GameObject:
   - component: {fileID: 6923307192638370384}
   m_Layer: 11
   m_Name: BottomMap
-  m_TagString: Untagged
+  m_TagString: outerWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

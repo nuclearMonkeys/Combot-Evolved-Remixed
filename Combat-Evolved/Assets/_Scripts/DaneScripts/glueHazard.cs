@@ -25,12 +25,19 @@ public class glueHazard : MonoBehaviour
         {
             speed = collision.GetComponentInParent<PlayerController>().GetMovementSpeed();
         }
+        if (collision.tag == "Player")
+        {
+            collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed * speedReducer);
+        }
         
-        collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed * speedReducer);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed);
+        if (collision.tag == "Player")
+        {
+            collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed);
+        }
+        
     }
 }
