@@ -7,6 +7,11 @@ public class BurrowPassive : PassiveBase
     bool isBurrowed;
     public float burrowSeconds = 4f;
     GameObject wallCollider;
+
+    public bool isEnabled()
+    {
+        return isBurrowed;
+    }
     public override void ActivatePassive(PlayerController pc)
     {
         wallCollider = pc.gameObject.transform.Find("WallCollider").gameObject;
@@ -22,6 +27,7 @@ public class BurrowPassive : PassiveBase
         print("started burrowing");
         isBurrowed = true;
         wallCollider.GetComponent<CircleCollider2D>().isTrigger = true;
+        
         yield return new WaitForSeconds(burrowSeconds);
         isBurrowed = false;
         wallCollider.GetComponent<CircleCollider2D>().isTrigger = false;

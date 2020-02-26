@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class edgeCheckBurrow : MonoBehaviour
 {
-    
+    GameObject wallCollider;
+    private void Start()
+    {
+        wallCollider = this.gameObject.transform.parent.parent.Find("WallCollider").gameObject;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "outerWall")
+        if (collision.tag == "outerWall" && gameObject.GetComponent<BurrowPassive>().isEnabled())
         {
-            //this.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+            wallCollider.GetComponent<CircleCollider2D>().isTrigger = false;
         }
         
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "outerWall")
+        if (collision.tag == "outerWall" && gameObject.GetComponent<BurrowPassive>().isEnabled())
         {
-            //this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            wallCollider.GetComponent<CircleCollider2D>().isTrigger = true;
         }
 
     }
