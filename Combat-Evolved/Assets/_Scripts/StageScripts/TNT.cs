@@ -11,7 +11,6 @@ public class TNT : MonoBehaviour
     public void Explode(PlayerController cause)
     {
         CameraController.instance.ShakeCamera();
-        print("Explode!");
         // create explosion object
         HazardDamage explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity).GetComponent<HazardDamage>();
         // set the damage and size of explosion

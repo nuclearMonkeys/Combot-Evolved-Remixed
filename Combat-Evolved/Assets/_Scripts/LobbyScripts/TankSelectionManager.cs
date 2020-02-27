@@ -14,9 +14,6 @@ public class TankSelectionManager : MonoBehaviour
     [HideInInspector] public List<GameObject> controllerEmblems = new List<GameObject>();
     [HideInInspector] public List<GameObject> readyLines = new List<GameObject>();
 
-    // [SerializeField] public Dictionary<string, string> controllersToPlayers =
-    //     new Dictionary<string, string>();
-
     public GameObject promptCubeContainer;
     public GameObject controllerEmblemContainer;
     public GameObject referencePromptCube;
@@ -112,6 +109,8 @@ public class TankSelectionManager : MonoBehaviour
         playerInput.transform.Find("Player").transform.position = spawnpoints.transform.GetChild(tankID).position;
         // add to player list
         players.Add(playerInput.transform.Find("Player").gameObject);
+        // disable bars
+        playerInput.transform.Find("Player").Find("Bars").gameObject.SetActive(false);
     }
 
     public void PlayerLeft(PlayerInput playerInput) 

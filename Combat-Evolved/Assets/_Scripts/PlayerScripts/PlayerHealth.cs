@@ -65,9 +65,4 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(2);
         CameraController.instance.targets.Remove(transform.parent);
     }
-
-    private void OnDestroy()
-    {
-        Die(null);
-    }
 }

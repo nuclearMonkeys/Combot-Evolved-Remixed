@@ -183,6 +183,7 @@ public class PlayerController : MonoBehaviour
     public void Reset()
     {
         gameObject.SetActive(true);
+        transform.Find("Bars").gameObject.SetActive(true);
 
         // Reset components
         playerHealth.ResetHealth();
