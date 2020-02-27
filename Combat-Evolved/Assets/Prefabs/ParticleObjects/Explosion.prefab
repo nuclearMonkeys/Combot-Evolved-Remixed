@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7023749280416104236}
   - component: {fileID: 5015770461145820548}
   - component: {fileID: 5249693569432800340}
-  - component: {fileID: 314687878}
   - component: {fileID: 409427829761624832}
   m_Layer: 0
   m_Name: Explosion
@@ -61,6 +60,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -70,8 +70,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1435585643
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4754,18 +4754,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &314687878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252908278218143265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b962cbe4cd6008d47aee4682e85d7355, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &409427829761624832
 AudioSource:
   m_ObjectHideFlags: 0

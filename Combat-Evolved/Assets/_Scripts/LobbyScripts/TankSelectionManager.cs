@@ -36,7 +36,16 @@ public class TankSelectionManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         if(!SceneManager.GetActiveScene().name.Equals("Lobby"))
+        {
+            // for test scenes
+            PlayerController[] pcs = FindObjectsOfType<PlayerController>();
+            foreach (PlayerController pc in pcs)
+            {
+                players.Add(pc.gameObject);
+                pc.enableKeyboard = true;
+            }
             return;
+        }
 
         Transform[] promptCubeArr = promptCubeContainer.GetComponentsInChildren<Transform>(true);
         Transform[] controllerEmblemArr = controllerEmblemContainer.GetComponentsInChildren<Transform>(true);
@@ -62,14 +71,6 @@ public class TankSelectionManager : MonoBehaviour
                 continue;
             readyLines.Add(readyLineArr[i].gameObject);
         }
-    }
-
-    private void Start()
-    {
-        // for test scenes
-        PlayerController[] pcs = FindObjectsOfType<PlayerController>();
-        foreach (PlayerController pc in pcs)
-            players.Add(pc.gameObject);
     }
 
     private void Update()
