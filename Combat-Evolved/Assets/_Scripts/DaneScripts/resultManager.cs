@@ -17,6 +17,7 @@ public class resultManager : MonoBehaviour
     
     void Start()
     {
+        
         dataHolder = GameObject.Find("dataHolder");
         if (dataHolder != null)
         {
@@ -31,6 +32,8 @@ public class resultManager : MonoBehaviour
         player4bar.value = (float)data[3] / (float)data[4];
         player3bar.gameObject.SetActive(data[5] > 2 || data[2] > 0);
         player4bar.gameObject.SetActive(data[5] > 3 || data[3] > 0);
+        Destroy(GameObject.Find("Manager"));
+
         
 
     }
