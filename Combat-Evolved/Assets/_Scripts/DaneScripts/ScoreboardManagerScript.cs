@@ -19,7 +19,7 @@ public class ScoreboardManagerScript : MonoBehaviour
     public int killThreshold = 15;
     public int numPlayers = 2;
 
-    public GameObject dataHolder;
+    //public GameObject dataHolder;
 
     private GameObject spot0;
     private GameObject spot1;
@@ -63,7 +63,7 @@ public class ScoreboardManagerScript : MonoBehaviour
 
         if (displaySeconds <= 0 || killThresholdReached())
         {
-            dataHolder.GetComponent<gameData>().setData(getData());
+            //dataHolder.GetComponent<gameData>().setData(getData());
             SceneManager.LoadScene("resultsScreen");
         }
     }
