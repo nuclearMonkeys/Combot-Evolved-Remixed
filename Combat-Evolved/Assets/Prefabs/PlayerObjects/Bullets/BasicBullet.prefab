@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -825505323
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fa59bf48e7f4ea04e83c0f872187d7e9, type: 3}
   m_Color: {r: 0.963735, g: 1, b: 0, a: 1}
@@ -145,5 +145,3 @@ MonoBehaviour:
   damage: 1
   speed: 6.5
   source: {fileID: 0}
-  boxColliderPrefab: {fileID: 800297559044926758, guid: 230cf96454cff83499974d767462a35a,
-    type: 3}
