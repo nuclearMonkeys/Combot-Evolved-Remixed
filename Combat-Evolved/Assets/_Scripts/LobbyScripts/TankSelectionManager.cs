@@ -10,7 +10,7 @@ public class TankSelectionManager : MonoBehaviour
 
     public List<GameObject> players = new List<GameObject>();
 
-    [HideInInspector] public List<GameObject> promptCubes = new List<GameObject>();
+    public List<GameObject> promptCubes = new List<GameObject>();
     [HideInInspector] public List<GameObject> controllerEmblems = new List<GameObject>();
     [HideInInspector] public List<GameObject> readyLines = new List<GameObject>();
 
@@ -115,10 +115,12 @@ public class TankSelectionManager : MonoBehaviour
 
     public void PlayerLeft(PlayerInput playerInput) 
     {
+        AudioManager.instance.PlaySound("Unready");
         int tankID = playerInput.GetComponentInChildren<PlayerController>().tankID;
         // if left inside of lobby
         if(SceneManager.GetActiveScene().name == "Lobby")
         {
+            print(tankID);
             promptCubes[tankID].SetActive(true);
             promptCubes[tankID].transform.rotation = Quaternion.identity;
             controllerEmblems[tankID].SetActive(false);

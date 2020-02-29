@@ -15,6 +15,7 @@ TagManager:
   - outerWall
   - StagePlane
   - Border
+  - UIBars
   layers:
   - Default
   - TransparentFX

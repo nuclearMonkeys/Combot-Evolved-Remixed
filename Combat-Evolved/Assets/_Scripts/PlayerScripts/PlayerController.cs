@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private PlayerWeapons playerWeapons;
     private PlayerHealth playerHealth;
     private PlayerStamina playerStamina;
+    private HideBar hideBar;
 
     // private variables. no touchy touchy.
     private bool canMove = true;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         playerWeapons = GetComponent<PlayerWeapons>();
         playerHealth = GetComponentInChildren<PlayerHealth>();
         playerStamina = GetComponentInChildren<PlayerStamina>();
+        hideBar = GetComponentInChildren<HideBar>();
 
         AssignTankID(tankID);
     }
@@ -114,9 +116,7 @@ public class PlayerController : MonoBehaviour
 
     public void Rotate(Vector2 inputDirection) 
     {
-        if(!PauseMenu.instance.gameObject.activeSelf)
-            return;
-        if (PauseMenu.instance.isPaused)
+        if (PauseMenu.instance && PauseMenu.instance.isPaused)
             return;
         // When you release stick on resting place
         Vector2 rotation = inputDirection;
@@ -130,9 +130,12 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
-        if(canFire && !PauseMenu.instance.isPaused)
+        if (canFire) 
         {
-            StartCoroutine(fireEnumerator());
+            if (PauseMenu.instance && !PauseMenu.instance.isPaused)
+                StartCoroutine(fireEnumerator());
+            else if (!PauseMenu.instance)
+                StartCoroutine(fireEnumerator());
         }
     }
 
@@ -168,9 +171,9 @@ public class PlayerController : MonoBehaviour
 
     public void Pause()
     {
-        if (PauseMenu.instance == null)
+        if (!PauseMenu.instance.isActiveAndEnabled)
         {
-            TankSelectionManager.instance.PlayerLeft(this.gameObject.GetComponent<PlayerInput>());
+            TankSelectionManager.instance.PlayerLeft(this.gameObject.GetComponentInParent<PlayerInput>());
             return;
         }
         if (!PauseMenu.instance.isPaused)
@@ -189,6 +192,7 @@ public class PlayerController : MonoBehaviour
         playerHealth.ResetHealth();
         playerStamina.ResetStamina();
         playerWeapons.ResetWeapons();
+        hideBar.ResetBars();
 
         // Reset flags
         StopAllCoroutines();

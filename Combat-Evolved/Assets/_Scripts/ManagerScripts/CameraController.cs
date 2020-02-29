@@ -27,7 +27,12 @@ public class CameraController : MonoBehaviour
     {
         instance = this;
     }
- 
+
+    private void Start()
+    {
+        instance = this;
+    }
+
     void LateUpdate()
     {
         for(int i = 0; i < targets.Count; i++) {
