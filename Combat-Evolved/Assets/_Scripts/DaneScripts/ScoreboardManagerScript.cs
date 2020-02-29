@@ -9,8 +9,8 @@ public class ScoreboardManagerScript : MonoBehaviour
 {
     public static ScoreboardManagerScript instance;
 
-    
-    public float maxSeconds = 300;
+    public float totalSeconds = 300f;
+    private float currentTime;
     public int displaySeconds;
     private string secondString;
     public Text timer;
@@ -19,12 +19,16 @@ public class ScoreboardManagerScript : MonoBehaviour
     public int killThreshold = 15;
     public int numPlayers = 2;
 
+    string oldScene;
+
     public GameObject dataHolder;
 
     private GameObject spot0;
     private GameObject spot1;
     private GameObject spot2;
     private GameObject spot3;
+
+    bool finalSceneCalled = false;
 
     private void Awake()
     {
@@ -35,10 +39,17 @@ public class ScoreboardManagerScript : MonoBehaviour
     {
         numPlayers = TankSelectionManager.instance.players.Count;
         updateScores(-1);
+        currentTime = totalSeconds;
+        oldScene = SceneManager.GetActiveScene().name;
     }
 
     void Update()
     {
+        //print(oldScene + " " + SceneManager.GetActiveScene().name);
+        if (SceneManager.GetActiveScene().name != oldScene)
+        {
+            currentTime = 300f;
+        }
         if (numPlayers < 2)
         {
             numPlayers = TankSelectionManager.instance.players.Count;
@@ -49,8 +60,8 @@ public class ScoreboardManagerScript : MonoBehaviour
         {
             numPlayers = 4;
         }
-        maxSeconds -= Time.smoothDeltaTime;
-        displaySeconds = (int)maxSeconds;
+        currentTime -= Time.smoothDeltaTime;
+        displaySeconds = (int)currentTime;
         if (displaySeconds % 60 >= 10)
         {
             timer.text = ((int) displaySeconds / 60 )+ ":" + displaySeconds % 60 ;
@@ -61,11 +72,13 @@ public class ScoreboardManagerScript : MonoBehaviour
         }
         
 
-        if (displaySeconds <= 0 || killThresholdReached())
+        if ((displaySeconds <= 0 || killThresholdReached()) && (finalSceneCalled == false))
         {
+            finalSceneCalled = true;
             dataHolder.GetComponent<gameData>().setData(getData());
             SceneManager.LoadScene("resultsScreen");
         }
+        oldScene = SceneManager.GetActiveScene().name;
     }
 
     //returns true if any player has reached the kill threshold

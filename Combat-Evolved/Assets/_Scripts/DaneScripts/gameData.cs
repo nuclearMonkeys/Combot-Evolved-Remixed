@@ -12,5 +12,7 @@ public class gameData : MonoBehaviour
     public void setData(int[] newData)
     {
         data = newData;
+        
+        print("setting data");
     }
 }

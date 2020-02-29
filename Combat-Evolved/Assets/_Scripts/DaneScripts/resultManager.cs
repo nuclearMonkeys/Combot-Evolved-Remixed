@@ -10,29 +10,47 @@ public class resultManager : MonoBehaviour
     public Slider player2bar;
     public Slider player3bar;
     public Slider player4bar;
-    private GameObject dataHolder;
+    private GameObject dataHolder = null;
+    bool dataSet = false;
     //public GameObject player2bar;
     //public GameObject player3bar;
    // public GameObject player4bar;
     
     void Start()
     {
-        
-        dataHolder = GameObject.Find("dataHolder");
-        if (dataHolder != null)
+        GameObject mngr = GameObject.Find("Manager");
+        if (mngr != null)
         {
-            data = dataHolder.GetComponent<gameData>().data;
-            Destroy(dataHolder);
+            ScoreboardManagerScript sms = mngr.GetComponentInChildren<ScoreboardManagerScript>();
+            if (sms != null)
+            {
+                dataHolder = sms.dataHolder;
+            }
+            if (dataHolder != null)
+            {
+                data = dataHolder.GetComponent<gameData>().data;
+                dataSet = true;
+            }
         }
         
-        //dataHolder.SetActive(false);
-        player1bar.value = (float)data[0] / (float)data[4];
-        player2bar.value = (float)data[1] / (float)data[4];
-        player3bar.value = (float)data[2] / (float)data[4];
-        player4bar.value = (float)data[3] / (float)data[4];
-        player3bar.gameObject.SetActive(data[5] > 2 || data[2] > 0);
-        player4bar.gameObject.SetActive(data[5] > 3 || data[3] > 0);
-        Destroy(GameObject.Find("Manager"));
+        
+        foreach(int i in data)
+        {
+            print(i);
+        }
+        if (dataSet)
+        {
+            player1bar.value = (float)data[0] / (float)data[4];
+            player2bar.value = (float)data[1] / (float)data[4];
+            player3bar.value = (float)data[2] / (float)data[4];
+            player4bar.value = (float)data[3] / (float)data[4];
+            //print(data[5] > 2 || data[2] > 0);
+            player3bar.gameObject.SetActive(data[5] > 2 || data[2] > 0);
+            player4bar.gameObject.SetActive(data[5] > 3 || data[3] > 0);
+            //print(player3bar.IsActive() || player4bar.IsActive());
+            Destroy(GameObject.Find("Manager"));
+        }
+        
 
         
 
@@ -40,6 +58,7 @@ public class resultManager : MonoBehaviour
 
     private void Update()
     {
+        //Start();
     }
 
 }

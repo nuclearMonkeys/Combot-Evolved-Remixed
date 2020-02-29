@@ -14,6 +14,7 @@ public class sceneManager : MonoBehaviour
     public int currentLiving = 2;
     public float countdownLength = 3f;
     List<string> levels = new List<string>();
+    string lastScene;
 
     private static sceneManager _instance;
 
@@ -67,6 +68,11 @@ public class sceneManager : MonoBehaviour
         if (sceneName == "")
         {
             sceneName = chooseRandomLevel();
+            while (sceneName == lastScene)
+            {
+                sceneName = chooseRandomLevel();
+            }
+            lastScene = sceneName;
         }
         if (currentLiving <= 1 || SceneManager.GetActiveScene().name == "Lobby")
         {
