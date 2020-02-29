@@ -116,9 +116,7 @@ public class PlayerController : MonoBehaviour
 
     public void Rotate(Vector2 inputDirection) 
     {
-        if(!PauseMenu.instance.gameObject.activeSelf)
-            return;
-        if (PauseMenu.instance.isPaused)
+        if (PauseMenu.instance && PauseMenu.instance.isPaused)
             return;
         // When you release stick on resting place
         Vector2 rotation = inputDirection;
@@ -132,9 +130,12 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
-        if(canFire && !PauseMenu.instance.isPaused)
+        if (canFire) 
         {
-            StartCoroutine(fireEnumerator());
+            if (PauseMenu.instance && !PauseMenu.instance.isPaused)
+                StartCoroutine(fireEnumerator());
+            else if (!PauseMenu.instance)
+                StartCoroutine(fireEnumerator());
         }
     }
 
@@ -170,9 +171,9 @@ public class PlayerController : MonoBehaviour
 
     public void Pause()
     {
-        if (PauseMenu.instance == null)
+        if (!PauseMenu.instance.isActiveAndEnabled)
         {
-            TankSelectionManager.instance.PlayerLeft(this.gameObject.GetComponent<PlayerInput>());
+            TankSelectionManager.instance.PlayerLeft(this.gameObject.GetComponentInParent<PlayerInput>());
             return;
         }
         if (!PauseMenu.instance.isPaused)

@@ -60,12 +60,18 @@ public class BulletBase : MonoBehaviour
             {
                 // Set the ready line
                 SpriteRenderer sprite = other.GetComponent<SpriteRenderer>();
-                if (sprite.color != Color.yellow)
-                    sprite.color = Color.yellow;
-                else
-                    sprite.color = Color.red;
+                TankSelectionManager tsm = TankSelectionManager.instance;
+
+                if (tsm.readyLines[source.tankID] == other.gameObject) 
+                { 
+                    if (sprite.color != Color.yellow)
+                        sprite.color = Color.yellow;
+                    else
+                        sprite.color = Color.red;
+                }
+                
                 Destroy(this.gameObject);
-                TankSelectionManager.instance.CheckAllPlayerStatus();
+                tsm.CheckAllPlayerStatus();
             }
             else if (other.CompareTag("Crate")) 
             {
