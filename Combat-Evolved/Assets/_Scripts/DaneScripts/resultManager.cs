@@ -38,27 +38,22 @@ public class resultManager : MonoBehaviour
         {
             print(i);
         }
-        if (dataSet)
-        {
-            player1bar.value = (float)data[0] / (float)data[4];
-            player2bar.value = (float)data[1] / (float)data[4];
-            player3bar.value = (float)data[2] / (float)data[4];
-            player4bar.value = (float)data[3] / (float)data[4];
-            //print(data[5] > 2 || data[2] > 0);
-            player3bar.gameObject.SetActive(data[5] > 2 || data[2] > 0);
-            player4bar.gameObject.SetActive(data[5] > 3 || data[3] > 0);
-            //print(player3bar.IsActive() || player4bar.IsActive());
-            Destroy(GameObject.Find("Manager"));
-        }
         
-
-        
+        player1bar.value = (float)data[0] / (float)data[4];
+        player1bar.gameObject.GetComponentInChildren<Text>().text = "PLAYER 1\n" + data[0] + " kills";
+        player2bar.value = (float)data[1] / (float)data[4];
+        player2bar.gameObject.GetComponentInChildren<Text>().text = "PLAYER 2\n" + data[1] + " kills";
+        player3bar.value = (float)data[2] / (float)data[4];
+        player3bar.gameObject.GetComponentInChildren<Text>().text = "PLAYER 3\n" + data[2] + " kills";
+        player4bar.value = (float)data[3] / (float)data[4];
+        player4bar.gameObject.GetComponentInChildren<Text>().text = "PLAYER 4\n" + data[3] + " kills";
+        //print(data[5] > 2 || data[2] > 0);
+        player3bar.gameObject.SetActive(data[5] > 2 || data[2] > 0);
+        player4bar.gameObject.SetActive(data[5] > 3 || data[3] > 0);
+        //print(player3bar.IsActive() || player4bar.IsActive());
+        Destroy(GameObject.Find("Manager"));
 
     }
-
-    private void Update()
-    {
-        //Start();
-    }
+    
 
 }
