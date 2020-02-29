@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private PlayerWeapons playerWeapons;
     private PlayerHealth playerHealth;
     private PlayerStamina playerStamina;
+    private HideBar hideBar;
 
     // private variables. no touchy touchy.
     private bool canMove = true;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         playerWeapons = GetComponent<PlayerWeapons>();
         playerHealth = GetComponentInChildren<PlayerHealth>();
         playerStamina = GetComponentInChildren<PlayerStamina>();
+        hideBar = GetComponentInChildren<HideBar>();
 
         AssignTankID(tankID);
     }
@@ -189,6 +191,7 @@ public class PlayerController : MonoBehaviour
         playerHealth.ResetHealth();
         playerStamina.ResetStamina();
         playerWeapons.ResetWeapons();
+        hideBar.ResetBars();
 
         // Reset flags
         StopAllCoroutines();
