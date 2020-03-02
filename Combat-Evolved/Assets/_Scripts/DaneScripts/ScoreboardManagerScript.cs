@@ -19,6 +19,8 @@ public class ScoreboardManagerScript : MonoBehaviour
     public int killThreshold = 15;
     public int numPlayers = 2;
 
+    public int suicidePenalty = 1;
+
     string oldScene;
 
     public GameObject dataHolder;
@@ -97,11 +99,16 @@ public class ScoreboardManagerScript : MonoBehaviour
 
     //updates the score of the player by index, with 0 representing player 1, etc. Also updates the canvas
     //Pass -1 to not update any scores and just make sure the scoreboard is updated
-    public void updateScores(int playerIndex)
+    public void updateScores(int playerIndex, bool isSuicide = false)
     {
-        if (playerIndex != -1)
+        if (playerIndex != -1 && isSuicide == false)
         {
             playerKills[playerIndex]++;
+        }
+
+        if (isSuicide)
+        {
+            playerKills[playerIndex] -= suicidePenalty;
         }
         
 

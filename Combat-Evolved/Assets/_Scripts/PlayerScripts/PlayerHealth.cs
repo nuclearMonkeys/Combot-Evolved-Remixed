@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         // if died from other player
         if (cause != null)
         {
-            ScoreboardManagerScript.instance.updateScores(cause.tankID);
+            ScoreboardManagerScript.instance.updateScores(cause.tankID, cause.tankID == pc.tankID);
             deathMessages.instance.setMessage(cause.tankID, pc.tankID);
         }
         // if died from stage hazard
