@@ -18,9 +18,10 @@ public class LaserHazard : HazardDamage
         print(playerhit.collider);
         Debug.DrawLine(point1.transform.position, point2.transform.position, Color.blue);
         
-        PlayerHealth playerHealth = playerhit.collider.GetComponent<PlayerHealth>();
-        if (playerhit && playerHealth) 
+        
+        if (playerhit) 
         {
+            PlayerHealth playerHealth = playerhit.collider.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damage * Time.deltaTime);
             laser.SetPosition(1, playerhit.point);
         }

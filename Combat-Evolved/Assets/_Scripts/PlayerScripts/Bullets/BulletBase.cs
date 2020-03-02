@@ -39,7 +39,14 @@ public class BulletBase : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 // player takes damage
-                other.GetComponent<PlayerHealth>().TakeDamage(damage, source);
+                PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+                playerHealth.TakeDamage(damage, source);
+
+                if(playerHealth.currentHP % 1 == 0)
+                    Instantiate(Resources.Load("SmokeParticle"), 
+                        transform.position, 
+                        Quaternion.identity, 
+                        other.GetComponentInParent<PlayerController>().gameObject.transform);
                 Destroy(this.gameObject);
             }
             // if hit TNT

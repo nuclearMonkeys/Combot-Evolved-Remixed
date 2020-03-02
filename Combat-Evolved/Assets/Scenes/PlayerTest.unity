@@ -391,27 +391,27 @@ PrefabInstance:
     - target: {fileID: 4550296629297248654, guid: a137fbb16b711c045aa89bf7c2bbaa30,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212190239092956265, guid: a137fbb16b711c045aa89bf7c2bbaa30,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7212190239092956265, guid: a137fbb16b711c045aa89bf7c2bbaa30,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7212190239092956265, guid: a137fbb16b711c045aa89bf7c2bbaa30,
-        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7212190239648592189, guid: a137fbb16b711c045aa89bf7c2bbaa30,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7212190239648592189, guid: a137fbb16b711c045aa89bf7c2bbaa30,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7212190240805079038, guid: a137fbb16b711c045aa89bf7c2bbaa30,
         type: 3}
@@ -1250,7 +1250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &773278638
 MonoBehaviour:
   m_ObjectHideFlags: 0
