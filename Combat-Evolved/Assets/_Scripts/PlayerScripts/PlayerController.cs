@@ -185,6 +185,10 @@ public class PlayerController : MonoBehaviour
     // Called when loading new level
     public void Reset()
     {
+        foreach(Transform t in transform)
+            if(t.gameObject.CompareTag("Cosmetics")) 
+                Destroy(t.gameObject);
+
         gameObject.SetActive(true);
         transform.Find("Bars").gameObject.SetActive(true);
 
@@ -200,7 +204,7 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         canFire = true;
         canActivatePassive = true;
-}
+    }
 
     public float GetMovementSpeed() { return m_movementSpeed; }
     public void SetMovementSpeed(float f) { m_movementSpeed = f; }
