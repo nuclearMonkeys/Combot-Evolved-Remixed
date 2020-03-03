@@ -15,6 +15,7 @@ public class sceneManager : MonoBehaviour
     public float countdownLength = 3f;
     List<string> levels = new List<string>();
     string lastScene;
+    public string testingScene = "";
 
     private static sceneManager _instance;
 
@@ -41,6 +42,7 @@ public class sceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         string path = Application.dataPath + "/Scenes/Levels";
         var files = Directory.GetFiles(path);
         foreach (string file in files)
@@ -56,15 +58,12 @@ public class sceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("p"))
-        {
-            nextScene();
-        }
-
+        
     }
 
     public void nextScene(string sceneName = "")
     {
+        sceneName = testingScene;
         if (sceneName == "")
         {
             sceneName = chooseRandomLevel();
