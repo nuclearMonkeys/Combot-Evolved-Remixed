@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8604465613399299850}
   m_Layer: 0
   m_Name: SmokeParticle
-  m_TagString: Untagged
+  m_TagString: Cosmetics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
