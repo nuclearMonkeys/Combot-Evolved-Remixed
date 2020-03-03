@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    void Update()
+    public float rotateSpeed = 90;
+    GunBase gun;
+    public BulletBase bulletPrefab;
+
+    private void Start()
     {
-        if (Input.GetAxis("Jump") == 1) 
-        {
-            StartCoroutine(CircularFire());
-        }
-        // this.transform.Rotate(0, 0, 50 * Time.deltaTime);
+        gun = GetComponentInChildren<GunBase>();
+        StartCoroutine(RepeatedFire());
     }
 
-    IEnumerator CircularFire() 
+    private void Update()
     {
-        print("CircularFire");
-        yield return null;
+        transform.Rotate(new Vector3(0, 0, rotateSpeed * Time.deltaTime));
+    }
+
+    IEnumerator RepeatedFire()
+    {
+        while(true)
+        {
+            gun.FireBullet(bulletPrefab);
+            yield return new WaitForSeconds(gun.fireRate);
+        }        
     }
 }
