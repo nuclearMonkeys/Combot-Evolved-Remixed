@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -138,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1763456
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -155,6 +156,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4929,7 +4931,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.09, y: -3.8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5137,6 +5139,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10016,6 +10019,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smoke
       objectReference: {fileID: 0}
+    - target: {fileID: 4964183583117722985, guid: 9b6ca1baf7a6d054eb40a821c137bac9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8604465613399299850, guid: 9b6ca1baf7a6d054eb40a821c137bac9,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
@@ -10538,6 +10546,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SuckParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 7919617120237218652, guid: 02036be0433f81f47920091e08fb66e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02036be0433f81f47920091e08fb66e7, type: 3}
 --- !u!1001 &3512964579159635299
@@ -10664,17 +10677,17 @@ PrefabInstance:
     - target: {fileID: 5484299640314712278, guid: ba0d6164d2403d544928853d72f197a4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5484299640314712283, guid: ba0d6164d2403d544928853d72f197a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5484299640314712283, guid: ba0d6164d2403d544928853d72f197a4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5484299640314712283, guid: ba0d6164d2403d544928853d72f197a4,
         type: 3}
@@ -10789,6 +10802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CapsuleHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332103454336806158, guid: b90fc1e6bdda0364aae0a5a802d93871,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90fc1e6bdda0364aae0a5a802d93871, type: 3}
