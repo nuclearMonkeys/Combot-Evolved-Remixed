@@ -105,6 +105,7 @@ public class TankSelectionManager : MonoBehaviour
         promptCubes[tankID].SetActive(false);
         // set controller logo and show emblem
         controllerEmblems[tankID].SetActive(true);
+        readyLines[tankID].GetComponent<SpriteRenderer>().color = Color.red;
         // reposition to spawn point
         playerInput.transform.Find("Player").transform.position = spawnpoints.transform.GetChild(tankID).position;
         // add to player list
