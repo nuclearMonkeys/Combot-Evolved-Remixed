@@ -49,6 +49,16 @@ public class PlayerController : MonoBehaviour
         AssignTankID(tankID);
     }
 
+    private void OnEnable()
+    {
+        PlayerStamina.OnStaminaRegen += SignalEnoughStamina;
+    }
+
+    private void OnDisable()
+    {
+        PlayerStamina.OnStaminaRegen -= SignalEnoughStamina;
+    }
+
     public void AssignTankID(int id)
     {
         tankID = id;
@@ -163,10 +173,15 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ActivatePassiveEnumerator()
     {
-        canActivatePassive = false;
-        playerWeapons.passiveReference.ActivatePassive(this);
-        yield return new WaitForSeconds(playerWeapons.passiveReference.cooldown);
-        canActivatePassive = true;
+        PassiveBase passive = playerWeapons.passiveReference;
+        if(playerStamina.HasEnoughStamina(passive.activateStaminaUsage))
+        {
+            canActivatePassive = false;
+            playerWeapons.passiveReference.ActivatePassive(this);
+            playerStamina.DecrementStamina(passive.activateStaminaUsage);
+            yield return new WaitForSeconds(playerWeapons.passiveReference.cooldown);
+            canActivatePassive = true;
+        }
     }
 
     public void Pause()
@@ -182,9 +197,22 @@ public class PlayerController : MonoBehaviour
             PauseMenu.instance.ResumeGame();
     }
 
+    void SignalEnoughStamina(int stamina)
+    {
+        if(stamina == playerWeapons.gunReference.fireStaminaUsage)
+        {
+            Debug.Log("ENOUGH STAMINA FOR GUN!!");
+        }
+        if (stamina == playerWeapons.passiveReference.activateStaminaUsage)
+        {
+            Debug.Log("ENOUGH STAMINA FOR PASSIVE!!");
+        }
+    }
+
     // Called when loading new level
     public void Reset()
     {
+        // Removes smoke from the Player
         foreach(Transform t in transform)
             if(t.gameObject.CompareTag("Cosmetics")) 
                 Destroy(t.gameObject);
