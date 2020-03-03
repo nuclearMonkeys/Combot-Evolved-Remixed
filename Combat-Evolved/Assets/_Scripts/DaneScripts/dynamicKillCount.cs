@@ -1,18 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class dynamicKillCount : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject sms;
+    public GameObject text;
+
+    private void Start()
     {
-        
+        updateKillThreshold();
     }
 
-    // Update is called once per frame
-    void Update()
+    void updateKillThreshold()
     {
-        
+        text.GetComponent<TextMeshProUGUI>().text = "KILL THRESHOLD\n-\t" + sms.GetComponent<ScoreboardManagerScript>().killThreshold + "\t+";
+    }
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Bullet")
+        {
+            if (collision.GetComponent<BulletBase>().source.tankID == 0)
+            {
+                sms.GetComponent<ScoreboardManagerScript>().killThreshold--;
+            }
+            else if (collision.GetComponent<BulletBase>().source.tankID == 1)
+            {
+                sms.GetComponent<ScoreboardManagerScript>().killThreshold++;
+            }
+            Destroy(collision.gameObject);
+            updateKillThreshold();
+        }
     }
 }

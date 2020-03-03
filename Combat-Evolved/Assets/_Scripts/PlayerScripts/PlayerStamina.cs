@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerStamina : MonoBehaviour
 {
+    public delegate void StaminaRegen(int stamina);
+    public static StaminaRegen OnStaminaRegen;
+
     // Start is called before the first frame update
     public Slider staminaSlider;
     private int staminaRegenAmount = 1;
@@ -47,6 +50,9 @@ public class PlayerStamina : MonoBehaviour
         // start bar animation
         currentStamina -= amount;
         barRoutine = StartCoroutine(BarAnimation(currentStamina));
+        // invoke event
+        OnStaminaRegen.Invoke(currentStamina);
+
         // regen if not already regening
         if (regenRoutine == null)
             regenRoutine = StartCoroutine(RegenerateStamina());
