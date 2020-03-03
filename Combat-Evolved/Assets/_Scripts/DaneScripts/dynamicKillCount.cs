@@ -31,6 +31,14 @@ public class dynamicKillCount : MonoBehaviour
             {
                 sms.GetComponent<ScoreboardManagerScript>().killThreshold++;
             }
+            if (sms.GetComponent<ScoreboardManagerScript>().killThreshold < 1)
+            {
+                sms.GetComponent<ScoreboardManagerScript>().killThreshold = 1;
+            }
+            if (sms.GetComponent<ScoreboardManagerScript>().killThreshold > 99)
+            {
+                sms.GetComponent<ScoreboardManagerScript>().killThreshold = 99;
+            }
             Destroy(collision.gameObject);
             updateKillThreshold();
         }

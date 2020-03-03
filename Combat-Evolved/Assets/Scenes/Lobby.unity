@@ -773,6 +773,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 140
       objectReference: {fileID: 0}
+    - target: {fileID: 7097989318559358009, guid: bb87fed510ad4064ea6f3cfda3439b7c,
+        type: 3}
+      propertyPath: maxCoolDown
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb87fed510ad4064ea6f3cfda3439b7c, type: 3}
 --- !u!4 &88340039 stripped
@@ -962,6 +967,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097989318559358009, guid: bb87fed510ad4064ea6f3cfda3439b7c,
+        type: 3}
+      propertyPath: maxCoolDown
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb87fed510ad4064ea6f3cfda3439b7c, type: 3}
@@ -2057,6 +2067,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097989318559358009, guid: bb87fed510ad4064ea6f3cfda3439b7c,
+        type: 3}
+      propertyPath: cooldown
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097989318559358009, guid: bb87fed510ad4064ea6f3cfda3439b7c,
+        type: 3}
+      propertyPath: maxCoolDown
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb87fed510ad4064ea6f3cfda3439b7c, type: 3}
@@ -3274,6 +3294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097989318559358009, guid: bb87fed510ad4064ea6f3cfda3439b7c,
+        type: 3}
+      propertyPath: maxCoolDown
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb87fed510ad4064ea6f3cfda3439b7c, type: 3}
@@ -6852,6 +6877,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097989318559358009, guid: bb87fed510ad4064ea6f3cfda3439b7c,
+        type: 3}
+      propertyPath: maxCoolDown
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb87fed510ad4064ea6f3cfda3439b7c, type: 3}
