@@ -15,10 +15,6 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    private void Start()
-    {
         clips = new List<AudioClip>();
         // Get all clips in Audio/Resources
         int index = 0;
@@ -60,6 +56,11 @@ public class AudioManager : MonoBehaviour
     // specify playFrom if want to create audio source on separate object
     public void PlaySound(string name, GameObject playFrom = null, bool fadeIn = false)
     {
+        if(name.Equals(""))
+        {
+            Debug.Log("NO SOUND EQUIPPED!");
+            return;
+        }
         int i = GetAudioClipIndex(name);
         Debug.Assert(i != -1, "AudioManager:PlaySound:: AudioSource Manager has no sound: " + name + "! Check the Audio/Resources folder!!");
         AudioSource audioSource = null;
