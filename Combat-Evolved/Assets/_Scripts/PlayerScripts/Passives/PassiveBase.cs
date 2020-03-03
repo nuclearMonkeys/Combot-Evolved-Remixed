@@ -5,6 +5,7 @@ using UnityEngine;
 public class PassiveBase : MonoBehaviour
 {
     public float cooldown = 5;
+    public int activateStaminaUsage = 2;
     private float dashSpeed = 15;
     private float dashDuration = .75f;
     private bool isDashing = false;
