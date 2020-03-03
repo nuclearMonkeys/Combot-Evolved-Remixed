@@ -16,6 +16,7 @@ TagManager:
   - StagePlane
   - Border
   - UIBars
+  - killCountChanger
   layers:
   - Default
   - TransparentFX
