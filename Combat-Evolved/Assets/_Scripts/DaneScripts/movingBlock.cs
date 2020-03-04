@@ -11,6 +11,8 @@ public class movingBlock : MonoBehaviour
     Transform box;
     Rigidbody2D rb;
 
+    private float distance;
+
     public float lineWidth = 0.2f;
     public Color lineColor = Color.white;
     public Material m;
@@ -57,26 +59,12 @@ public class movingBlock : MonoBehaviour
         box.position = positions[0];
         i = 1;
         rb.velocity = (positions[i] - box.position).normalized * speed;
-
-    }
-
-    Vector3 setSpeed()
-    {
-        Vector3 temp = Vector3.zero;
-        if (Math.Round(box.position.x, 1) != Math.Round(positions[i].x, 1))
-        {
-            temp.x = Mathf.Sign(positions[i].x - box.position.x) * speed;
-        }
-        if (Math.Round(box.position.y, 1) != Math.Round(positions[i].y, 1))
-        {
-            temp.y = Mathf.Sign(positions[i].y - box.position.y) * speed;
-        }
-        return temp;
+        distance = Vector3.Distance(positions[i], box.position);
     }
 
     private void Update()
     {
-        //print("Moving to position " + positions[i] + " at index " + i);
+        
         if((positions[i] - box.position).magnitude <= .1f)
         {
             i++;
