@@ -47,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -825505323
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a4e55757dbfbb3845b4b256e19290148, type: 3}
   m_Color: {r: 0.37729, g: 1, b: 0, a: 1}
@@ -113,6 +114,8 @@ MonoBehaviour:
   - {fileID: 7446105440491770682, guid: 99437eec18c5923479dd823146bb85c4, type: 3}
   - {fileID: 4146172003348086794, guid: 85cc32511d996f04c9a85fecb21bb4fa, type: 3}
   - {fileID: 6325797067039148928, guid: 2db40358a0fdc994e85cb682f3ad9475, type: 3}
+  scrollingTextPrefab: {fileID: 1751720771974580735, guid: edc80aa7ae42b9044bbe273ea6d983ad,
+    type: 3}
 --- !u!58 &881404251872954231
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -58,7 +58,7 @@ TagManager:
   - name: Background
     uniqueID: 2039488403
     locked: 0
-  - name: Playeground
+  - name: Playground
     uniqueID: 882464899
     locked: 0
   - name: Foreground
