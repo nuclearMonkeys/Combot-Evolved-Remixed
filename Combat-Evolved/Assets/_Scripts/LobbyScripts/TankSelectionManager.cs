@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TankSelectionManager : MonoBehaviour
@@ -98,9 +99,11 @@ public class TankSelectionManager : MonoBehaviour
         // places player under this object to carry over scenes
         playerInput.gameObject.transform.parent = this.transform;
         int tankID = FindOpenPlayerSlot();
+        
         playerInput.name = "Player" + tankID;
         // assign tank id and change color
         playerInput.GetComponentInChildren<PlayerController>().AssignTankID(tankID);
+        playerInput.GetComponentInChildren<PlayerStamina>().maxStamina = 999;
         // remove prompt cube
         promptCubes[tankID].SetActive(false);
         // set controller logo and show emblem
@@ -144,6 +147,12 @@ public class TankSelectionManager : MonoBehaviour
 
         if (numOfPlayerReady == players.Count)
         {
+            for(int i = 0; i < players.Count; i++) { 
+                PlayerStamina playerStamina = players[i].GetComponentInChildren<PlayerStamina>();
+                playerStamina.maxStamina = 5;
+                playerStamina.staminaSlider.maxValue = playerStamina.maxStamina;
+                playerStamina.currentStamina = playerStamina.maxStamina;
+            }
             // activate canvas
             gameCanvas.SetActive(true);
             // move to next scene
