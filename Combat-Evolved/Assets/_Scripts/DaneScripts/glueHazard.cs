@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class glueHazard : MonoBehaviour
 {
@@ -21,14 +22,22 @@ public class glueHazard : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (speed == -1 && collision.GetComponentInParent<PlayerController>() != null)
+        try
         {
-            speed = collision.GetComponentInParent<PlayerController>().GetMovementSpeed();
+            if (speed == -1)// && collision.GetComponentInParent<PlayerController>() != null
+            {
+                speed = collision.GetComponentInParent<PlayerController>().GetMovementSpeed();
+            }
+            if (collision.tag == "Player")// && collision.GetComponentInParent<PlayerController>() != null
+            {
+                collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed * speedReducer);
+            }
         }
-        if (collision.tag == "Player" && collision.GetComponentInParent<PlayerController>() != null)
+        catch(NullReferenceException e)
         {
-            collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed * speedReducer);
+
         }
+        
         
     }
 

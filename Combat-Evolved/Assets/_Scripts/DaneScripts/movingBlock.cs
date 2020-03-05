@@ -10,6 +10,7 @@ public class movingBlock : MonoBehaviour
     public float speed = 1f;
     Transform box;
     Rigidbody2D rb;
+    public float respawnTime = 4f;
 
     private float distance;
 
@@ -17,10 +18,16 @@ public class movingBlock : MonoBehaviour
     public Color lineColor = Color.white;
     public Material m;
     float dotSize = 0.3f;
+    public bool canRespawn = true;
+    private bool hasRespawned = false;
+
+    private GameObject go;
 
     private void Start()
     {
         box = transform.GetChild(0);
+        go = GameObject.Instantiate(transform.GetChild(0).gameObject);
+        go.SetActive(false);
         rb = box.gameObject.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.mass = 0f;
@@ -62,26 +69,59 @@ public class movingBlock : MonoBehaviour
 
     private void Update()
     {
-        
-        if (distance >= Vector3.Distance(positions[i], box.position))
+        if (transform.childCount == positions.Count)
         {
-            rb.velocity = (positions[i] - box.position).normalized * speed;
-        }
-        if((positions[i] - box.position).magnitude <= .1f)
-        {
-            i++;
-            if (i >= positions.Count)
+            if (canRespawn == false)
             {
-                i = 0;
+                Destroy(this.gameObject);
+                return;
             }
-            rb.velocity = (positions[i] - box.position).normalized * speed;
+            else if (canRespawn == true && hasRespawned == false)
+            {
+                hasRespawned = true;
+                StartCoroutine(respawn());
+                
+            }
         }
-        distance = Vector3.Distance(positions[i], box.position);
-        
-        if (box.rotation.z != 0)
+        else
         {
-            box.eulerAngles = new Vector3(box.rotation.x, box.rotation.y, 0f);
+            if (distance >= Vector3.Distance(positions[i], box.position))
+            {
+                rb.velocity = (positions[i] - box.position).normalized * speed;
+            }
+            if((positions[i] - box.position).magnitude <= .1f)
+            {
+                i++;
+                if (i >= positions.Count)
+                {
+                    i = 0;
+                }
+                rb.velocity = (positions[i] - box.position).normalized * speed;
+            }
+            distance = Vector3.Distance(positions[i], box.position);
+        
+            if (box.rotation.z != 0)
+            {
+                box.eulerAngles = new Vector3(box.rotation.x, box.rotation.y, 0f);
+            }
         }
+        
+    }
+
+    private IEnumerator respawn()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        GameObject g = GameObject.Instantiate(go, positions[0], Quaternion.identity);
+        g.SetActive(true);
+        g.transform.parent = this.gameObject.GetComponent<Transform>();
+        box = g.transform;
+        rb = box.gameObject.GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.mass = 0f;
+        rb.gravityScale = 0f;
+        hasRespawned = false;
+        i = 0;
+
     }
 
 }
