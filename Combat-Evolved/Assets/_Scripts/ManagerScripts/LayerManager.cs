@@ -11,5 +11,6 @@ public class LayerManager : MonoBehaviour
     public static int BLOCK = 11;
     public static int CIRCLE = 12;
     public static int STAGEHAZARD = 13;
+    public static int IGNOREWALL = 14;
 
 }
