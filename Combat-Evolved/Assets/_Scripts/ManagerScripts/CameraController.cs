@@ -39,7 +39,8 @@ public class CameraController : MonoBehaviour
             if(targets[i] == null)
                 return;
         }
-        Zoom();
+        if(targets.Count > 0)
+            Zoom();
     }
 
     // Zooms to encapsulate all players

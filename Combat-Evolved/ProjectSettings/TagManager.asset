@@ -22,45 +22,45 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  -
+  - 
   - Water
   - UI
-  -
-  -
+  - 
+  - 
   - Damage
   - Tank Body
   - Tank Wall Collider
   - Block
   - Circle
-  - StageHazard
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - Stage Hazard
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 4202615307
+    uniqueID: 2039488403
     locked: 0
-  - name: Playground
-    uniqueID: 3469461973
+  - name: Playeground
+    uniqueID: 882464899
     locked: 0
   - name: Foreground
-    uniqueID: 2859381653
+    uniqueID: 3177068403
     locked: 0
