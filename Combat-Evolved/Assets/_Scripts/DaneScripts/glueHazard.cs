@@ -21,11 +21,11 @@ public class glueHazard : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (speed == -1)
+        if (speed == -1 && collision.GetComponentInParent<PlayerController>() != null)
         {
             speed = collision.GetComponentInParent<PlayerController>().GetMovementSpeed();
         }
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && collision.GetComponentInParent<PlayerController>() != null)
         {
             collision.GetComponentInParent<PlayerController>().SetMovementSpeed(speed * speedReducer);
         }

@@ -47,12 +47,10 @@ public class movingBlock : MonoBehaviour
             ln.SetPosition(0, positions[i]);
             if (i == positions.Count - 1)
             {
-                print("to first");
                 ln.SetPosition(1, positions[0]);
             }
             else
             {
-                print("not to first");
                 ln.SetPosition(1, positions[i + 1]);
             }
         }
@@ -65,6 +63,10 @@ public class movingBlock : MonoBehaviour
     private void Update()
     {
         
+        if (distance >= Vector3.Distance(positions[i], box.position))
+        {
+            rb.velocity = (positions[i] - box.position).normalized * speed;
+        }
         if((positions[i] - box.position).magnitude <= .1f)
         {
             i++;
@@ -73,6 +75,12 @@ public class movingBlock : MonoBehaviour
                 i = 0;
             }
             rb.velocity = (positions[i] - box.position).normalized * speed;
+        }
+        distance = Vector3.Distance(positions[i], box.position);
+        
+        if (box.rotation.z != 0)
+        {
+            box.eulerAngles = new Vector3(box.rotation.x, box.rotation.y, 0f);
         }
     }
 
