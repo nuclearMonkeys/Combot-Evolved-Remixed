@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunBase : MonoBehaviour
 {
     // specifying stats
-    public float fireRate = .5f;
+    public float fireRate = .2f;
     public int fireStaminaUsage = 1;
     // how much to modify bullet damage
     public float damageModifier;

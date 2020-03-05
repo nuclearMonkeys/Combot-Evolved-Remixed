@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5249693569432800340}
   - component: {fileID: 409427829761624832}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: ExplosionParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -70,7 +71,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1435585643
+  m_SortingLayerID: -1117898893
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0

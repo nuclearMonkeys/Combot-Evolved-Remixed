@@ -14,6 +14,9 @@ public class ItemPickup : MonoBehaviour
     public List<GameObject> bullets;
     public List<GameObject> passives;
 
+    public ScrollingText scrollingTextPrefab;
+    string message = "";
+
     void Start() 
     {
         if(debug)
@@ -22,14 +25,17 @@ public class ItemPickup : MonoBehaviour
         if(Random.value < .33f) 
         {
             gunPrefab = guns[(int)(Random.value * guns.Count)].GetComponent<GunBase>();
+            message = gunPrefab.name;
         }
         else if (Random.value < .66f) 
         {
             bulletPrefab = bullets[(int)(Random.value * bullets.Count)].GetComponent<BulletBase>();
+            message = bulletPrefab.name;
         }
         else
         {
             passivePrefab = passives[(int)(Random.value * passives.Count)].GetComponent<PassiveBase>();
+            message = passivePrefab.name;
         }
     }
 
@@ -45,6 +51,7 @@ public class ItemPickup : MonoBehaviour
             else if (passivePrefab)
                 pw.AssignPassive(passivePrefab);
             Destroy(gameObject);
+            Instantiate(scrollingTextPrefab, collision.transform.parent).SetText(message);
         }
     }
 }

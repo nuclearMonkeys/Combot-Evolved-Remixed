@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 public class ScrollingText : MonoBehaviour
 {
-    public string text;
     public Text textComponent;
-    public float scrollSpeed = 1;
+    float scrollSpeed = 2;
+    string text;
     float delay = .1f;
+    float show = 1;
 
     private void Start()
     {
         textComponent.text = "";
-        //ScrollText();
+        transform.localPosition = new Vector3(0, 2, 0);
+        ScrollText();
+    }
+
+    public void SetText(string text)
+    {
+        this.text = text;
     }
 
     void ScrollText()
@@ -29,13 +36,7 @@ public class ScrollingText : MonoBehaviour
             textComponent.text += c;
             yield return new WaitForSeconds(delay / scrollSpeed);
         }
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            ScrollText();
-        }
+        yield return new WaitForSeconds(show);
+        Destroy(gameObject);
     }
 }
