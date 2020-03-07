@@ -50,7 +50,7 @@ public class ScoreboardManagerScript : MonoBehaviour
         //print(oldScene + " " + SceneManager.GetActiveScene().name);
         if (SceneManager.GetActiveScene().name != oldScene)
         {
-            currentTime = 300f;
+            currentTime = totalSeconds;
         }
         if (numPlayers < 2)
         {
@@ -73,8 +73,15 @@ public class ScoreboardManagerScript : MonoBehaviour
             timer.text = ((int)displaySeconds / 60) + ":0" + displaySeconds % 60;
         }
         
+        if (currentTime <= 31f)
+        {
+            if ((int)currentTime % 15 == 0)
+            {
+                StartCoroutine(GameObject.FindGameObjectWithTag("outerWall").GetComponent<EncapsulatingWall>().Encapsulate());
+            }
+        }
 
-        if ((displaySeconds <= 0 || killThresholdReached()) && (finalSceneCalled == false))
+        if ((false || killThresholdReached()) && (finalSceneCalled == false))//displaySeconds <= 0
         {
             finalSceneCalled = true;
             dataHolder.GetComponent<gameData>().setData(getData());
