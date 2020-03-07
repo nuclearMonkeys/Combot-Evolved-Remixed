@@ -57,4 +57,8 @@ public class PlayerWeapons : MonoBehaviour
         AssignGun(initGunReference);
         AssignPassive(initPassiveReference);
     }
+
+    public GunBase getGunBase() { return gunReference; }
+    public BulletBase getBulletBase() { return bulletPrefab; }
+    public PassiveBase getPassiveBase() { return passiveReference; }
 }
