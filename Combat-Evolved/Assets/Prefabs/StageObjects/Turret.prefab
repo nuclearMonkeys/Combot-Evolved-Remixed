@@ -117,6 +117,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d135e76b9b94f44e9bd344b3da7bda8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicGun: {fileID: 8166183247475737483, guid: a342f9c908200c240b52bf2ac833f045,
+    type: 3}
+  guns:
+  - {fileID: 8166183247475737483, guid: a342f9c908200c240b52bf2ac833f045, type: 3}
+  - {fileID: 9015419438712753220, guid: 53b71cb64471a9048b5d29e0b9c5e140, type: 3}
+  - {fileID: 2788487669027108664, guid: b1460435d2cbb11498ecd1561f06b31a, type: 3}
   rotateSpeed: 90
   bulletPrefab: {fileID: 8166971920374979649, guid: febe52912db072c4db4fe8d7356f9adb,
     type: 3}

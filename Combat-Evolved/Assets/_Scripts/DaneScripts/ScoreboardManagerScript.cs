@@ -77,7 +77,7 @@ public class ScoreboardManagerScript : MonoBehaviour
         {
             if ((int)currentTime % 15 == 0)
             {
-                StartCoroutine(GameObject.FindGameObjectWithTag("outerWall").GetComponent<EncapsulatingWall>().Encapsulate());
+                //StartCoroutine(GameObject.FindGameObjectWithTag("outerWall").GetComponent<EncapsulatingWall>().Encapsulate());
             }
         }
 

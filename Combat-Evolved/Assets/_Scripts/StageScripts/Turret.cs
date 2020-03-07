@@ -13,9 +13,12 @@ public class Turret : MonoBehaviour
     int circularFireRounds = 3;
     int circularFireBullets = 15;
 
+    // target to rotate
+    GameObject target;
+
     delegate IEnumerator behavior();
-    // each behavior should last behaviorDuration seconds
     List<behavior> behaviors;
+    behavior lastBehavior;
 
     private void Start()
     {
@@ -23,21 +26,37 @@ public class Turret : MonoBehaviour
         behaviors = new List<behavior>();
         behaviors.Add(RepeatedPhase);
         behaviors.Add(CircularPhase);
-
+        behaviors.Add(TargetPhase);
         StartCoroutine(Daemon());
     }
 
     private void Update()
     {
-        transform.Rotate(new Vector3(0, 0, rotateSpeed * Time.deltaTime));
+        if(target == null)
+        {
+            transform.Rotate(new Vector3(0, 0, rotateSpeed * Time.deltaTime));
+        }
+        else
+        {
+            Vector3 vectorToTarget = target.transform.position - transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 1);
+        }
     }
 
     IEnumerator Daemon()
     {
         while(true)
         {
+            behavior nextBehavior = null;
+            do
+            {
+                nextBehavior = behaviors[(int)(Random.value * behaviors.Count)];
+            } while (nextBehavior == lastBehavior);
+            lastBehavior = nextBehavior;
             // loops through behaviors
-            yield return behaviors[(int)(Random.value * behaviors.Count)]();
+            yield return nextBehavior();
         }
     }
 
@@ -82,10 +101,26 @@ public class Turret : MonoBehaviour
 
     void CircularFire()
     {
+        CameraController.instance.ShakeCamera();
         for(int i = 0; i < circularFireBullets; i++)
         {
             transform.Rotate(new Vector3(0, 0, 360 / circularFireBullets));
             gun.FireBullet(bulletPrefab);
+        }
+    }
+
+    IEnumerator TargetPhase()
+    {
+        List<GameObject> players = TankSelectionManager.instance.players;
+        foreach(GameObject player in players)
+        {
+            if(player.activeSelf)
+            {
+                SwitchWeapons();
+                StartCoroutine(RepeatedPhase());
+                target = player;
+                yield return new WaitForSeconds(behaviorDuration);
+            }
         }
     }
 }
