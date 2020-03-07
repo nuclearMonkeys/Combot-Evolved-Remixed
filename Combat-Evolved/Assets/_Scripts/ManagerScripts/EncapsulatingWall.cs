@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 // Place This Script on the WallMap Prefab!
 public class EncapsulatingWall : MonoBehaviour
 {
+    public static EncapsulatingWall instance;
+
     public bool isEncapsulating = false;
     public GameObject indestructableBlockPrefab;
     // maps a tilemap name to an array of its tiles' positions
@@ -17,6 +19,7 @@ public class EncapsulatingWall : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         depth = 1;
         tilesDictionary = new Dictionary<string, List<Vector2>>();
         Tilemap[] tilemaps = GetComponentsInChildren<Tilemap>();
@@ -56,11 +59,19 @@ public class EncapsulatingWall : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            StartCoroutine(Encapsulate());
+            Encapsulate();
         }
     }
 
-    public IEnumerator Encapsulate()
+    public void Encapsulate()
+    {
+        if(!isEncapsulating)
+        {
+            StartCoroutine(EncapsulateEnumerator());
+        }
+    }
+
+    IEnumerator EncapsulateEnumerator()
     {
         isEncapsulating = true;
         // for each side of the four sides
