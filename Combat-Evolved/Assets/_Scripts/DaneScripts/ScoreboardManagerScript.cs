@@ -73,15 +73,15 @@ public class ScoreboardManagerScript : MonoBehaviour
             timer.text = ((int)displaySeconds / 60) + ":0" + displaySeconds % 60;
         }
         
-        if (currentTime <= 31f)
+        if (currentTime <= 61f)
         {
-            if ((int)currentTime % 15 == 0)
+            if ((int)currentTime % 10 == 0)
             {
-                StartCoroutine(GameObject.FindGameObjectWithTag("outerWall").GetComponent<EncapsulatingWall>().Encapsulate());
+                EncapsulatingWall.instance.Encapsulate();
             }
         }
 
-        if ((false || killThresholdReached()) && (finalSceneCalled == false))//displaySeconds <= 0
+        if ((displaySeconds <= 0 || killThresholdReached()) && (finalSceneCalled == false))//
         {
             finalSceneCalled = true;
             dataHolder.GetComponent<gameData>().setData(getData());
@@ -162,5 +162,7 @@ public class ScoreboardManagerScript : MonoBehaviour
         data[5] = numPlayers;
         return data;
     }
+
+    public void resetTime() { currentTime = totalSeconds; }
 
 }

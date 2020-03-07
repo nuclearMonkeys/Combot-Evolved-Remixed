@@ -44,14 +44,29 @@ public class ItemPickup : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             PlayerWeapons pw = collision.GetComponentInParent<PlayerWeapons>();
-            if (gunPrefab)
-                pw.AssignGun(gunPrefab);
-            else if (bulletPrefab)
-                pw.AssignBullet(bulletPrefab);
-            else if (passivePrefab)
-                pw.AssignPassive(passivePrefab);
+            while (true)
+            {
+                if (gunPrefab && pw.getGunBase().name.Contains(gunPrefab.name) == false)
+                {
+                    pw.AssignGun(gunPrefab);
+                    break;
+                }
+                    
+                else if (bulletPrefab && pw.getBulletBase().name.Contains(bulletPrefab.name) == false)
+                {
+                    pw.AssignBullet(bulletPrefab);
+                    break;
+                }
+                else if (passivePrefab && pw.getPassiveBase().name.Contains(passivePrefab.name) == false)
+                {
+                    pw.AssignPassive(passivePrefab);
+                    break;
+                }
+                Start();
+            }
             Destroy(gameObject);
             Instantiate(scrollingTextPrefab, collision.transform.parent).SetText(message);
+            
         }
     }
 }

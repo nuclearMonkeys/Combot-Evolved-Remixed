@@ -102,5 +102,6 @@ public class sceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(sceneName);
+        ScoreboardManagerScript.instance.resetTime();
     }
 }
