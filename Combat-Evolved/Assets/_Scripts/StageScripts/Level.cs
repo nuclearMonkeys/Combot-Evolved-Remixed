@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class Level : MonoBehaviour
 {
     public GameObject cratePrefab;
+    Bounds levelBounds;
+
+    float spawnOffset = 5;
 
     void Start() 
     {
@@ -52,7 +55,7 @@ public class Level : MonoBehaviour
         List<GameObject> cratePoints = new List<GameObject>(spawns);
 
         foreach (GameObject point in cratePoints) {
-            Instantiate(cratePrefab, point.transform.position, point.transform.rotation);
+            Instantiate(cratePrefab, point.transform.position + new Vector3(Random.value * spawnOffset * 2 - spawnOffset, Random.value * spawnOffset * 2 - spawnOffset, 0), point.transform.rotation);
         }
     }
 }
