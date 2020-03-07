@@ -107,7 +107,7 @@ public class TankSelectionManager : MonoBehaviour
         // remove prompt cube
         promptCubes[tankID].SetActive(false);
         // set controller logo and show emblem
-        controllerEmblems[tankID].SetActive(true);
+        // controllerEmblems[tankID].SetActive(true);
         readyLines[tankID].GetComponent<SpriteRenderer>().color = Color.red;
         // reposition to spawn point
         playerInput.transform.Find("Player").transform.position = spawnpoints.transform.GetChild(tankID).position;
@@ -127,7 +127,7 @@ public class TankSelectionManager : MonoBehaviour
             print(tankID);
             promptCubes[tankID].SetActive(true);
             promptCubes[tankID].transform.rotation = Quaternion.identity;
-            controllerEmblems[tankID].SetActive(false);
+            // controllerEmblems[tankID].SetActive(false);
         }
         players.Remove(playerInput.transform.Find("Player").gameObject);
         Destroy(playerInput.gameObject);
