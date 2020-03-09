@@ -99,6 +99,24 @@ public class sceneManager : MonoBehaviour
         return kills;
     }
 
+    public string chooseSoundtrack()
+    {
+        string song = "";
+        List<string> songs = new List<string>();
+        DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/Audio/Resources");
+        FileInfo[] info = dir.GetFiles("*.*");
+        foreach (FileInfo f in info)
+        {
+            if ((f.Name.EndsWith("wav") || f.Name.EndsWith("mp3")) && f.Name.StartsWith("soundtrack"))
+            {
+                songs.Add(f.Name);
+            }
+        }
+        song = songs[Random.Range(0, songs.Count)];
+        song = song.Remove(song.LastIndexOf('.'));
+        return song;
+    }
+
     IEnumerator startTimer(float seconds, string sceneName)
     {
         yield return new WaitForSeconds(seconds);
@@ -107,7 +125,7 @@ public class sceneManager : MonoBehaviour
         if (isPlaying == false)
         {
             isPlaying = true;
-            AudioManager.instance.PlaySound("soundtrack", null, false, 0.2f);
+            AudioManager.instance.PlaySound(chooseSoundtrack(), null, false, 0.2f);
         }
     }
 }

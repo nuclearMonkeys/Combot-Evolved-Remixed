@@ -40,6 +40,11 @@ public class PlayerHealth : MonoBehaviour
             Die(cause);
     }
 
+    public float getHealthPercentage()
+    {
+        return currentHP / maxHP;
+    }
+
     // Refill health
     public void ResetHealth()
     {
@@ -50,6 +55,24 @@ public class PlayerHealth : MonoBehaviour
         foreach (Transform t in transform)
             if (t.gameObject.CompareTag("Cosmetics"))
                 Destroy(t.gameObject);
+    }
+
+    public void healPlayer(float amountToHeal = -1f)
+    {
+        if (amountToHeal == -1f || amountToHeal > 1f)
+        {
+            amountToHeal = 1f;
+        }
+        if (maxHP * amountToHeal > currentHP)
+        {
+            currentHP = maxHP * amountToHeal;
+        }
+        if (currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
+        healthSlider.value = currentHP / maxHP;
+
     }
 
     public void Die(PlayerController cause) 
