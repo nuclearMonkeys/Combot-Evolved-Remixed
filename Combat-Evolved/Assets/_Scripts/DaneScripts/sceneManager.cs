@@ -16,6 +16,7 @@ public class sceneManager : MonoBehaviour
     List<string> levels = new List<string>();
     string lastScene;
     public string testingScene = "";
+    bool isPlaying = false;
 
     private static sceneManager _instance;
 
@@ -42,7 +43,6 @@ public class sceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         string path = Application.dataPath + "/Scenes/Levels";
         var files = Directory.GetFiles(path);
         foreach (string file in files)
@@ -63,6 +63,7 @@ public class sceneManager : MonoBehaviour
 
     public void nextScene(string sceneName = "")
     {
+        
         sceneName = testingScene;
         if (sceneName == "")
         {
@@ -103,5 +104,10 @@ public class sceneManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(sceneName);
         ScoreboardManagerScript.instance.resetTime();
+        if (isPlaying == false)
+        {
+            isPlaying = true;
+            AudioManager.instance.PlaySound("soundtrack", null, false, 0.2f);
+        }
     }
 }

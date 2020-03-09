@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
         FileInfo[] info = dir.GetFiles("*.*");
         foreach (FileInfo f in info)
         {
-            if (f.Name.EndsWith("wav"))
+            if (f.Name.EndsWith("wav") || f.Name.EndsWith("mp3"))
             {
                 clips.Add(Resources.Load<AudioClip>(Path.GetFileNameWithoutExtension(f.Name)));
                 index++;
@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
 
     // plays an audio clip by name
     // specify playFrom if want to create audio source on separate object
-    public void PlaySound(string name, GameObject playFrom = null, bool fadeIn = false)
+    public void PlaySound(string name, GameObject playFrom = null, bool fadeIn = false, float volume = 1f)
     {
         if(name.Equals(""))
         {
@@ -82,7 +82,7 @@ public class AudioManager : MonoBehaviour
         }
 
         // plays the sound
-        audioSource.volume = 1;
+        audioSource.volume = volume;
         audioSource.Play();
 
         // if want to fade in

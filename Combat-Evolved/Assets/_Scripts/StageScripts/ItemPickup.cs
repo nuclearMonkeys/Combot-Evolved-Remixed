@@ -66,6 +66,8 @@ public class ItemPickup : MonoBehaviour
             }
             Destroy(gameObject);
             Instantiate(scrollingTextPrefab, collision.transform.parent).SetText(message);
+            float percent = collision.GetComponent<PlayerHealth>().getHealthPercentage();
+
             
         }
     }

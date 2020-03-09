@@ -34,10 +34,6 @@ public class resultManager : MonoBehaviour
         }
         
         
-        foreach(int i in data)
-        {
-            print(i);
-        }
         
         player1bar.value = (float)data[0] / (float)data[4];
         player1bar.gameObject.GetComponentInChildren<Text>().text = "PLAYER 1\n" + data[0] + " kills";
