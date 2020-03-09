@@ -9,21 +9,32 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
     public float currentHP;
     public float maxHP;
+    public GameObject smokeParticlePrefab;
     PlayerController pc;
+    int lastSmokeSpawn;
 
     void Start() 
     {
         pc = GetComponentInParent<PlayerController>();
         currentHP = maxHP;
+        lastSmokeSpawn = -1;
     }
 
     // Taking any source of damage
-    public void TakeDamage(float amount, PlayerController cause = null)
+    public void TakeDamage(float amount, Vector2 hitPosition, PlayerController cause = null)
     {
         if (SceneManager.GetActiveScene().name.Equals("Lobby"))
             return;
         currentHP -= amount;
         healthSlider.value = currentHP / maxHP;
+
+        if((int) currentHP != lastSmokeSpawn)
+        {
+            lastSmokeSpawn = (int)currentHP;
+            GameObject smoke = Instantiate(smokeParticlePrefab,
+                        transform);
+            smoke.transform.position = hitPosition;
+        }
 
         if (currentHP <= 0)
             Die(cause);
@@ -34,6 +45,11 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHP = maxHP;
         healthSlider.value = currentHP / maxHP;
+
+        // Removes smoke from the Player
+        foreach (Transform t in transform)
+            if (t.gameObject.CompareTag("Cosmetics"))
+                Destroy(t.gameObject);
     }
 
     public void Die(PlayerController cause) 

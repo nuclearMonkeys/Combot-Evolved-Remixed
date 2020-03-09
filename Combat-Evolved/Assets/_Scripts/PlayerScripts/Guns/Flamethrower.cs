@@ -31,7 +31,7 @@ public class Flamethrower : GunBase
 
     public void Hit(PlayerHealth playerHealth) 
     {
-        playerHealth.TakeDamage(flameDamage * 0.2f, owner);
+        playerHealth.TakeDamage(flameDamage * 0.2f, playerHealth.transform.position, owner);
     }
 
     private void Update() 

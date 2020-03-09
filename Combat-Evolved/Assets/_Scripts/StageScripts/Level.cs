@@ -44,7 +44,7 @@ public class Level : MonoBehaviour
                 int spawnIndex = Random.Range(0, spawnPoints.Count);
                 GameObject spawnPos = spawnPoints[spawnIndex];
                 spawnPoints.Remove(spawnPos);
-                player.transform.position = spawnPos.transform.position;
+                player.transform.position = (Vector2)spawnPos.transform.position;
             }
         }
     }

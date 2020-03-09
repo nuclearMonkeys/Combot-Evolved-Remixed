@@ -502,6 +502,8 @@ MonoBehaviour:
   healthSlider: {fileID: 7212190239094543011}
   currentHP: 0
   maxHP: 5
+  smokeParticlePrefab: {fileID: 4964183583117722985, guid: 9b6ca1baf7a6d054eb40a821c137bac9,
+    type: 3}
 --- !u!114 &3121432866266575467
 MonoBehaviour:
   m_ObjectHideFlags: 0

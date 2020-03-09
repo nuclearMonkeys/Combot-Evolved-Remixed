@@ -212,11 +212,6 @@ public class PlayerController : MonoBehaviour
     // Called when loading new level
     public void Reset()
     {
-        // Removes smoke from the Player
-        foreach(Transform t in transform)
-            if(t.gameObject.CompareTag("Cosmetics")) 
-                Destroy(t.gameObject);
-
         gameObject.SetActive(true);
         transform.Find("Bars").gameObject.SetActive(true);
 

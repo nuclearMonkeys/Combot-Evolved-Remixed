@@ -11,7 +11,7 @@ public class HazardDamage : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerManager.TANKWALLCOLLIDER)
         {
-            collision.transform.parent.GetComponentInChildren<PlayerHealth>().TakeDamage(damage, cause);
+            collision.transform.parent.GetComponentInChildren<PlayerHealth>().TakeDamage(damage, collision.transform.position, cause);
         }
         else if(collision.CompareTag("TNT"))
         {

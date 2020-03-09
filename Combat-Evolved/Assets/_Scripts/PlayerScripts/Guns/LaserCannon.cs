@@ -126,7 +126,7 @@ public class LaserCannon : GunBase
             {
                 lr1.SetPosition(1, playerhit.point);
                 lr2.SetPosition(1, playerhit.point);
-                playerhit.collider.GetComponent<PlayerHealth>().TakeDamage(laserDamage * Time.deltaTime, owner);
+                playerhit.collider.GetComponent<PlayerHealth>().TakeDamage(laserDamage * Time.deltaTime, playerhit.point, owner);
             }
             else
             {

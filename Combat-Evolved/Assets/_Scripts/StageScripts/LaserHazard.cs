@@ -22,7 +22,7 @@ public class LaserHazard : HazardDamage
         if (playerhit) 
         {
             PlayerHealth playerHealth = playerhit.collider.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(damage * Time.deltaTime);
+            playerHealth.TakeDamage(damage * Time.deltaTime, playerhit.point);
             laser.SetPosition(1, playerhit.point);
         }
     }
