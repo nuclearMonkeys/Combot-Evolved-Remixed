@@ -102,7 +102,10 @@ public class EncapsulatingWall : MonoBehaviour
                     // explode tnt
                     if (tntHit && tntHit.collider.CompareTag("TNT"))
                         tntHit.collider.GetComponent<TNT>().Explode(null);
-                    Instantiate(indestructableBlockPrefab, spawnPosition, Quaternion.identity);
+                    GameObject lava = Instantiate(indestructableBlockPrefab, spawnPosition, Quaternion.identity);
+                    lava.AddComponent<AudioSource>();
+                    
+                    AudioManager.instance.PlaySound("fire_burst", lava, false, 0.4f);
                     yield return new WaitForSeconds(.1f);
                 }
             }

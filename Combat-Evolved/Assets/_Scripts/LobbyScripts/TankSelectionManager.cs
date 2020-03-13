@@ -12,11 +12,9 @@ public class TankSelectionManager : MonoBehaviour
     public List<GameObject> players = new List<GameObject>();
 
     public List<GameObject> promptCubes = new List<GameObject>();
-    [HideInInspector] public List<GameObject> controllerEmblems = new List<GameObject>();
     [HideInInspector] public List<GameObject> readyLines = new List<GameObject>();
 
     public GameObject promptCubeContainer;
-    public GameObject controllerEmblemContainer;
     public GameObject referencePromptCube;
     public GameObject readyLineContainer;
     public GameObject spawnpoints;
@@ -24,14 +22,15 @@ public class TankSelectionManager : MonoBehaviour
 
     private void Awake() 
     {
-        if (!instance)
+        if (!instance){
             instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
         else {
-            Destroy(this);
+            Destroy(this.gameObject);
             return;
         }
     
-        DontDestroyOnLoad(this.gameObject);
 
         if(!SceneManager.GetActiveScene().name.Equals("Lobby"))
         {
@@ -44,9 +43,16 @@ public class TankSelectionManager : MonoBehaviour
             }
             return;
         }
+    }
+
+    private void Start() {
+        AudioManager.instance.PlaySound(name = "soundtrack00", null, false, 1f, true);
+        promptCubeContainer = GameObject.Find("PromptCubeContainer");
+        readyLineContainer = GameObject.Find("ReadyPlayerContainer");
+        referencePromptCube = GameObject.Find("ReferencePromptCube");
+        spawnpoints = GameObject.Find("SpawnPoints");
 
         Transform[] promptCubeArr = promptCubeContainer.GetComponentsInChildren<Transform>(true);
-        Transform[] controllerEmblemArr = controllerEmblemContainer.GetComponentsInChildren<Transform>(true);
         Transform[] readyLineArr = readyLineContainer.GetComponentsInChildren<Transform>(true);
 
         for(int i = 0; i < promptCubeArr.Length; i++) 
@@ -54,13 +60,6 @@ public class TankSelectionManager : MonoBehaviour
             if (promptCubeArr[i].parent != promptCubeContainer.transform)
                 continue;
             promptCubes.Add(promptCubeArr[i].gameObject);
-        }
-
-        for(int i = 0; i < controllerEmblemArr.Length; i++) 
-        {
-            if (controllerEmblemArr[i].parent != controllerEmblemContainer.transform)
-                continue;
-            controllerEmblems.Add(controllerEmblemArr[i].gameObject);
         }
 
         for(int i = 0; i < readyLineArr.Length; i++) 
@@ -153,6 +152,7 @@ public class TankSelectionManager : MonoBehaviour
                 playerStamina.staminaSlider.maxValue = playerStamina.maxStamina;
                 playerStamina.currentStamina = playerStamina.maxStamina;
             }
+            AudioManager.instance.StopSound("soundtrack00");
             // activate canvas
             gameCanvas.SetActive(true);
             // move to next scene

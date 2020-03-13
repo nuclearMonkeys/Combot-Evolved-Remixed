@@ -33,11 +33,26 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Slash.unity
     guid: e429dcc8352bcd54bb69b781afdec327
   - enabled: 1
-    path: Assets/Scenes/Levels/Kaboom.unity
+    path: Assets/CutContent/Kaboom.unity
     guid: c274d69e72e2d4c4192e94c0561c4d23
   - enabled: 1
-    path: Assets/Scenes/Levels/daneLevel1.unity
+    path: Assets/Scenes/Levels/BulletHell.unity
+    guid: 4fae1b06daa49fb4b8d996b8dfe568d2
+  - enabled: 1
+    path: Assets/CutContent/daneLevel1.unity
     guid: 863a141d32a28d945956c786b32322a7
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 1b208b47061a76a48b6e20c71b036756
+  - enabled: 1
+    path: Assets/Scenes/StartupScreen.unity
+    guid: 81ad3c8e46d870846ae6b17fa10ffb53
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: eea56a3f02cce4c44ab69df43ccb9c3e
+  - enabled: 1
+    path: Assets/Scenes/OGCredits.unity
+    guid: b247ea677443b1d438f82c57ac39a8dd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6ebf997df8fd1d54cba22cb6352c3e84,
       type: 2}

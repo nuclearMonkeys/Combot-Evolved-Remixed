@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     // audio fade duration
     public float fadeDuration = .75f;
 
-    private void Awake()
+    private void Start()
     {
         instance = this;
         clips = new List<AudioClip>();
@@ -54,8 +54,9 @@ public class AudioManager : MonoBehaviour
 
     // plays an audio clip by name
     // specify playFrom if want to create audio source on separate object
-    public void PlaySound(string name, GameObject playFrom = null, bool fadeIn = false, float volume = 1f)
+    public void PlaySound(string name, GameObject playFrom = null, bool fadeIn = false, float volume = 1f, bool looping = false)
     {
+        gameObject.name = "Manager";
         if(name.Equals(""))
         {
             Debug.Log("NO SOUND EQUIPPED!");
@@ -82,6 +83,7 @@ public class AudioManager : MonoBehaviour
         }
 
         // plays the sound
+        audioSource.loop = looping;
         audioSource.volume = volume;
         audioSource.Play();
 

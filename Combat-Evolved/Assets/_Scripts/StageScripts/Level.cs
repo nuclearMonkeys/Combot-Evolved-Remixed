@@ -55,7 +55,7 @@ public class Level : MonoBehaviour
         List<GameObject> cratePoints = new List<GameObject>(spawns);
 
         foreach (GameObject point in cratePoints) {
-            Instantiate(cratePrefab, point.transform.position + new Vector3(Random.value * spawnOffset * 2 - spawnOffset, Random.value * spawnOffset * 2 - spawnOffset, 0), point.transform.rotation);
+            Instantiate(cratePrefab, point.transform.position, Quaternion.identity);
         }
     }
 }

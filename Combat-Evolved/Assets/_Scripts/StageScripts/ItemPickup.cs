@@ -14,29 +14,14 @@ public class ItemPickup : MonoBehaviour
     public List<GameObject> bullets;
     public List<GameObject> passives;
 
+    public bool hasHealth = false;
+    public bool hasStamina = false;
+
     public ScrollingText scrollingTextPrefab;
     string message = "";
 
     void Start() 
     {
-        if(debug)
-            return;
-        
-        if(Random.value < .33f) 
-        {
-            gunPrefab = guns[(int)(Random.value * guns.Count)].GetComponent<GunBase>();
-            message = gunPrefab.name;
-        }
-        else if (Random.value < .66f) 
-        {
-            bulletPrefab = bullets[(int)(Random.value * bullets.Count)].GetComponent<BulletBase>();
-            message = bulletPrefab.name;
-        }
-        else
-        {
-            passivePrefab = passives[(int)(Random.value * passives.Count)].GetComponent<PassiveBase>();
-            message = passivePrefab.name;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,6 +31,11 @@ public class ItemPickup : MonoBehaviour
             PlayerWeapons pw = collision.GetComponentInParent<PlayerWeapons>();
             while (true)
             {
+                if(hasHealth)
+                    pw.GetComponentInChildren<PlayerHealth>().healPlayer(2);
+                else if(hasStamina)
+                    pw.GetComponentInChildren<PlayerStamina>().ResetStamina();
+
                 if (gunPrefab && pw.getGunBase().name.Contains(gunPrefab.name) == false)
                 {
                     pw.AssignGun(gunPrefab);

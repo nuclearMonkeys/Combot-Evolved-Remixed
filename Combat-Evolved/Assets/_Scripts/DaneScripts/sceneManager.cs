@@ -80,6 +80,11 @@ public class sceneManager : MonoBehaviour
         }
     }
 
+    public void backToMainMenu() 
+    {
+        SceneManager.LoadScene("Scenes/StartupScreen");
+    }
+
     public void updateKills(int index)
     {
         kills[index] += 1;

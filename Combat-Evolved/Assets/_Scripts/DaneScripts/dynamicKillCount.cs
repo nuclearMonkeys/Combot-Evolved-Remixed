@@ -8,6 +8,9 @@ public class dynamicKillCount : MonoBehaviour
     public GameObject sms;
     public GameObject text;
 
+    public bool sub;
+    public bool add;
+
     private void Start()
     {
         updateKillThreshold();
@@ -15,7 +18,7 @@ public class dynamicKillCount : MonoBehaviour
 
     void updateKillThreshold()
     {
-        text.GetComponent<TextMeshProUGUI>().text = "KILL THRESHOLD\n-\t" + sms.GetComponent<ScoreboardManagerScript>().killThreshold + "\t+";
+        text.GetComponent<TextMeshProUGUI>().text = "KILL THRESHOLD\n" + sms.GetComponent<ScoreboardManagerScript>().killThreshold;
     }
     
 
@@ -23,11 +26,11 @@ public class dynamicKillCount : MonoBehaviour
     {
         if (collision.tag == "Bullet")
         {
-            if (collision.GetComponent<BulletBase>().source.tankID == 0)
+            if (collision.GetComponent<BulletBase>().source.tankID == 0 && sub)
             {
                 sms.GetComponent<ScoreboardManagerScript>().killThreshold--;
             }
-            else if (collision.GetComponent<BulletBase>().source.tankID == 1)
+            else if (collision.GetComponent<BulletBase>().source.tankID == 1 && add)
             {
                 sms.GetComponent<ScoreboardManagerScript>().killThreshold++;
             }

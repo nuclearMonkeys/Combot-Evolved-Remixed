@@ -301,6 +301,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5147485002508070205, guid: 7695eba2a418a4b4d8f60b8d0ef0481f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.33
+      objectReference: {fileID: 0}
     - target: {fileID: 6257713836583132731, guid: 7695eba2a418a4b4d8f60b8d0ef0481f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -314,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 6257713836583132731, guid: 7695eba2a418a4b4d8f60b8d0ef0481f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3707044
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257713836583132731, guid: 7695eba2a418a4b4d8f60b8d0ef0481f,
         type: 3}
@@ -361,6 +366,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BottomlessPit
       objectReference: {fileID: 0}
+    - target: {fileID: 6257713836822542102, guid: 7695eba2a418a4b4d8f60b8d0ef0481f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7695eba2a418a4b4d8f60b8d0ef0481f, type: 3}
 --- !u!1001 &311022144
@@ -370,6 +380,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5326430000858526815, guid: b90fc1e6bdda0364aae0a5a802d93871,
+        type: 3}
+      propertyPath: pickupPrefab
+      value: 
+      objectReference: {fileID: 881404251872954230, guid: 541a41f8d60fa0e489c2344bd2a7ab4b,
+        type: 3}
     - target: {fileID: 7332103454336806156, guid: b90fc1e6bdda0364aae0a5a802d93871,
         type: 3}
       propertyPath: y
@@ -1317,7 +1333,7 @@ PrefabInstance:
     - target: {fileID: 881404251872954216, guid: 541a41f8d60fa0e489c2344bd2a7ab4b,
         type: 3}
       propertyPath: debug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 881404251872954216, guid: 541a41f8d60fa0e489c2344bd2a7ab4b,
         type: 3}
@@ -1325,6 +1341,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1999696580851747556, guid: 40573bd9a5b32f34284388e35a4bbda1,
         type: 3}
+    - target: {fileID: 881404251872954216, guid: 541a41f8d60fa0e489c2344bd2a7ab4b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 881404251872954218, guid: 541a41f8d60fa0e489c2344bd2a7ab4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1545,6 +1566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d135e76b9b94f44e9bd344b3da7bda8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicGun: {fileID: 0}
+  guns: []
   rotateSpeed: 90
   bulletPrefab: {fileID: 0}
 --- !u!212 &1212594423

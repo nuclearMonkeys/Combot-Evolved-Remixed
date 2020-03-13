@@ -45,6 +45,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -125,6 +126,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -172,8 +174,9 @@ GameObject:
   - component: {fileID: 7332103454336806156}
   - component: {fileID: 4613792064712458834}
   - component: {fileID: 5169735908153645748}
+  - component: {fileID: 5326430000858526815}
   m_Layer: 0
-  m_Name: CapsuleHolder
+  m_Name: Crate
   m_TagString: Crate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,6 +265,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5326430000858526815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7332103454336806158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b688bb1ba77f04e925f68f71dc6a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  passivePrefab: {fileID: 0}
+  guns:
+  - {fileID: 6266121759083471514, guid: a342f9c908200c240b52bf2ac833f045, type: 3}
+  - {fileID: 1091973964682589149, guid: a544e9470781f7d49b94f7635faf7e4b, type: 3}
+  - {fileID: 4125611310080684406, guid: 53b71cb64471a9048b5d29e0b9c5e140, type: 3}
+  - {fileID: 6266121759083471514, guid: 58a179a25bfb0d4428e3df77bb0989a0, type: 3}
+  - {fileID: 77425603512849961, guid: b1460435d2cbb11498ecd1561f06b31a, type: 3}
+  bullets:
+  - {fileID: 8928059118918044158, guid: febe52912db072c4db4fe8d7356f9adb, type: 3}
+  - {fileID: 8969204872830082300, guid: 668602ad2191aef45830a6da97b0d01a, type: 3}
+  - {fileID: 8928059118918044158, guid: 484901db6710c5f458777f4f959af6f2, type: 3}
+  - {fileID: 7778438706271195899, guid: 55f6b8aa37f61db40b46a7329a6f9426, type: 3}
+  passives:
+  - {fileID: 2712768665217318852, guid: 5fdc238f8c8279f4fb11b1a27f302fbb, type: 3}
+  - {fileID: 8253600161769907518, guid: 784311d82f35f234eb1ee05fe7664d1e, type: 3}
+  - {fileID: 7446105440491770682, guid: 99437eec18c5923479dd823146bb85c4, type: 3}
+  - {fileID: 4146172003348086794, guid: 85cc32511d996f04c9a85fecb21bb4fa, type: 3}
+  - {fileID: 6325797067039148928, guid: 2db40358a0fdc994e85cb682f3ad9475, type: 3}
+  - {fileID: 7446105440491770682, guid: 40573bd9a5b32f34284388e35a4bbda1, type: 3}
+  - {fileID: 2589074124693033682, guid: d261b5e58fb2627439fe6fd0ba1c7c57, type: 3}
+  hasHealth: 0
+  hasStamina: 0
+  pickupPrefab: {fileID: 881404251872954230, guid: 541a41f8d60fa0e489c2344bd2a7ab4b,
+    type: 3}
+  currentHP: 0
+  maxHP: 0
 --- !u!1 &7332103454338123494
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +350,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -387,6 +431,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -483,6 +528,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -578,6 +624,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -658,6 +705,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
