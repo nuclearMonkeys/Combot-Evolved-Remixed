@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public float currentHP;
     public float maxHP;
     public GameObject smokeParticlePrefab;
+    public GameObject explosionParticlePrefab;
     PlayerController pc;
     int lastSmokeSpawn;
 
@@ -79,6 +80,10 @@ public class PlayerHealth : MonoBehaviour
     {
         // spawns a placeholder for camera to track
         StartCoroutine(DelayedCameraRemoval());
+        GameObject explosion = Instantiate(explosionParticlePrefab, transform.position, Quaternion.identity);
+        AudioManager.instance.PlaySound("tank_explosion", explosion);
+        CameraController.instance.ShakeCamera();
+        Destroy(explosion, 1.0f);
         // deactivate player
         transform.parent.gameObject.SetActive(false);
         // decrement players alive

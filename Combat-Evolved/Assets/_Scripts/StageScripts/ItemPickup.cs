@@ -18,7 +18,7 @@ public class ItemPickup : MonoBehaviour
     public bool hasStamina = false;
 
     public ScrollingText scrollingTextPrefab;
-    string message = "";
+    public string message = "";
 
     void Start() 
     {
@@ -36,24 +36,43 @@ public class ItemPickup : MonoBehaviour
                 else if(hasStamina)
                     pw.GetComponentInChildren<PlayerStamina>().ResetStamina();
 
-                if (gunPrefab && pw.getGunBase().name.Contains(gunPrefab.name) == false)
+                if (gunPrefab)
                 {
+                    if (pw.getGunBase().name.Contains(gunPrefab.name) == true) 
+                    {
+                        guns.Remove(gunPrefab.gameObject);
+                        gunPrefab = guns[(int)(Random.value * guns.Count)].GetComponent<GunBase>();
+                        message = gunPrefab.name.ToUpper();
+                    }
                     pw.AssignGun(gunPrefab);
                     break;
                 }
                     
-                else if (bulletPrefab && pw.getBulletBase().name.Contains(bulletPrefab.name) == false)
+                else if (bulletPrefab)
                 {
+                    if (pw.getBulletBase().name.Contains(bulletPrefab.name) == true) 
+                    {
+                        bullets.Remove(bulletPrefab.gameObject);
+                        bulletPrefab = bullets[(int)(Random.value * bullets.Count)].GetComponent<BulletBase>();
+                        message = bulletPrefab.name.ToUpper();
+                    }
                     pw.AssignBullet(bulletPrefab);
                     break;
                 }
                 else if (passivePrefab && pw.getPassiveBase().name.Contains(passivePrefab.name) == false)
                 {
+                    if (pw.getPassiveBase().name.Contains(passivePrefab.name) == true) 
+                    {
+                        passives.Remove(passivePrefab.gameObject);
+                        passivePrefab = passives[(int)(Random.value * passives.Count)].GetComponent<PassiveBase>();
+                        message = passivePrefab.name.ToUpper();
+                    }
                     pw.AssignPassive(passivePrefab);
                     break;
                 }
                 Start();
             }
+            AudioManager.instance.PlaySound("Ammo");
             Destroy(gameObject);
             Instantiate(scrollingTextPrefab, collision.transform.parent).SetText(message);
             float percent = collision.GetComponent<PlayerHealth>().getHealthPercentage();

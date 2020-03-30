@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
         {
             body.transform.right = direction.normalized;
         }
+        AudioManager.instance.PlaySound("tank_move");
     }
 
     public void ControllerRotate(InputAction.CallbackContext context)

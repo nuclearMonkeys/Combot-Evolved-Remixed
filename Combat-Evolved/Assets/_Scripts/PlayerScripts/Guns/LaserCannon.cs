@@ -122,6 +122,7 @@ public class LaserCannon : GunBase
             lr2.SetPosition(0, firePoint.transform.position);
             lightningRenderer.SetPosition(0, firePoint.transform.position);
             RaycastHit2D playerhit = Physics2D.Raycast(firePoint.transform.position, transform.right, 100000, 1 << LayerManager.TANKBODY);
+            
             if (playerhit)
             {
                 lr1.SetPosition(1, playerhit.point);
@@ -131,10 +132,22 @@ public class LaserCannon : GunBase
             else
             {
                 RaycastHit2D blockhit = Physics2D.Raycast(firePoint.transform.position, transform.right, 100000, 1 << LayerManager.BLOCK | 1 << LayerManager.STAGEHAZARD);
-                if (blockhit)
+                RaycastHit2D cratehit = Physics2D.Raycast(firePoint.transform.position, transform.right, 100000, 1 << LayerManager.CRATE);
+
+                if(cratehit) 
+                {
+                    print(cratehit.collider);
+                    lr1.SetPosition(1, cratehit.point);
+                    lr2.SetPosition(1, cratehit.point);
+                    cratehit.collider.GetComponent<Crate>().TakeDamage(laserDamage);
+                }
+                else if (blockhit)
                 {
                     lr1.SetPosition(1, blockhit.point);
                     lr2.SetPosition(1, blockhit.point);
+                    if(!blockhit.collider.CompareTag("Untagged"))
+                        return;
+                    blockhit.collider.GetComponent<Block>().TakeDamage(laserDamage);
                 }
             }
         }

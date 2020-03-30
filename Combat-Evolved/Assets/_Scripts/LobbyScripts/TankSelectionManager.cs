@@ -46,7 +46,9 @@ public class TankSelectionManager : MonoBehaviour
     }
 
     private void Start() {
-        AudioManager.instance.PlaySound(name = "soundtrack00", null, false, 1f, true);
+        Debug.Log("AudioManager: ");
+        Debug.Log(AudioManager.instance.name);
+        AudioManager.instance.PlaySound(name = "Lobby_Music", null, false, .35f, true);
         promptCubeContainer = GameObject.Find("PromptCubeContainer");
         readyLineContainer = GameObject.Find("ReadyPlayerContainer");
         referencePromptCube = GameObject.Find("ReferencePromptCube");
@@ -123,7 +125,6 @@ public class TankSelectionManager : MonoBehaviour
         // if left inside of lobby
         if(SceneManager.GetActiveScene().name == "Lobby")
         {
-            print(tankID);
             promptCubes[tankID].SetActive(true);
             promptCubes[tankID].transform.rotation = Quaternion.identity;
             // controllerEmblems[tankID].SetActive(false);
@@ -152,7 +153,7 @@ public class TankSelectionManager : MonoBehaviour
                 playerStamina.staminaSlider.maxValue = playerStamina.maxStamina;
                 playerStamina.currentStamina = playerStamina.maxStamina;
             }
-            AudioManager.instance.StopSound("soundtrack00");
+            AudioManager.instance.StopSound("Lobby_Music", AudioManager.instance.gameObject);
             // activate canvas
             gameCanvas.SetActive(true);
             // move to next scene

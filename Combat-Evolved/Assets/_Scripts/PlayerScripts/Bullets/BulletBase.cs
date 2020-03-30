@@ -82,7 +82,6 @@ public class BulletBase : MonoBehaviour
             }
             else if (other.CompareTag("StagePlane")) 
             {
-                print("a");
                 other.GetComponent<StageObjRotate>().HitObj();
             }
         }

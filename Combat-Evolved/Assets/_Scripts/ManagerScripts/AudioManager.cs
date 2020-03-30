@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
         clips = new List<AudioClip>();
         // Get all clips in Audio/Resources
         int index = 0;
+        Debug.Log(Directory.Exists(Application.dataPath + "/Audio/Resources"));
         DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/Audio/Resources");
         FileInfo[] info = dir.GetFiles("*.*");
         foreach (FileInfo f in info)
@@ -34,6 +35,7 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < clips.Count; i++)
         {
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            // print(File.Exists(Application.dataPath + "/Audio/Resources" + clips[i].name));
             audioSource.clip = clips[i];
             sources[i] = audioSource;
         }
@@ -69,6 +71,8 @@ public class AudioManager : MonoBehaviour
         // play sound from the manager
         if (playFrom == null)
         {
+            print("audio source name: ");
+            print(audioSource);
             audioSource = sources[i];
         }
         // play sound on another object
@@ -85,7 +89,8 @@ public class AudioManager : MonoBehaviour
         // plays the sound
         audioSource.loop = looping;
         audioSource.volume = volume;
-        audioSource.Play();
+        if(!audioSource.isPlaying)
+            audioSource.Play();
 
         // if want to fade in
         if (fadeIn)
@@ -99,6 +104,7 @@ public class AudioManager : MonoBehaviour
         if (stopFrom == null)
         {
             int i = GetAudioClipIndex(name);
+            print(i);
             Debug.Assert(i == -1, "AudioManager:StopSound:: AudioSource Manager has no sound: " + name + "! Check the Audio/Resources folder!!");
             audioSource = sources[i];
         }

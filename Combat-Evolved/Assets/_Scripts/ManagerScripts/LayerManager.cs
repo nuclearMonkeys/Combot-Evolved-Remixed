@@ -5,6 +5,7 @@ using UnityEngine;
 // Creates constants for layers.
 public class LayerManager : MonoBehaviour
 {
+    public static int DEAFULT = 0;
     public static int DAMAGE = 8;
     public static int TANKBODY = 9;
     public static int TANKWALLCOLLIDER = 10;
@@ -12,5 +13,6 @@ public class LayerManager : MonoBehaviour
     public static int CIRCLE = 12;
     public static int STAGEHAZARD = 13;
     public static int IGNOREWALL = 14;
+    public static int CRATE = 15;
 
 }
