@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public GameObject controllerPrompt2;
     public List<GameObject> options = new List<GameObject>();
     public GameObject menuSelector;
+    public GameObject managers;
     int cooldown = 0;
     int index = 0;
 
@@ -82,12 +83,22 @@ public class MainMenu : MonoBehaviour
 
     public void Transition() 
     {
-        if (index == 0)
-            SceneManager.LoadScene("Scenes/Lobby");
-        else if (index == 1)
-            SceneManager.LoadScene("Scenes/Credits");
+        if (cooldown > 0) 
+            return;
+
+        if (index == 0){
+            // managers.SetActive(true);
+            SceneManager.LoadScene("StreamingAssets/Scenes/Lobby");
+            cooldown = 20;
+            // Debug.Break();
+        }
+        else if (index == 1) {
+            SceneManager.LoadScene("StreamingAssets/Scenes/Credits");
+            cooldown = 20;
+        }
         else
             Application.Quit();
+        
         Destroy(this.gameObject);
     }
 }

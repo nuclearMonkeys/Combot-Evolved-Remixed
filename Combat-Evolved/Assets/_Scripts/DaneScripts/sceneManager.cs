@@ -43,7 +43,7 @@ public class sceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string path = Application.dataPath + "/Scenes/Levels";
+        string path = Application.streamingAssetsPath + "/Scenes/Levels";
         var files = Directory.GetFiles(path);
         foreach (string file in files)
         {
@@ -108,7 +108,7 @@ public class sceneManager : MonoBehaviour
     {
         string song = "";
         List<string> songs = new List<string>();
-        DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/Audio/Resources");
+        DirectoryInfo dir = new DirectoryInfo(Application.streamingAssetsPath + "/Audio/Resources");
         FileInfo[] info = dir.GetFiles("*.*");
         foreach (FileInfo f in info)
         {
@@ -130,7 +130,7 @@ public class sceneManager : MonoBehaviour
         if (isPlaying == false)
         {
             isPlaying = true;
-            AudioManager.instance.PlaySound(chooseSoundtrack(), null, false, 0.35f);
+            AudioManager.instance.PlaySound(chooseSoundtrack(), null, false, 0.65f);
         }
     }
 }

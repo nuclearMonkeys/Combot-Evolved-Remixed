@@ -408,7 +408,7 @@ MonoBehaviour:
   lightningRenderer: {fileID: 813870906780805674}
   suckParticle: {fileID: 7919617120237218650, guid: 02036be0433f81f47920091e08fb66e7,
     type: 3}
-  laserDamage: 0.5
+  laserDamage: 0.7
   endDamageMultiplier: 4
   zappingTime: 1.5
   lightningPoints: 60

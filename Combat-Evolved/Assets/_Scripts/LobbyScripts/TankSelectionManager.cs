@@ -20,6 +20,8 @@ public class TankSelectionManager : MonoBehaviour
     public GameObject spawnpoints;
     public GameObject gameCanvas;
 
+    private bool isPlaying = false;
+
     private void Awake() 
     {
         if (!instance){
@@ -46,9 +48,7 @@ public class TankSelectionManager : MonoBehaviour
     }
 
     private void Start() {
-        Debug.Log("AudioManager: ");
-        Debug.Log(AudioManager.instance.name);
-        AudioManager.instance.PlaySound(name = "Lobby_Music", null, false, .35f, true);
+        
         promptCubeContainer = GameObject.Find("PromptCubeContainer");
         readyLineContainer = GameObject.Find("ReadyPlayerContainer");
         referencePromptCube = GameObject.Find("ReferencePromptCube");
@@ -74,6 +74,10 @@ public class TankSelectionManager : MonoBehaviour
 
     private void Update()
     {
+        if(!isPlaying){
+            AudioManager.instance.PlaySound(name = "Lobby_Music", null, false, .65f, true);
+            isPlaying = true;
+        }
         // Spawning players with keyboard
         if(Input.GetKeyDown(KeyCode.Return) && players.Count < GetComponent<PlayerInputManager>().maxPlayerCount && SceneManager.GetActiveScene().name == "Lobby")
         {

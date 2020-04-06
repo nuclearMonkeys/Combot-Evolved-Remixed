@@ -59,7 +59,7 @@ public class ItemPickup : MonoBehaviour
                     pw.AssignBullet(bulletPrefab);
                     break;
                 }
-                else if (passivePrefab && pw.getPassiveBase().name.Contains(passivePrefab.name) == false)
+                else if (passivePrefab)
                 {
                     if (pw.getPassiveBase().name.Contains(passivePrefab.name) == true) 
                     {

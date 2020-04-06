@@ -63,6 +63,9 @@ public class Crate : MonoBehaviour
             hasStamina = true;
         }
 
+        if(debug)
+            return;
+
         if(Random.value < .33f) 
         {
             gunPrefab = guns[(int)(Random.value * guns.Count)].GetComponent<GunBase>();

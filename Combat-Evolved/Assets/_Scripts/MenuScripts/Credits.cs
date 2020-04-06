@@ -31,7 +31,7 @@ public class Credits : MonoBehaviour
     public void Transition() 
     {
         if (menuSelector)
-            SceneManager.LoadScene("Scenes/" + scene);
+            SceneManager.LoadScene("StreamingAssets/Scenes/" + scene);
         Destroy(this.gameObject);
     }
 }

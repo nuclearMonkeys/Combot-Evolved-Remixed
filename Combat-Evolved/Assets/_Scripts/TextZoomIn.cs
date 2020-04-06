@@ -42,8 +42,7 @@ public class TextZoomIn : MonoBehaviour
         if (elapsed >= updateSpeedSecs - 0.1f) 
         {
             GetComponent<AudioSource>().Play();
-            Instantiate(textHitParticle, obj.transform.position + particleOffset, Quaternion.identity);   
-            print("aye");
+            Instantiate(textHitParticle, obj.transform.position + particleOffset, Quaternion.identity);
         }
     }
 
