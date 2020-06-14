@@ -111,6 +111,8 @@ public class Crate : MonoBehaviour
         itemPickup.gunPrefab = gunPrefab;
         itemPickup.bulletPrefab = bulletPrefab;
         itemPickup.passivePrefab = passivePrefab;
+        itemPickup.hasHealth = hasHealth;
+        itemPickup.hasStamina = hasStamina;
         itemPickup.message = message;
         Destroy(this.gameObject);
     }

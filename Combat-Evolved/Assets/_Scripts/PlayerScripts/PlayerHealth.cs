@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     PlayerController pc;
     int lastSmokeSpawn;
 
+    public float updateSpeedSecs = 0.15f;
+
     void Start() 
     {
         pc = GetComponentInParent<PlayerController>();
@@ -27,7 +29,10 @@ public class PlayerHealth : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Equals("Lobby"))
             return;
         currentHP -= amount;
-        healthSlider.value = currentHP / maxHP;
+
+        StartCoroutine(BarAnimation(getHealthPercentage()));
+
+        // healthSlider.value = currentHP / maxHP;
 
         if((int) currentHP != lastSmokeSpawn)
         {
@@ -39,6 +44,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHP <= 0)
             Die(cause);
+        
+        
     }
 
     public float getHealthPercentage()
@@ -72,7 +79,8 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHP = maxHP;
         }
-        healthSlider.value = currentHP / maxHP;
+        // healthSlider.value = currentHP / maxHP;
+        StartCoroutine(BarAnimation(getHealthPercentage()));
 
     }
 
@@ -108,5 +116,20 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         CameraController.instance.targets.Remove(transform.parent);
+    }
+
+    private IEnumerator BarAnimation(float value) 
+    {
+        float elapsed = 0f;
+
+        while (elapsed < updateSpeedSecs) 
+        {
+            elapsed += Time.deltaTime;
+            healthSlider.value = Mathf.Lerp(healthSlider.value, value, elapsed / updateSpeedSecs);
+            yield return new WaitForEndOfFrame();
+        }
+        healthSlider.value = value;
+        // successfully ended a bar animation routine
+        // barRoutine = null;
     }
 }
